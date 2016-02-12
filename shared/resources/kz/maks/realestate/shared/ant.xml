@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="Demo" default="generate-app-version" basedir=".">
+    <property name="BASE_VERSION" value="0.9."/>
+
+    <macrodef name="git">
+        <attribute name="command" />
+        <attribute name="output" />
+
+        <element name="args" optional="true" />
+        <sequential>
+            <echo output="@{output}" message="${BASE_VERSION}"/>
+            <exec executable="C:\Program Files\Git\bin\git" output="@{output}" append="true">
+                <arg value="@{command}" />
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <target name="generate-app-version">
+        <git command="rev-list" output="./app.version">
+            <args>
+                <arg value="--count" />
+                <arg value="--all" />
+            </args>
+        </git>
+    </target>
+
+</project>

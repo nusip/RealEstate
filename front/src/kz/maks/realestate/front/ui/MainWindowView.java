@@ -6,6 +6,7 @@ import kz.maks.realestate.front.ui.dom.DomRentView;
 import kz.maks.realestate.front.ui.dom.DomSaleView;
 import kz.maks.realestate.front.ui.kvartira.KvartiraRentView;
 import kz.maks.realestate.front.ui.kvartira.KvartiraSaleView;
+import kz.maks.realestate.shared.AppMeta;
 
 import javax.swing.*;
 
@@ -19,6 +20,7 @@ public class MainWindowView {
     public MainWindowView() {
         JFrame frame = new JFrame();
         frame.setGlassPane(new ProgressGlassPane());
+        frame.setTitle(AppMeta.PROJECT_NAME + " " + AppMeta.getVersion());
         {
             JTabbedPane tabs = new JTabbedPane();
             FrontUtils.addMargins(tabs);
