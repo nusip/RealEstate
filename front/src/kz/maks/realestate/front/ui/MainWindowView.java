@@ -9,6 +9,7 @@ import kz.maks.realestate.front.ui.kvartira.KvartiraSaleView;
 import kz.maks.realestate.shared.AppMeta;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainWindowView {
     public final JFrame ui;
@@ -60,6 +61,7 @@ public class MainWindowView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+        frame.setIconImage(Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png")));
         ui = frame;
     }
 
