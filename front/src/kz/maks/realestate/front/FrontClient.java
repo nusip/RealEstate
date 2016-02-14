@@ -7,12 +7,10 @@ import kz.maks.realestate.front.ui.MainWindowController;
 
 import javax.swing.*;
 
-import static kz.maks.core.shared.Utils.DEFAULT_RMI_REGISTRY_PORT;
-
 public class FrontClient extends BaseClient {
 
     public FrontClient() {
-        super(new ClientConfig("localhost", FrontRemotes.class, true, DEFAULT_RMI_REGISTRY_PORT));
+        super(new ClientConfig(FrontRemotes.class, true));
     }
 
     @Override

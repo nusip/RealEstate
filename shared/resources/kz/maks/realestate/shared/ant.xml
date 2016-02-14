@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Demo" default="generate-app-version" basedir=".">
+<project name="RealEstate" default="generate-app-version" basedir=".">
     <property name="BASE_VERSION" value="0.9."/>
 
     <macrodef name="git">

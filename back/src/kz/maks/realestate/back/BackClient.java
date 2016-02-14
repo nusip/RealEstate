@@ -6,7 +6,7 @@ import kz.maks.core.front.ClientConfig;
 public class BackClient extends BaseClient {
 
     public BackClient() {
-        super(new ClientConfig("localhost", BackRemotes.class, false, 1098));
+        super(new ClientConfig(BackRemotes.class, false));
     }
 
     @Override
