@@ -22,7 +22,7 @@ public class KvartiraSale extends AbstractKvartiraEntity {
                 ", valyuta=" + valyuta +
                 ", region='" + region + '\'' +
                 ", zhiloyKomplex='" + zhiloyKomplex + '\'' +
-                ", ulicaDom='" + ulicaDom + '\'' +
+                ", ulica='" + ulica + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +
                 ", godPostroyki=" + godPostroyki +
                 ", etazh=" + etazh +

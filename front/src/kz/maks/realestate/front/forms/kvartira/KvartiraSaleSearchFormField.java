@@ -5,11 +5,20 @@ import kz.maks.core.front.annotations.TreeName;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
 public enum KvartiraSaleSearchFormField implements FormField<KvartiraSaleSearchParams> {
-    rooms("Количество комнат"),
-
+    dataSozdaniyaFrom("Дата создания"),
+    dataSozdaniyaTo("Дата создания"),
     @TreeName("Region")
     regionId("Регион"),
-
+    rooms("Количество комнат"),
+    etazhMin("Этаж"),
+    etazhMax("Этаж"),
+    etazhnostMin("Этажность"),
+    etazhnostMax("Этажность"),
+    ploshadObshayaMin("Площадь общая"),
+    ploshadObshayaMax("Площадь общая"),
+    ploshadKuhnyaMin("Площадь кухня"),
+    ploshadKuhnyaMax("Площадь кухня"),
+    obwyaga("Общежитие"),
     ;
 
     private String title;

@@ -29,6 +29,7 @@ public abstract class AbstractKvartiraGetDtoAssembler<ENTITY extends AbstractKva
         details.setParkovka(entity.getParkovka());
         details.setMebel(entity.getMebel());
         details.setPol(entity.getPol());
+        details.setPlanirovka(entity.getPlanirovka());
         details.setVysotaPotolkov(entity.getVysotaPotolkov());
         details.setReshetkiNaOknah(entity.getReshetkiNaOknah());
         details.setOhrana(entity.getOhrana());
@@ -38,6 +39,7 @@ public abstract class AbstractKvartiraGetDtoAssembler<ENTITY extends AbstractKva
         details.setVideonablyudeniye(entity.getVideonablyudeniye());
         details.setVideomofon(entity.getVideomofon());
         details.setKonsyerzh(entity.getKonsyerzh());
+        details.setKvartira(entity.getKvartira());
         return details;
     }
 

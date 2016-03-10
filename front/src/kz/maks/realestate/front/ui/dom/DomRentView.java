@@ -10,12 +10,11 @@ import kz.maks.realestate.shared.dtos.list.dom.DomRentListDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DomRentView {
     public final JSplitPane ui;
     public final JFrame frame;
-    public final Form<DomRentSearchParams> searchForm;
+    public final DynamicForm<DomRentSearchParams> searchForm;
     public final JButton btnSearch;
     public final Table<DomRentListDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
@@ -29,7 +28,7 @@ public class DomRentView {
         splitPane.setDividerSize(20);
         ui = splitPane;
         {
-            searchForm = new Form<>(frame, DomRentSearchFormField.values(), 2);
+            searchForm = new DynamicForm<>(frame, DomRentSearchFormField.values(), 2);
             splitPane.setTopComponent(new JScrollPane(searchForm.ui));
             {
                 btnSearch = new JButton("Поиск");
@@ -47,10 +46,11 @@ public class DomRentView {
                 }
                 {
                     btnCRUDPanel = new BtnCRUDPanel();
+                    btnCRUDPanel.btnDelete.setVisible(false);
                     hBox.add(btnCRUDPanel.ui);
                 }
 
-                Form<DomRentGetDto> detailsForm = new Form<>(frame, DomRentFormField.values());
+                DynamicForm<DomRentGetDto> detailsForm = new DynamicForm<>(frame, DomRentFormField.values());
                 FrontUtils.setPreferredWidth(detailsForm.ui, 400);
                 formDialog = new FormDialog<>(frame, detailsForm);
 

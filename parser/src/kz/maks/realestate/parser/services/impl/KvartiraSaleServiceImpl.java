@@ -16,6 +16,7 @@ import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
 import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 import kz.maks.realestate.parser.services.KvartiraSaleService;
+import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -24,6 +25,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static kz.maks.core.shared.Utils.beginningOfDay;
+import static kz.maks.core.shared.Utils.endOfDay;
+import static kz.maks.core.shared.Utils.isNullOrZero;
 import static org.hibernate.criterion.Projections.max;
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.ge;
@@ -66,6 +70,12 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     private Criteria listCriteria(KvartiraSaleSearchParams params) {
         Criteria criteria = session().createCriteria(KvartiraSale.class);
 
+        if (params.getDataSozdaniyaFrom() != null) {
+            criteria.add(Restrictions.ge("createdAt", beginningOfDay(params.getDataSozdaniyaFrom())));
+        }
+        if (params.getDataSozdaniyaTo() != null) {
+            criteria.add(Restrictions.le("createdAt", endOfDay(params.getDataSozdaniyaTo())));
+        }
         if (params.getRegionId() != null) {
             Criteria criRegion = criteria.createCriteria("region");
             criRegion.add(Restrictions.like("path", params.getRegionId() + "", MatchMode.ANYWHERE));
@@ -76,6 +86,38 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
             }
             if (params.getRooms().max() != null) {
                 criteria.add(Restrictions.le("kolichestvoKomnat", params.getRooms().max()));
+            }
+        }
+        if (!isNullOrZero(params.getEtazhMin())) {
+            criteria.add(Restrictions.ge("etazh", params.getEtazhMin()));
+        }
+        if (!isNullOrZero(params.getEtazhMax())) {
+            criteria.add(Restrictions.le("etazh", params.getEtazhMax()));
+        }
+        if (!isNullOrZero(params.getEtazhnostMin())) {
+            criteria.add(Restrictions.ge("etazhnost", params.getEtazhnostMin()));
+        }
+        if (!isNullOrZero(params.getEtazhnostMax())) {
+            criteria.add(Restrictions.le("etazhnost", params.getEtazhnostMax()));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMin())) {
+            criteria.add(Restrictions.ge("ploshadObshaya", params.getPloshadObshayaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMax())) {
+            criteria.add(Restrictions.le("ploshadObshaya", params.getPloshadObshayaMax()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMin())) {
+            criteria.add(Restrictions.ge("ploshadKuhnya", params.getPloshadKuhnyaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMax())) {
+            criteria.add(Restrictions.le("ploshadKuhnya", params.getPloshadKuhnyaMax()));
+        }
+        if (params.getObwyaga() != null && params.getObwyaga() != YesNo.NO_MATTER) {
+            if (params.getObwyaga() == YesNo.YES) {
+                criteria.add(Restrictions.eq("isObwyaga", true));
+
+            } else if (params.getObwyaga() == YesNo.NO) {
+                criteria.add(Restrictions.ne("isObwyaga", true));
             }
         }
         return criteria;
@@ -99,8 +141,12 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
                 dto.setId(kvartiraSale.getId());
         }
 
-        if (kvartiraSale == null)
+        if (kvartiraSale == null) {
             kvartiraSale = new KvartiraSale();
+            kvartiraSale.setCreatedAt(new Date());
+        }
+
+        kvartiraSale.setUpdatedAt(new Date().getTime());
 
         KvartiraSale entity = kvartiraSaleAssembler.assemble(dto, kvartiraSale);
 
@@ -120,6 +166,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
 
         if (existing != null) {
             entity.setId(existing.getId());
+            entity.setCreatedAt(new Date());
         }
 
         entity.setUpdatedAt(new Date().getTime());

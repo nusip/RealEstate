@@ -4,12 +4,15 @@ import kz.maks.core.back.entities.AbstractBaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractKrishaEntity extends AbstractBaseEntity {
 
     @Column(unique = true)
     protected String krishaId;
+
+    protected Date createdAt;
 
     /**
      * create or update time from krisha in millis
@@ -22,6 +25,14 @@ public abstract class AbstractKrishaEntity extends AbstractBaseEntity {
 
     public void setKrishaId(String krishaId) {
         this.krishaId = krishaId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getUpdatedAt() {

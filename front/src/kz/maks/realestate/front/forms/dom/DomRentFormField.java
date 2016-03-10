@@ -43,7 +43,7 @@ public enum DomRentFormField implements FormField<DomRentGetDto> {
 //    photoPaths("Фото"), TODO
     @TreeName("Region")
     regionId("Регион"),
-    ulicaDom("Улица/Дом"),
+    ulica("Улица/Дом"),
     telNumbers("Тел. номер"),
     ;
 

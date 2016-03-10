@@ -4,6 +4,7 @@ import kz.maks.core.front.BaseClient;
 import kz.maks.core.front.ClientConfig;
 import kz.maks.realestate.front.services.FrontRemotes;
 import kz.maks.realestate.front.ui.MainWindowController;
+import kz.maks.realestate.front.ui.login.LoginController;
 
 import javax.swing.*;
 
@@ -25,7 +26,7 @@ public class FrontClient extends BaseClient {
             throw new RuntimeException(e);
         }
 
-        new MainWindowController();
+        new LoginController();
     }
 
 }

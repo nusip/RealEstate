@@ -46,7 +46,7 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentGetDto> {
     @TreeName("Region")
     regionId("Регион"),
     zhiloyKomplex("ЖК"),
-    ulicaDom("Улица/Дом"),
+    ulica("Улица/Дом"),
     telNumbers("Тел. номер"),
     ;
 

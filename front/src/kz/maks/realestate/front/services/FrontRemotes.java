@@ -28,4 +28,5 @@ public class FrontRemotes {
     public static ActivationRemote activationRemote() {
         return activationRemote;
     }
+
 }

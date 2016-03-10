@@ -50,6 +50,11 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
     protected Boolean videomofon;
     protected Boolean konsyerzh;
 
+    protected Integer kvartira;
+
+    @Enumerated(EnumType.STRING)
+    protected Planirovka planirovka;
+
     public Integer getKolichestvoKomnat() {
         return kolichestvoKomnat;
     }
@@ -274,6 +279,22 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
         this.konsyerzh = konsyerzh;
     }
 
+    public Integer getKvartira() {
+        return kvartira;
+    }
+
+    public void setKvartira(Integer kvartira) {
+        this.kvartira = kvartira;
+    }
+
+    public Planirovka getPlanirovka() {
+        return planirovka;
+    }
+
+    public void setPlanirovka(Planirovka planirovka) {
+        this.planirovka = planirovka;
+    }
+
     @Override
     public String toString() {
         return "AbstractKvartiraEntity{" +
@@ -282,7 +303,7 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
                 ", valyuta=" + valyuta +
                 ", region='" + region + '\'' +
                 ", zhiloyKomplex='" + zhiloyKomplex + '\'' +
-                ", ulicaDom='" + ulicaDom + '\'' +
+                ", ulica='" + ulica + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +
                 ", godPostroyki=" + godPostroyki +
                 ", etazh=" + etazh +

@@ -5,9 +5,11 @@ import kz.maks.realestate.shared.refs.*;
 import kz.maks.realestate.shared.refs.kvartira.*;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public abstract class AbstractKvartiraListDto extends AbstractIdDto {
+    protected Date createdAt;
     protected Integer kolichestvoKomnat;
     protected BigDecimal cena;
     protected Valyuta valyuta;
@@ -15,7 +17,7 @@ public abstract class AbstractKvartiraListDto extends AbstractIdDto {
     protected String region;
 
     protected String zhiloyKomplex;
-    protected String ulicaDom;
+    protected String ulica;
 
     protected TipStroyeniya tipStroyeniya;
     protected Integer godPostroyki;
@@ -50,8 +52,17 @@ public abstract class AbstractKvartiraListDto extends AbstractIdDto {
     protected String raznoe;
 
     protected List<String> telNumbers;
-
     protected List<String> photoPaths;
+
+    protected Planirovka planirovka;
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Integer getKolichestvoKomnat() {
         return kolichestvoKomnat;
@@ -93,12 +104,12 @@ public abstract class AbstractKvartiraListDto extends AbstractIdDto {
         this.zhiloyKomplex = zhiloyKomplex;
     }
 
-    public String getUlicaDom() {
-        return ulicaDom;
+    public String getUlica() {
+        return ulica;
     }
 
-    public void setUlicaDom(String ulicaDom) {
-        this.ulicaDom = ulicaDom;
+    public void setUlica(String ulica) {
+        this.ulica = ulica;
     }
 
     public TipStroyeniya getTipStroyeniya() {
@@ -331,5 +342,13 @@ public abstract class AbstractKvartiraListDto extends AbstractIdDto {
 
     public void setPhotoPaths(List<String> photoPaths) {
         this.photoPaths = photoPaths;
+    }
+
+    public Planirovka getPlanirovka() {
+        return planirovka;
+    }
+
+    public void setPlanirovka(Planirovka planirovka) {
+        this.planirovka = planirovka;
     }
 }

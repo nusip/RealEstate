@@ -13,7 +13,7 @@ public abstract class AbstractDomListDtoAssembler<ENTITY extends AbstractDomEnti
         dto.setCena(entity.getCena());
         dto.setValyuta(entity.getValyuta());
         dto.setRegion(entity.getRegion() != null ? entity.getRegion().getName() : null);
-        dto.setUlicaDom(entity.getUlicaDom());
+        dto.setUlicaDom(entity.getUlica());
         dto.setRaznoe(entity.getRaznoe());
         dto.setTelNumbers(entity.getTelNumbers());
         dto.setPhotoPaths(entity.getPhotoPaths());

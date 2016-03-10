@@ -38,7 +38,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
                     );
 
                     entity.setRegion(region);
-                    entity.setUlicaDom(titleTokens[2].trim());
+                    entity.setUlica(titleTokens[2].trim());
 
                 } else if (titleTokens.length == 2) {
                     Region region = regionService.getRegionByNameAndParent(
@@ -58,7 +58,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
                             );
                         }
                         entity.setRegion(region);
-                        entity.setUlicaDom(titleTokens[1].trim());
+                        entity.setUlica(titleTokens[1].trim());
                     }
 
                     entity.setRegion(region);
@@ -69,7 +69,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
 
                 if (entity.getRegion() == null) {
                     titleTokens[0] = null;
-                    entity.setUlicaDom(Joiner.on("").skipNulls().join(titleTokens).trim());
+                    entity.setUlica(Joiner.on("").skipNulls().join(titleTokens).trim());
 
                     Region region;
 

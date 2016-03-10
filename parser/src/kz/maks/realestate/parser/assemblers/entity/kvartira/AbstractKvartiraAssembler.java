@@ -29,6 +29,7 @@ public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraGetD
         entity.setParkovka(dto.getParkovka());
         entity.setMebel(dto.getMebel());
         entity.setPol(dto.getPol());
+        entity.setPlanirovka(dto.getPlanirovka());
         entity.setVysotaPotolkov(dto.getVysotaPotolkov());
         entity.setReshetkiNaOknah(dto.getReshetkiNaOknah());
         entity.setOhrana(dto.getOhrana());
@@ -38,6 +39,7 @@ public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraGetD
         entity.setVideonablyudeniye(dto.getVideonablyudeniye());
         entity.setVideomofon(dto.getVideomofon());
         entity.setKonsyerzh(dto.getKonsyerzh());
+        entity.setKvartira(dto.getKvartira());
         return entity;
     }
 

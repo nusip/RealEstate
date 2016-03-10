@@ -10,12 +10,13 @@ public abstract class AbstractKvartiraListDtoAssembler<ENTITY extends AbstractKv
     @Override
     public RECORD assemble(ENTITY entity, RECORD dto) {
         dto.setId(entity.getId());
+        dto.setCreatedAt(entity.getCreatedAt());
         dto.setKolichestvoKomnat(entity.getKolichestvoKomnat());
         dto.setCena(entity.getCena());
         dto.setValyuta(entity.getValyuta());
         dto.setRegion(entity.getRegion() != null ? entity.getRegion().getName() : null);
         dto.setZhiloyKomplex(entity.getZhiloyKomplex());
-        dto.setUlicaDom(entity.getUlicaDom());
+        dto.setUlica(entity.getUlica());
         dto.setTipStroyeniya(entity.getTipStroyeniya());
         dto.setGodPostroyki(entity.getGodPostroyki());
         dto.setEtazh(entity.getEtazh());

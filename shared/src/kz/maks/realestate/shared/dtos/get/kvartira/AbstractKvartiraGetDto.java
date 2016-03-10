@@ -37,6 +37,9 @@ public abstract class AbstractKvartiraGetDto extends AbstractKrishaAdGetDto {
     protected Boolean videomofon;
     protected Boolean konsyerzh;
 
+    protected Integer kvartira;
+    protected Planirovka planirovka;
+
     public Long getId() {
         return id;
     }
@@ -267,6 +270,22 @@ public abstract class AbstractKvartiraGetDto extends AbstractKrishaAdGetDto {
 
     public void setKonsyerzh(Boolean konsyerzh) {
         this.konsyerzh = konsyerzh;
+    }
+
+    public Integer getKvartira() {
+        return kvartira;
+    }
+
+    public void setKvartira(Integer kvartira) {
+        this.kvartira = kvartira;
+    }
+
+    public Planirovka getPlanirovka() {
+        return planirovka;
+    }
+
+    public void setPlanirovka(Planirovka planirovka) {
+        this.planirovka = planirovka;
     }
 
     @Override

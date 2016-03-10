@@ -4,14 +4,25 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
 
 public enum KvartiraSaleColumn implements IColumn<KvartiraSaleListDto> {
-    kolichestvoKomnat("Количество комнат"),
-    region("Регион"),
-    zhiloyKomplex("ЖК"),
-    ulicaDom("Улица/Дом"),
-    tipStroyeniya("Тип строения"),
-    godPostroyki("Год постройки"),
     cena("Цена"),
-    valyuta("Валюта");
+    valyuta("Валюта"),
+    isZalog("В залоге"),
+    kolichestvoKomnat("Количество комнат"),
+    godPostroyki("Год постройки"),
+    etazh("Этаж"),
+    etazhnost("Этажность"),
+    tipStroyeniya("Тип строения"),
+    ploshadObshaya("Площадь общая"),
+    ploshadZhilaya("Площадь жилая"),
+    ploshadKuhnya("Площадь кухни"),
+    balkon("Балкон"),
+    planirovka("Планировка"),
+    sanuzel("Санузел"),
+    sostoyaniye("Состояние"),
+    region("Регион"),
+    ulica("Улица"),
+    createdAt("Дата создания"),
+    ;
 
     private final String title;
 

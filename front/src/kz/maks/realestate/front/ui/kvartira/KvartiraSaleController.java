@@ -15,7 +15,7 @@ public class KvartiraSaleController {
 
         CRUD<KvartiraSaleSearchParams, KvartiraSaleListDto, KvartiraSaleGetDto> crud = new CRUD<>(
                 view.frame,
-                new SearchPanel<>(KvartiraSaleSearchParams.class, view.searchForm, view.btnSearch),
+                new SearchPanel<>(KvartiraSaleSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
                 view.btnPgPanel,
                 view.btnCRUDPanel,

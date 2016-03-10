@@ -10,12 +10,11 @@ import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class KvartiraRentView {
     public final JSplitPane ui;
     public final JFrame frame;
-    public final Form<KvartiraRentSearchParams> searchForm;
+    public final DynamicForm<KvartiraRentSearchParams> searchForm;
     public final JButton btnSearch;
     public final Table<KvartiraRentListDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
@@ -29,7 +28,7 @@ public class KvartiraRentView {
         splitPane.setDividerSize(20);
         ui = splitPane;
         {
-            searchForm = new Form<>(frame, KvartiraRentSearchFormField.values(), 2);
+            searchForm = new DynamicForm<>(frame, KvartiraRentSearchFormField.values(), 2);
             splitPane.setTopComponent(new JScrollPane(searchForm.ui));
             {
                 btnSearch = new JButton("Поиск");
@@ -47,10 +46,11 @@ public class KvartiraRentView {
                 }
                 {
                     btnCRUDPanel = new BtnCRUDPanel();
+                    btnCRUDPanel.btnDelete.setVisible(false);
                     hBox.add(btnCRUDPanel.ui);
                 }
 
-                Form<KvartiraRentGetDto> detailsForm = new Form<>(frame, KvartiraRentFormField.values());
+                DynamicForm<KvartiraRentGetDto> detailsForm = new DynamicForm<>(frame, KvartiraRentFormField.values());
                 FrontUtils.setPreferredWidth(detailsForm.ui, 400);
                 formDialog = new FormDialog<>(frame, detailsForm);
 
