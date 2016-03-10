@@ -162,4 +162,12 @@ public abstract class AbstractKrishaAdGetDto extends AbstractIdDto {
     public void setIstochnikInfo(IstochnikInfo istochnikInfo) {
         this.istochnikInfo = istochnikInfo;
     }
+
+    public Long getAssignedToId() {
+        return assignedToId;
+    }
+
+    public void setAssignedToId(Long assignedToId) {
+        this.assignedToId = assignedToId;
+    }
 }

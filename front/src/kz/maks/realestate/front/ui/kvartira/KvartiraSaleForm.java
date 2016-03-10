@@ -5,6 +5,7 @@ import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.ui.TextField;
 import kz.maks.core.front.validation.AbstractForm;
+import kz.maks.core.shared.models.ICombo;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
 import kz.maks.realestate.shared.refs.IstochnikInfo;
@@ -183,7 +184,8 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            EnumBox comboBox = new EnumBox(KvartiraSaleFormField.assignedToId, Cache.getCombo("User").toArray());
+            ComboBox comboBox = new ComboBox(KvartiraSaleFormField.assignedToId,
+                    Cache.getCombo("User").toArray(new ICombo[] {}));
             fieldValues.put(KvartiraSaleFormField.assignedToId, comboBox);
             fieldRow.add(comboBox.ui);
         }
@@ -482,10 +484,10 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            TextField textField = new TextField(KvartiraSaleFormField.kvartira);
-            FrontUtils.setForcedWidth(textField.ui, SHORT_FIELD_WIDTH);
-            fieldValues.put(KvartiraSaleFormField.kvartira, textField);
-            fieldRow.add(textField.ui);
+            Spinner spinner = new Spinner(KvartiraSaleFormField.kvartira);
+            FrontUtils.setForcedWidth(spinner.ui, SHORT_FIELD_WIDTH);
+            fieldValues.put(KvartiraSaleFormField.kvartira, spinner);
+            fieldRow.add(spinner.ui);
         }
         fieldRow.add(Box.createHorizontalGlue());
 
@@ -502,7 +504,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.cenaProdazhi);
+            Spinner spinner = new Spinner(KvartiraSaleFormField.cenaProdazhi, Spinner.DECIMAL_MODE);
             FrontUtils.setPreferredWidth(spinner.ui, 100);
             fieldRow.add(spinner.ui);
             fieldValues.put(KvartiraSaleFormField.cenaProdazhi, spinner);
@@ -520,7 +522,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.cena);
+            Spinner spinner = new Spinner(KvartiraSaleFormField.cena, Spinner.DECIMAL_MODE);
             FrontUtils.setPreferredWidth(spinner.ui, 100);
             fieldRow.add(spinner.ui);
             fieldValues.put(KvartiraSaleFormField.cena, spinner);

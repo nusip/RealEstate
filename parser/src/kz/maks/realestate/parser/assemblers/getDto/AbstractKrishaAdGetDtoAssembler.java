@@ -2,6 +2,7 @@ package kz.maks.realestate.parser.assemblers.getDto;
 
 import com.google.common.collect.Lists;
 import kz.maks.core.back.assemblers.IAssembler;
+import kz.maks.core.shared.Utils;
 import kz.maks.realestate.parser.entities.AbstractKrishaAdEntity;
 import kz.maks.realestate.shared.dtos.get.AbstractKrishaAdGetDto;
 
@@ -31,6 +32,7 @@ public abstract class AbstractKrishaAdGetDtoAssembler<ENTITY extends AbstractKri
         dto.setTelNumbers(Lists.newArrayList(entity.getTelNumbers()));
         dto.setPhotoPaths(Lists.newArrayList(entity.getPhotoPaths()));
         dto.setIstochnikInfo(entity.getIstochnikInfo());
+        dto.setAssignedToId(Utils.extractId(entity.getAssignedTo()));
         return dto;
     }
 
