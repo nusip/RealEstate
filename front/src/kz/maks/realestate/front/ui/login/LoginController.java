@@ -2,7 +2,10 @@ package kz.maks.realestate.front.ui.login;
 
 import kz.maks.core.front.services.asyncs.CoreAsyncs;
 import kz.maks.core.front.ui.ProgressDialogCallback;
+import kz.maks.realestate.front.services.asyncs.Asyncs;
 import kz.maks.realestate.front.ui.MainWindowController;
+import kz.maks.realestate.shared.AppMeta;
+import kz.maks.realestate.shared.dtos.get.UserDto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -29,20 +32,19 @@ public class LoginController {
     }
 
     public void login() {
-        CoreAsyncs.CORE_ASYNC.login(view.login.getText(), view.pass.getText(),
-                new ProgressDialogCallback<Boolean>(view.ui) {
-                    @Override
-                    public void onSuccess(Boolean aBoolean) {
-                        if (Boolean.TRUE.equals(aBoolean)) {
-                            view.ui.setVisible(false);
-                            new MainWindowController();
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(null, "Введены неверные данные", "Ошибка",
-                                    JOptionPane.WARNING_MESSAGE);
-                        }
-                    }
-                });
+        Asyncs.USER_ASYNC.get(view.login.getText(), view.pass.getText(), new ProgressDialogCallback<UserDto>(view.ui) {
+            @Override
+            public void onSuccess(UserDto userDto) {
+                if (userDto != null) {
+                    AppMeta.setConnectedUser(userDto);
+                    view.ui.setVisible(false);
+                    new MainWindowController();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Введены неверные данные", "Ошибка",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
     }
 
 }

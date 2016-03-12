@@ -1,13 +1,9 @@
 package kz.maks.realestate.front.ui.kvartira;
 
-import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
-import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.realestate.front.columns.KvartiraSaleColumn;
-import kz.maks.realestate.front.forms.kvartira.KvartiraSaleSearchFormField;
 import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
 import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
-import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
 import javax.swing.*;
 
@@ -44,10 +40,10 @@ public class KvartiraSaleView {
                     btnCRUDPanel.btnDelete.setVisible(false);
                     hBox.add(btnCRUDPanel.ui);
                 }
-
-                KvartiraSaleForm detailsForm = new KvartiraSaleForm(frame);
-                formDialog = new FormDialog<>(frame, detailsForm);
-
+                {
+                    KvartiraSaleForm detailsForm = new KvartiraSaleForm(frame);
+                    formDialog = new FormDialog<>(frame, detailsForm);
+                }
                 vBox.add(hBox);
             }
             {

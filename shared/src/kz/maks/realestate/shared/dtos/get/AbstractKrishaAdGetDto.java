@@ -26,6 +26,7 @@ public abstract class AbstractKrishaAdGetDto extends AbstractIdDto {
     protected List<String> photoPaths;
     protected IstochnikInfo istochnikInfo;
     protected Long assignedToId;
+    protected Long modifiedById;
 
     public String getKrishaId() {
         return krishaId;
@@ -169,5 +170,13 @@ public abstract class AbstractKrishaAdGetDto extends AbstractIdDto {
 
     public void setAssignedToId(Long assignedToId) {
         this.assignedToId = assignedToId;
+    }
+
+    public Long getModifiedById() {
+        return modifiedById;
+    }
+
+    public void setModifiedById(Long modifiedById) {
+        this.modifiedById = modifiedById;
     }
 }

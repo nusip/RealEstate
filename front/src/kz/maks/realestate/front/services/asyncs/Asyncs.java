@@ -1,9 +1,6 @@
 package kz.maks.realestate.front.services.asyncs;
 
-import kz.maks.realestate.front.services.asyncs.impl.DomRentAsyncImpl;
-import kz.maks.realestate.front.services.asyncs.impl.DomSaleAsyncImpl;
-import kz.maks.realestate.front.services.asyncs.impl.KvartiraRentAsyncImpl;
-import kz.maks.realestate.front.services.asyncs.impl.KvartiraSaleAsyncImpl;
+import kz.maks.realestate.front.services.asyncs.impl.*;
 
 public class Asyncs {
 
@@ -12,5 +9,7 @@ public class Asyncs {
 
     public static final DomSaleAsync DOM_SALE_ASYNC = new DomSaleAsyncImpl();
     public static final DomRentAsync DOM_RENT_ASYNC = new DomRentAsyncImpl();
+
+    public static final UserAsync USER_ASYNC = new UserAsyncImpl();
 
 }

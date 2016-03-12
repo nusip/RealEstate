@@ -2,6 +2,7 @@ package kz.maks.realestate.parser.entities;
 
 import kz.maks.realestate.shared.refs.IstochnikInfo;
 import kz.maks.realestate.shared.refs.Valyuta;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MappedSuperclass
+@Audited
 public abstract class AbstractKrishaAdEntity extends AbstractKrishaEntity {
     protected BigDecimal cena;
     protected BigDecimal cenaProdazhi;

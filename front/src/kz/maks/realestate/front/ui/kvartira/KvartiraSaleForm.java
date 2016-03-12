@@ -6,6 +6,7 @@ import kz.maks.core.front.ui.*;
 import kz.maks.core.front.ui.TextField;
 import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.core.shared.models.ICombo;
+import kz.maks.realestate.front.columns.KvartiraSaleColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
 import kz.maks.realestate.shared.refs.IstochnikInfo;
@@ -33,12 +34,28 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
     private static final int LABEL_WIDTH_3 = 120;
     private static final String DATE_FORMAT_FULL = "yyyy-MM-dd HH:mm:ss";
 
-    public KvartiraSaleForm(Frame parent) {
+    public KvartiraSaleForm(Frame containerFrame) {
         super(KvartiraSaleFormField.values());
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.setBorder(BorderFactory.createEmptyBorder());
+        tabs.addTab("Квартира", buildForm(containerFrame));
+        tabs.addTab("История изменений", buildHistoryPanel());
+        ui.add(tabs);
+    }
 
-        FrontUtils.addMargins(ui);
-        ui.setLayout(new BoxLayout(ui, BoxLayout.Y_AXIS));
+    private Component buildHistoryPanel() {
+        JPanel historyPanel = new JPanel();
 
+
+
+        // TODO
+        return historyPanel;
+    }
+
+    private Component buildForm(Frame parent) {
+        JPanel formPanel = new JPanel();
+        FrontUtils.addMargins(formPanel);
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         {
             FormField formField = KvartiraSaleFormField.id;
             fieldValues.put(formField, new HiddenField(formField));
@@ -69,11 +86,11 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
                 hBox.add(vBox);
                 FrontUtils.setMaxWidth(vBox, COL_1_2_WIDTH);
             }
-            ui.add(hBox);
+            formPanel.add(hBox);
         }
-        ui.add(FrontUtils.vGap(10));
-        ui.add(new JSeparator(JSeparator.HORIZONTAL));
-        ui.add(FrontUtils.vGap(10));
+        formPanel.add(FrontUtils.vGap(10));
+        formPanel.add(new JSeparator(JSeparator.HORIZONTAL));
+        formPanel.add(FrontUtils.vGap(10));
         {
             Box hBox = Box.createHorizontalBox();
             {
@@ -98,11 +115,11 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_1_2_WIDTH);
             }
-            ui.add(hBox);
+            formPanel.add(hBox);
         }
-        ui.add(FrontUtils.vGap(10));
-        ui.add(new JSeparator(JSeparator.HORIZONTAL));
-        ui.add(FrontUtils.vGap(10));
+        formPanel.add(FrontUtils.vGap(10));
+        formPanel.add(new JSeparator(JSeparator.HORIZONTAL));
+        formPanel.add(FrontUtils.vGap(10));
         {
             Box hBox = Box.createHorizontalBox();
             {
@@ -123,8 +140,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_3_2_WIDTH);
             }
-            ui.add(hBox);
+            formPanel.add(hBox);
         }
+        return formPanel;
     }
 
     private void addVZaloge(Box vBox) {
