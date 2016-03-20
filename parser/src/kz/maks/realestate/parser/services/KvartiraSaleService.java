@@ -2,20 +2,18 @@ package kz.maks.realestate.parser.services;
 
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.models.KvartiraPlain;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 public interface KvartiraSaleService {
 
-    ListResponse<KvartiraSaleListDto> list(KvartiraSaleSearchParams params);
+    ListResponse<KvartiraSaleDto> list(KvartiraSaleSearchParams params);
 
-    KvartiraSaleGetDto get(Long id);
+    KvartiraSaleDto get(Long id);
 
-    void save(KvartiraSaleGetDto dto);
+    void save(KvartiraSaleDto dto);
 
     void delete(Long id);
 
@@ -25,6 +23,6 @@ public interface KvartiraSaleService {
 
     Long getMaxUpdatedAt();
 
-    List<KvartiraSaleGetDto> listNew(Long lastUpdatedAt);
+    List<KvartiraSaleDto> listNew(Long lastUpdatedAt);
 
 }

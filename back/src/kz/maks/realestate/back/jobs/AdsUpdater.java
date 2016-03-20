@@ -4,7 +4,7 @@ import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.realestate.back.BackRemotes;
 import kz.maks.realestate.parser.services.KvartiraSaleService;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -17,9 +17,9 @@ public class AdsUpdater {
 
     public void update() throws RemoteException {
         Long maxUpdatedAt = kvartiraSaleService.getMaxUpdatedAt();
-        List<KvartiraSaleGetDto> dtoList = BackRemotes.kvartiraSaleRemote().listNew(maxUpdatedAt);
+        List<KvartiraSaleDto> dtoList = BackRemotes.kvartiraSaleRemote().listNew(maxUpdatedAt);
 
-        for (KvartiraSaleGetDto dto : dtoList) {
+        for (KvartiraSaleDto dto : dtoList) {
             dto.setId(null);
             kvartiraSaleService.save(dto);
         }

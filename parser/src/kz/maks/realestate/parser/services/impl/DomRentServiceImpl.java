@@ -6,12 +6,10 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.dom.DomRentAssembler;
-import kz.maks.realestate.parser.assemblers.getDto.dom.DomRentGetDtoAssembler;
-import kz.maks.realestate.parser.assemblers.listDto.dom.DomRentListDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.dom.DomRentDtoAssembler;
 import kz.maks.realestate.parser.entities.DomRent;
 import kz.maks.realestate.parser.services.DomRentService;
-import kz.maks.realestate.shared.dtos.get.dom.DomRentGetDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomRentListDto;
+import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
@@ -27,26 +25,26 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
     private DomRentAssembler domRentAssembler;
 
     @Inject
-    private DomRentListDtoAssembler domRentDTOAssembler;
+    private DomRentDtoAssembler domRentDTOAssembler;
 
     @Inject
-    private DomRentGetDtoAssembler domRentDetailsAssembler;
+    private DomRentDtoAssembler domRentDetailsAssembler;
 
     @Override
-    public ListResponse<DomRentListDto> list(DomRentSearchParams params) {
+    public ListResponse<DomRentDto> list(DomRentSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
         boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
 
         List<DomRent> entityList = listCriteria.list();
-        List<DomRentListDto> dtoList = new ArrayList<>();
+        List<DomRentDto> dtoList = new ArrayList<>();
 
         for (DomRent entity : entityList) {
-            DomRentListDto dto = domRentDTOAssembler.assemble(entity, new DomRentListDto());
+            DomRentDto dto = domRentDTOAssembler.assemble(entity, new DomRentDto());
             dtoList.add(dto);
         }
 
-        ListResponse<DomRentListDto> listResponse = new ListResponse<>(dtoList, hasNext);
+        ListResponse<DomRentDto> listResponse = new ListResponse<>(dtoList, hasNext);
 
         return listResponse;
     }
@@ -70,14 +68,14 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
     }
 
     @Override
-    public DomRentGetDto get(Long id) {
+    public DomRentDto get(Long id) {
         DomRent entity = db.load(DomRent.class, id);
-        DomRentGetDto details = domRentDetailsAssembler.assemble(entity, new DomRentGetDto());
+        DomRentDto details = domRentDetailsAssembler.assemble(entity, new DomRentDto());
         return details;
     }
 
     @Override
-    public void save(DomRentGetDto dto) {
+    public void save(DomRentDto dto) {
         DomRent entity = domRentAssembler.assemble(dto, new DomRent());
         db.save(entity);
     }

@@ -1,7 +1,5 @@
 package kz.maks.realestate.shared;
 
-import kz.maks.realestate.shared.dtos.get.UserDto;
-
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -14,16 +12,6 @@ public class AppMeta {
         Scanner scanner = new Scanner(inputStream);
         String revCountStr = scanner.nextLine().trim();
         return revCountStr;
-    }
-
-    private static UserDto connectedUser;
-
-    public static UserDto connectedUser() {
-        return connectedUser;
-    }
-
-    public static void setConnectedUser(UserDto user) {
-        connectedUser = user;
     }
 
     // for testing only

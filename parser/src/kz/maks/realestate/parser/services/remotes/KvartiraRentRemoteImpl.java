@@ -5,8 +5,7 @@ import kz.maks.core.back.annotations.Remote;
 import kz.maks.core.back.services.remotes.AbstractRemoteImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.services.KvartiraRentService;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraRentGetDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.shared.remotes.KvartiraRentRemote;
 
@@ -21,7 +20,7 @@ public class KvartiraRentRemoteImpl extends AbstractRemoteImpl implements Kvarti
     public KvartiraRentRemoteImpl() throws RemoteException {}
 
     @Override
-    public void save(KvartiraRentGetDto dto) throws RemoteException {
+    public void save(KvartiraRentDto dto) throws RemoteException {
         service.save(dto);
     }
 
@@ -31,12 +30,12 @@ public class KvartiraRentRemoteImpl extends AbstractRemoteImpl implements Kvarti
     }
 
     @Override
-    public KvartiraRentGetDto get(Long id) throws RemoteException{
+    public KvartiraRentDto get(Long id) throws RemoteException{
         return service.get(id);
     }
 
     @Override
-    public ListResponse<KvartiraRentListDto> list(KvartiraRentSearchParams params) throws RemoteException {
+    public ListResponse<KvartiraRentDto> list(KvartiraRentSearchParams params) throws RemoteException {
         return service.list(params);
     }
 

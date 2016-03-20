@@ -6,14 +6,12 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.Utils;
 import kz.maks.core.shared.models.ListResponse;
-import kz.maks.realestate.parser.assemblers.getDto.kvartira.KvartiraSaleGetDtoAssembler;
-import kz.maks.realestate.parser.assemblers.listDto.kvartira.KvartiraSaleListDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.kvartira.KvartiraSaleDtoAssembler;
 import kz.maks.realestate.parser.assemblers.entity.kvartira.KvartiraSaleAssembler;
 import kz.maks.realestate.parser.assemblers.parser.KvartiraSaleEntityAssembler;
 import kz.maks.realestate.parser.entities.KvartiraSale;
 import kz.maks.realestate.parser.models.KvartiraPlain;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 import kz.maks.realestate.parser.services.KvartiraSaleService;
 import kz.maks.realestate.shared.models.YesNo;
@@ -40,29 +38,29 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     private KvartiraSaleAssembler kvartiraSaleAssembler;
 
     @Inject
-    private KvartiraSaleListDtoAssembler kvartiraSaleDTOAssembler;
+    private KvartiraSaleDtoAssembler kvartiraSaleDTOAssembler;
 
     @Inject
-    private KvartiraSaleGetDtoAssembler kvartiraSaleDetailsAssembler;
+    private KvartiraSaleDtoAssembler kvartiraSaleDetailsAssembler;
 
     @Inject
     private KvartiraSaleEntityAssembler kvartiraSaleEntityAssembler;
 
     @Override
-    public ListResponse<KvartiraSaleListDto> list(KvartiraSaleSearchParams params) {
+    public ListResponse<KvartiraSaleDto> list(KvartiraSaleSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
         boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
 
         List<KvartiraSale> entityList = listCriteria.list();
-        List<KvartiraSaleListDto> dtoList = new ArrayList<>();
+        List<KvartiraSaleDto> dtoList = new ArrayList<>();
 
         for (KvartiraSale entity : entityList) {
-            KvartiraSaleListDto dto = kvartiraSaleDTOAssembler.assemble(entity, new KvartiraSaleListDto());
+            KvartiraSaleDto dto = kvartiraSaleDTOAssembler.assemble(entity, new KvartiraSaleDto());
             dtoList.add(dto);
         }
 
-        ListResponse<KvartiraSaleListDto> listResponse = new ListResponse<>(dtoList, hasNext);
+        ListResponse<KvartiraSaleDto> listResponse = new ListResponse<>(dtoList, hasNext);
 
         return listResponse;
     }
@@ -124,14 +122,14 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     }
 
     @Override
-    public KvartiraSaleGetDto get(Long id) {
+    public KvartiraSaleDto get(Long id) {
         KvartiraSale entity = db.load(KvartiraSale.class, id);
-        KvartiraSaleGetDto details = kvartiraSaleDetailsAssembler.assemble(entity, new KvartiraSaleGetDto());
+        KvartiraSaleDto details = kvartiraSaleDetailsAssembler.assemble(entity, new KvartiraSaleDto());
         return details;
     }
 
     @Override
-    public void save(KvartiraSaleGetDto dto) {
+    public void save(KvartiraSaleDto dto) {
         KvartiraSale kvartiraSale = null;
 
         if (dto.getId() == null && dto.getKrishaId() != null) {
@@ -194,7 +192,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     }
 
     @Override
-    public List<KvartiraSaleGetDto> listNew(Long lastUpdatedAt) {
+    public List<KvartiraSaleDto> listNew(Long lastUpdatedAt) {
         Long now = new Date().getTime();
 
         if (lastUpdatedAt == null || (now - lastUpdatedAt) / Utils.ONE_DAY > 3) {
@@ -202,10 +200,10 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
         }
 
         List<KvartiraSale> list = session().createCriteria(KvartiraSale.class).add(ge("updatedAt", lastUpdatedAt)).list();
-        List<KvartiraSaleGetDto> dtoList = new ArrayList<>();
+        List<KvartiraSaleDto> dtoList = new ArrayList<>();
 
         for (KvartiraSale kvartiraSale : list) {
-            KvartiraSaleGetDto dto = kvartiraSaleDetailsAssembler.assemble(kvartiraSale, new KvartiraSaleGetDto());
+            KvartiraSaleDto dto = kvartiraSaleDetailsAssembler.assemble(kvartiraSale, new KvartiraSaleDto());
             dtoList.add(dto);
         }
 

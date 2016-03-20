@@ -5,8 +5,7 @@ import kz.maks.core.back.annotations.Remote;
 import kz.maks.core.back.services.remotes.AbstractRemoteImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.services.KvartiraSaleService;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 import kz.maks.realestate.shared.remotes.KvartiraSaleRemote;
 
@@ -22,7 +21,7 @@ public class KvartiraSaleRemoteImpl extends AbstractRemoteImpl implements Kvarti
     public KvartiraSaleRemoteImpl() throws RemoteException {}
 
     @Override
-    public void save(KvartiraSaleGetDto dto) throws RemoteException {
+    public void save(KvartiraSaleDto dto) throws RemoteException {
         service.save(dto);
     }
 
@@ -32,17 +31,17 @@ public class KvartiraSaleRemoteImpl extends AbstractRemoteImpl implements Kvarti
     }
 
     @Override
-    public List<KvartiraSaleGetDto> listNew(Long lastUpdatedAt) throws RemoteException {
+    public List<KvartiraSaleDto> listNew(Long lastUpdatedAt) throws RemoteException {
         return service.listNew(lastUpdatedAt);
     }
 
     @Override
-    public KvartiraSaleGetDto get(Long id) throws RemoteException {
+    public KvartiraSaleDto get(Long id) throws RemoteException {
         return service.get(id);
     }
 
     @Override
-    public ListResponse<KvartiraSaleListDto> list(KvartiraSaleSearchParams params) throws RemoteException {
+    public ListResponse<KvartiraSaleDto> list(KvartiraSaleSearchParams params) throws RemoteException {
         return service.list(params);
     }
 

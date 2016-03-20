@@ -4,9 +4,9 @@ import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.annotations.TextArea;
 import kz.maks.core.front.annotations.TreeName;
 import kz.maks.core.front.ui.FormField;
-import kz.maks.realestate.shared.dtos.get.dom.DomRentGetDto;
+import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 
-public enum DomRentFormField implements FormField<DomRentGetDto> {
+public enum DomRentFormField implements FormField<DomRentDto> {
     @Hidden
     id("ID"),
 
@@ -59,8 +59,8 @@ public enum DomRentFormField implements FormField<DomRentGetDto> {
     }
 
     @Override
-    public Class<DomRentGetDto> formClass() {
-        return DomRentGetDto.class;
+    public Class<DomRentDto> formClass() {
+        return DomRentDto.class;
     }
 
 }

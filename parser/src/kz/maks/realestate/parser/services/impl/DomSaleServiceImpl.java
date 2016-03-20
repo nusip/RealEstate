@@ -6,12 +6,10 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.dom.DomSaleAssembler;
-import kz.maks.realestate.parser.assemblers.getDto.dom.DomSaleGetDtoAssembler;
-import kz.maks.realestate.parser.assemblers.listDto.dom.DomSaleListDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.dom.DomSaleDtoAssembler;
 import kz.maks.realestate.parser.entities.DomSale;
 import kz.maks.realestate.parser.services.DomSaleService;
-import kz.maks.realestate.shared.dtos.get.dom.DomSaleGetDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomSaleListDto;
+import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
@@ -27,26 +25,26 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
     private DomSaleAssembler domSaleAssembler;
 
     @Inject
-    private DomSaleListDtoAssembler domSaleDTOAssembler;
+    private DomSaleDtoAssembler domSaleDTOAssembler;
 
     @Inject
-    private DomSaleGetDtoAssembler domSaleDetailsAssembler;
+    private DomSaleDtoAssembler domSaleDetailsAssembler;
 
     @Override
-    public ListResponse<DomSaleListDto> list(DomSaleSearchParams params) {
+    public ListResponse<DomSaleDto> list(DomSaleSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
         boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
 
         List<DomSale> entityList = listCriteria.list();
-        List<DomSaleListDto> dtoList = new ArrayList<>();
+        List<DomSaleDto> dtoList = new ArrayList<>();
 
         for (DomSale entity : entityList) {
-            DomSaleListDto dto = domSaleDTOAssembler.assemble(entity, new DomSaleListDto());
+            DomSaleDto dto = domSaleDTOAssembler.assemble(entity, new DomSaleDto());
             dtoList.add(dto);
         }
 
-        ListResponse<DomSaleListDto> listResponse = new ListResponse<>(dtoList, hasNext);
+        ListResponse<DomSaleDto> listResponse = new ListResponse<>(dtoList, hasNext);
 
         return listResponse;
     }
@@ -70,14 +68,14 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
     }
 
     @Override
-    public DomSaleGetDto get(Long id) {
+    public DomSaleDto get(Long id) {
         DomSale entity = db.load(DomSale.class, id);
-        DomSaleGetDto details = domSaleDetailsAssembler.assemble(entity, new DomSaleGetDto());
+        DomSaleDto details = domSaleDetailsAssembler.assemble(entity, new DomSaleDto());
         return details;
     }
 
     @Override
-    public void save(DomSaleGetDto dto) {
+    public void save(DomSaleDto dto) {
         DomSale entity = domSaleAssembler.assemble(dto, new DomSale());
         db.save(entity);
     }

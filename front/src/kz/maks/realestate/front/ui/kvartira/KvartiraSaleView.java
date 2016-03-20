@@ -2,7 +2,7 @@ package kz.maks.realestate.front.ui.kvartira;
 
 import kz.maks.core.front.ui.*;
 import kz.maks.realestate.front.columns.KvartiraSaleColumn;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ public class KvartiraSaleView {
     public final Table<KvartiraSaleListDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
-    public final FormDialog<KvartiraSaleGetDto> formDialog;
+    public final FormDialog<KvartiraSaleDto> formDialog;
 
     public KvartiraSaleView(JFrame frame) {
         this.frame = frame;

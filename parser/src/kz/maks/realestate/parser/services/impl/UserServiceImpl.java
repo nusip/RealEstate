@@ -4,10 +4,10 @@ import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.PasswordUtils;
-import kz.maks.realestate.parser.assemblers.getDto.UserDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.UserDtoAssembler;
 import kz.maks.realestate.parser.entities.User;
 import kz.maks.realestate.parser.services.UserService;
-import kz.maks.realestate.shared.dtos.get.UserDto;
+import kz.maks.realestate.shared.dtos.UserDto;
 
 import static kz.maks.core.back.entities.AbstractUserEntity.CREDENTIALS_FIELD;
 import static kz.maks.core.back.entities.AbstractUserEntity.IDENTIFIER_FIELD;

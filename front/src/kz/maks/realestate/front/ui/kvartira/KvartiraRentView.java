@@ -5,7 +5,7 @@ import kz.maks.core.front.ui.*;
 import kz.maks.realestate.front.columns.KvartiraRentColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraRentFormField;
 import kz.maks.realestate.front.forms.kvartira.KvartiraRentSearchFormField;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraRentGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 
@@ -19,7 +19,7 @@ public class KvartiraRentView {
     public final Table<KvartiraRentListDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
-    public final FormDialog<KvartiraRentGetDto> formDialog;
+    public final FormDialog<KvartiraRentDto> formDialog;
 
     public KvartiraRentView(JFrame frame) {
         this.frame = frame;
@@ -50,7 +50,7 @@ public class KvartiraRentView {
                     hBox.add(btnCRUDPanel.ui);
                 }
 
-                DynamicForm<KvartiraRentGetDto> detailsForm = new DynamicForm<>(frame, KvartiraRentFormField.values());
+                DynamicForm<KvartiraRentDto> detailsForm = new DynamicForm<>(frame, KvartiraRentFormField.values());
                 FrontUtils.setPreferredWidth(detailsForm.ui, 400);
                 formDialog = new FormDialog<>(frame, detailsForm);
 

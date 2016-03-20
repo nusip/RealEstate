@@ -5,8 +5,7 @@ import kz.maks.core.back.annotations.Remote;
 import kz.maks.core.back.services.remotes.AbstractRemoteImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.services.DomRentService;
-import kz.maks.realestate.shared.dtos.get.dom.DomRentGetDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomRentListDto;
+import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 import kz.maks.realestate.shared.remotes.DomRentRemote;
 
@@ -21,7 +20,7 @@ public class DomRentRemoteImpl extends AbstractRemoteImpl implements DomRentRemo
     public DomRentRemoteImpl() throws RemoteException {}
 
     @Override
-    public void save(DomRentGetDto dto) throws RemoteException {
+    public void save(DomRentDto dto) throws RemoteException {
         service.save(dto);
     }
 
@@ -31,12 +30,12 @@ public class DomRentRemoteImpl extends AbstractRemoteImpl implements DomRentRemo
     }
 
     @Override
-    public DomRentGetDto get(Long id) throws RemoteException{
+    public DomRentDto get(Long id) throws RemoteException{
         return service.get(id);
     }
 
     @Override
-    public ListResponse<DomRentListDto> list(DomRentSearchParams params) throws RemoteException {
+    public ListResponse<DomRentDto> list(DomRentSearchParams params) throws RemoteException {
         return service.list(params);
     }
 

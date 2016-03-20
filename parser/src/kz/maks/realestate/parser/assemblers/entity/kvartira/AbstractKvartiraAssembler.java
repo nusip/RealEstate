@@ -2,9 +2,9 @@ package kz.maks.realestate.parser.assemblers.entity.kvartira;
 
 import kz.maks.realestate.parser.assemblers.entity.AbstractKrishaAdAssembler;
 import kz.maks.realestate.parser.entities.AbstractKvartiraEntity;
-import kz.maks.realestate.shared.dtos.get.kvartira.AbstractKvartiraGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.AbstractKvartiraDto;
 
-public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraGetDto, ENTITY extends AbstractKvartiraEntity>
+public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraDto, ENTITY extends AbstractKvartiraEntity>
         extends AbstractKrishaAdAssembler<DTO, ENTITY> {
 
     @Override

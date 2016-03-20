@@ -3,7 +3,7 @@ package kz.maks.realestate.front.services.asyncs.impl;
 import kz.maks.core.front.services.Callback;
 import kz.maks.core.front.services.asyncs.impl.AbstractAsyncImpl;
 import kz.maks.realestate.front.services.asyncs.UserAsync;
-import kz.maks.realestate.shared.dtos.get.UserDto;
+import kz.maks.realestate.shared.dtos.UserDto;
 
 import java.util.concurrent.Callable;
 

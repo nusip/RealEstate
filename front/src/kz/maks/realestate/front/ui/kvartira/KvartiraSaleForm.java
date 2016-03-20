@@ -6,9 +6,8 @@ import kz.maks.core.front.ui.*;
 import kz.maks.core.front.ui.TextField;
 import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.core.shared.models.ICombo;
-import kz.maks.realestate.front.columns.KvartiraSaleColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.refs.IstochnikInfo;
 import kz.maks.realestate.shared.refs.Valyuta;
 import kz.maks.realestate.shared.refs.kvartira.*;
@@ -18,7 +17,7 @@ import java.awt.*;
 
 import static kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField.*;
 
-public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
+public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
 
     private static final int COL_1_1_WIDTH = 360;
     private static final int COL_1_2_WIDTH = 270;
@@ -57,8 +56,8 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleGetDto> {
         FrontUtils.addMargins(formPanel);
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         {
-            FormField formField = KvartiraSaleFormField.id;
-            fieldValues.put(formField, new HiddenField(formField));
+            fieldValues.put(id, new HiddenField(id));
+            fieldValues.put(modifiedById, new HiddenField(modifiedById));
         }
         {
             Box hBox = Box.createHorizontalBox();

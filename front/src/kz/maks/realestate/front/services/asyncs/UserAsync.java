@@ -1,7 +1,7 @@
 package kz.maks.realestate.front.services.asyncs;
 
 import kz.maks.core.front.services.Callback;
-import kz.maks.realestate.shared.dtos.get.UserDto;
+import kz.maks.realestate.shared.dtos.UserDto;
 
 public interface UserAsync {
 

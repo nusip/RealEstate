@@ -4,9 +4,9 @@ import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.annotations.TextArea;
 import kz.maks.core.front.annotations.TreeName;
 import kz.maks.core.front.ui.FormField;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraRentGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 
-public enum KvartiraRentFormField implements FormField<KvartiraRentGetDto> {
+public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     @Hidden
     id("ID"),
 
@@ -62,8 +62,8 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentGetDto> {
     }
 
     @Override
-    public Class<KvartiraRentGetDto> formClass() {
-        return KvartiraRentGetDto.class;
+    public Class<KvartiraRentDto> formClass() {
+        return KvartiraRentDto.class;
     }
 
 }

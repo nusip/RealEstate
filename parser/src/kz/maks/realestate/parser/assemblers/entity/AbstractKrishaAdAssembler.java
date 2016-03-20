@@ -6,11 +6,11 @@ import kz.maks.realestate.parser.entities.AbstractKrishaAdEntity;
 import kz.maks.realestate.parser.entities.User;
 import kz.maks.realestate.parser.services.RegionService;
 import kz.maks.realestate.parser.services.UserService;
-import kz.maks.realestate.shared.dtos.get.AbstractKrishaAdGetDto;
+import kz.maks.realestate.shared.dtos.AbstractKrishaAdDto;
 
 import java.math.BigDecimal;
 
-public abstract class AbstractKrishaAdAssembler<DTO extends AbstractKrishaAdGetDto, ENTITY extends AbstractKrishaAdEntity>
+public abstract class AbstractKrishaAdAssembler<DTO extends AbstractKrishaAdDto, ENTITY extends AbstractKrishaAdEntity>
         implements IAssembler<DTO, ENTITY> {
 
     @Inject

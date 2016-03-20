@@ -6,13 +6,11 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.kvartira.KvartiraRentAssembler;
-import kz.maks.realestate.parser.assemblers.getDto.kvartira.KvartiraRentGetDtoAssembler;
-import kz.maks.realestate.parser.assemblers.listDto.kvartira.KvartiraRentListDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.kvartira.KvartiraRentDtoAssembler;
 import kz.maks.realestate.parser.assemblers.parser.KvartiraRentEntityAssembler;
 import kz.maks.realestate.parser.entities.KvartiraRent;
 import kz.maks.realestate.parser.services.KvartiraRentService;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraRentGetDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.parser.models.KvartiraPlain;
 import org.hibernate.Criteria;
@@ -32,10 +30,10 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     private KvartiraRentEntityAssembler kvartiraRentEntityAssemblerPlain;
 
     @Inject
-    private KvartiraRentListDtoAssembler kvartiraRentDTOAssembler;
+    private KvartiraRentDtoAssembler kvartiraRentDTOAssembler;
 
     @Inject
-    private KvartiraRentGetDtoAssembler kvartiraRentDetailsAssembler;
+    private KvartiraRentDtoAssembler kvartiraRentDetailsAssembler;
 
     @Override
     public void save(KvartiraPlain kvartiraPlain) {
@@ -57,20 +55,20 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     }
 
     @Override
-    public ListResponse<KvartiraRentListDto> list(KvartiraRentSearchParams params) {
+    public ListResponse<KvartiraRentDto> list(KvartiraRentSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
         boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
 
         List<KvartiraRent> entityList = listCriteria.list();
-        List<KvartiraRentListDto> dtoList = new ArrayList<>();
+        List<KvartiraRentDto> dtoList = new ArrayList<>();
 
         for (KvartiraRent entity : entityList) {
-            KvartiraRentListDto dto = kvartiraRentDTOAssembler.assemble(entity, new KvartiraRentListDto());
+            KvartiraRentDto dto = kvartiraRentDTOAssembler.assemble(entity, new KvartiraRentDto());
             dtoList.add(dto);
         }
 
-        ListResponse<KvartiraRentListDto> listResponse = new ListResponse<>(dtoList, hasNext);
+        ListResponse<KvartiraRentDto> listResponse = new ListResponse<>(dtoList, hasNext);
 
         return listResponse;
     }
@@ -94,14 +92,14 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     }
 
     @Override
-    public KvartiraRentGetDto get(Long id) {
+    public KvartiraRentDto get(Long id) {
         KvartiraRent entity = db.load(KvartiraRent.class, id);
-        KvartiraRentGetDto details = kvartiraRentDetailsAssembler.assemble(entity, new KvartiraRentGetDto());
+        KvartiraRentDto details = kvartiraRentDetailsAssembler.assemble(entity, new KvartiraRentDto());
         return details;
     }
 
     @Override
-    public void save(KvartiraRentGetDto dto) {
+    public void save(KvartiraRentDto dto) {
         KvartiraRent entity = kvartiraRentAssembler.assemble(dto, new KvartiraRent());
         db.save(entity);
     }

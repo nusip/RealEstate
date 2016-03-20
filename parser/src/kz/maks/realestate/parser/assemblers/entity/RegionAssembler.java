@@ -3,7 +3,7 @@ package kz.maks.realestate.parser.assemblers.entity;
 import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.assemblers.IAssembler;
 import kz.maks.realestate.parser.entities.Region;
-import kz.maks.realestate.shared.dtos.get.RegionDto;
+import kz.maks.realestate.shared.dtos.RegionDto;
 
 @Bean
 public class RegionAssembler implements IAssembler<RegionDto, Region> {

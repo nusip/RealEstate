@@ -5,7 +5,7 @@ import kz.maks.core.front.ui.*;
 import kz.maks.realestate.front.columns.DomRentColumn;
 import kz.maks.realestate.front.forms.dom.DomRentFormField;
 import kz.maks.realestate.front.forms.dom.DomRentSearchFormField;
-import kz.maks.realestate.shared.dtos.get.dom.DomRentGetDto;
+import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.list.dom.DomRentListDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
@@ -19,7 +19,7 @@ public class DomRentView {
     public final Table<DomRentListDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
-    public final FormDialog<DomRentGetDto> formDialog;
+    public final FormDialog<DomRentDto> formDialog;
 
     public DomRentView(JFrame frame) {
         this.frame = frame;
@@ -50,7 +50,7 @@ public class DomRentView {
                     hBox.add(btnCRUDPanel.ui);
                 }
 
-                DynamicForm<DomRentGetDto> detailsForm = new DynamicForm<>(frame, DomRentFormField.values());
+                DynamicForm<DomRentDto> detailsForm = new DynamicForm<>(frame, DomRentFormField.values());
                 FrontUtils.setPreferredWidth(detailsForm.ui, 400);
                 formDialog = new FormDialog<>(frame, detailsForm);
 

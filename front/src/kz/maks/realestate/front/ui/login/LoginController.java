@@ -1,11 +1,10 @@
 package kz.maks.realestate.front.ui.login;
 
-import kz.maks.core.front.services.asyncs.CoreAsyncs;
 import kz.maks.core.front.ui.ProgressDialogCallback;
+import kz.maks.realestate.front.UserUtils;
 import kz.maks.realestate.front.services.asyncs.Asyncs;
 import kz.maks.realestate.front.ui.MainWindowController;
-import kz.maks.realestate.shared.AppMeta;
-import kz.maks.realestate.shared.dtos.get.UserDto;
+import kz.maks.realestate.shared.dtos.UserDto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +35,7 @@ public class LoginController {
             @Override
             public void onSuccess(UserDto userDto) {
                 if (userDto != null) {
-                    AppMeta.setConnectedUser(userDto);
+                    UserUtils.setConnected(userDto);
                     view.ui.setVisible(false);
                     new MainWindowController();
                 } else {

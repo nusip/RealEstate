@@ -5,12 +5,12 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.Utils;
 import kz.maks.realestate.parser.assemblers.entity.RegionAssembler;
-import kz.maks.realestate.parser.assemblers.getDto.RegionDtoAssembler;
+import kz.maks.realestate.parser.assemblers.dto.RegionDtoAssembler;
 import kz.maks.realestate.parser.assemblers.parser.RegionEntityAssembler;
 import kz.maks.realestate.parser.entities.Region;
 import kz.maks.realestate.parser.models.KrishaRegion;
 import kz.maks.realestate.parser.services.RegionService;
-import kz.maks.realestate.shared.dtos.get.RegionDto;
+import kz.maks.realestate.shared.dtos.RegionDto;
 import org.hibernate.Criteria;
 
 import java.util.Date;

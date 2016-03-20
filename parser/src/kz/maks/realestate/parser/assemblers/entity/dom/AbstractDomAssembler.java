@@ -2,9 +2,9 @@ package kz.maks.realestate.parser.assemblers.entity.dom;
 
 import kz.maks.realestate.parser.assemblers.entity.AbstractKrishaAdAssembler;
 import kz.maks.realestate.parser.entities.AbstractDomEntity;
-import kz.maks.realestate.shared.dtos.get.dom.AbstractDomGetDto;
+import kz.maks.realestate.shared.dtos.dom.AbstractDomDto;
 
-public abstract class AbstractDomAssembler<DTO extends AbstractDomGetDto, ENTITY extends AbstractDomEntity>
+public abstract class AbstractDomAssembler<DTO extends AbstractDomDto, ENTITY extends AbstractDomEntity>
         extends AbstractKrishaAdAssembler<DTO, ENTITY> {
 
     @Override

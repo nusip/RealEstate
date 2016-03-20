@@ -1,6 +1,6 @@
 package kz.maks.realestate.shared.remotes;
 
-import kz.maks.realestate.shared.dtos.get.RegionDto;
+import kz.maks.realestate.shared.dtos.RegionDto;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

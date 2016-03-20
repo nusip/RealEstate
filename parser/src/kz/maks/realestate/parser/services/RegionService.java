@@ -2,7 +2,7 @@ package kz.maks.realestate.parser.services;
 
 import kz.maks.realestate.parser.entities.Region;
 import kz.maks.realestate.parser.models.KrishaRegion;
-import kz.maks.realestate.shared.dtos.get.RegionDto;
+import kz.maks.realestate.shared.dtos.RegionDto;
 
 import java.util.List;
 

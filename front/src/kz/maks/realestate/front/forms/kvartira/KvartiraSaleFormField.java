@@ -2,12 +2,11 @@ package kz.maks.realestate.front.forms.kvartira;
 
 import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.annotations.Required;
-import kz.maks.core.front.annotations.TextArea;
 import kz.maks.core.front.annotations.TreeName;
 import kz.maks.core.front.ui.FormField;
-import kz.maks.realestate.shared.dtos.get.kvartira.KvartiraSaleGetDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
-public enum KvartiraSaleFormField implements FormField<KvartiraSaleGetDto> {
+public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     @Hidden
     id("ID"),
     @Required
@@ -66,6 +65,8 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleGetDto> {
     peresechenie("Пересечение"),
     @Required
     telNumbers("Тел. номер"),
+    @Hidden
+    modifiedById("Modified by")
     ;
 
     private String title;
@@ -80,7 +81,7 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleGetDto> {
     }
 
     @Override
-    public Class<KvartiraSaleGetDto> formClass() {
-        return KvartiraSaleGetDto.class;
+    public Class<KvartiraSaleDto> formClass() {
+        return KvartiraSaleDto.class;
     }
 }
