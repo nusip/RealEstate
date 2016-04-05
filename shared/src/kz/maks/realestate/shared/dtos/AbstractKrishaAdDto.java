@@ -16,6 +16,7 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
     protected Double cenaProdazhi;
     protected Valyuta valyuta;
     protected Long regionId;
+    protected String region;
     protected String regionKrishaId;
     protected String ulica;
     protected String peresechenie;
@@ -26,7 +27,9 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
     protected List<String> photoPaths;
     protected IstochnikInfo istochnikInfo;
     protected Long assignedToId;
+    protected String assignedTo;
     protected Long modifiedById;
+    protected String modifiedBy;
 
     public String getKrishaId() {
         return krishaId;
@@ -90,6 +93,14 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
 
     public void setRegionId(Long regionId) {
         this.regionId = regionId;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getRegionKrishaId() {
@@ -178,5 +189,21 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
 
     public void setModifiedById(Long modifiedById) {
         this.modifiedById = modifiedById;
+    }
+
+    public String getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(String assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

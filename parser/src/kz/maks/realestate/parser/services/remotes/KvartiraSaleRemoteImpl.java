@@ -36,6 +36,11 @@ public class KvartiraSaleRemoteImpl extends AbstractRemoteImpl implements Kvarti
     }
 
     @Override
+    public List<KvartiraSaleDto> listHistory(Long id) throws RemoteException {
+        return service.listHistory(id);
+    }
+
+    @Override
     public KvartiraSaleDto get(Long id) throws RemoteException {
         return service.get(id);
     }

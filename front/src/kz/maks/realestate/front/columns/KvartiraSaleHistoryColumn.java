@@ -1,31 +1,23 @@
-package kz.maks.realestate.front.forms.kvartira;
+package kz.maks.realestate.front.columns;
 
-import kz.maks.core.front.annotations.*;
-import kz.maks.core.front.ui.FormField;
+import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
-public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
-    @Hidden
-    id("ID"),
-    @Required
+public enum KvartiraSaleHistoryColumn implements IColumn<KvartiraSaleDto> {
     kolichestvoKomnat("Количество комнат"),
     dom("Дом"),
     kvartira("Квартира"),
-    @Required
     cena("Цена"),
     cenaProdazhi("Цена продажи"),
-    @Required
     valyuta("Валюта"),
     godPostroyki("Год постройки"),
     tipStroyeniya("Тип строения"),
     isZalog("В залоге"),
-    @Required
     etazh("Этаж"),
-    etazhnost("из"),
-    @Required
-    ploshadObshaya("Площадь, общая"),
-    ploshadZhilaya("жилая"),
-    ploshadKuhnya("кухня"),
+    etazhnost("Этажность"),
+    ploshadObshaya("Площадь общая"),
+    ploshadZhilaya("Площадь жилая"),
+    ploshadKuhnya("Площадь кухня"),
     sostoyaniye("Состояние"),
     istochnikInfo("Источник информации"),
     primechanie("Примечание"),
@@ -35,29 +27,21 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     dver("Дверь"),
     pol("Пол"),
     planirovka("Планировка"),
-    @TextArea
     raznoe("Описание"),
-    @Required
-    @TreeName("Region")
-    regionId("Регион"),
+    region("Регион"),
     ulica("Улица"),
     peresechenie("Пересечение"),
-    @Required
     telNumbers("Тел. номер"),
-    @Hidden
-    modifiedById("Modified by"),
+    assignedTo("Риэлтор"),
     isArchive("В архиве"),
-    @Disabled
     createdAt("Дата создания"),
-    @Disabled
     updatedAt("Дата изменения"),
-    @ComboName("User")
-    assignedToId("Риэлтор"),
+    modifiedBy("Автор изменения"),
     ;
 
-    private String title;
+    private final String title;
 
-    KvartiraSaleFormField(String title) {
+    KvartiraSaleHistoryColumn(String title) {
         this.title = title;
     }
 
@@ -67,7 +51,12 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     }
 
     @Override
-    public Class<KvartiraSaleDto> formClass() {
+    public Class<KvartiraSaleDto> tableClass() {
         return KvartiraSaleDto.class;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

@@ -2,12 +2,14 @@ package kz.maks.realestate.parser.entities;
 
 import kz.maks.realestate.shared.refs.Internet;
 import kz.maks.realestate.shared.refs.dom.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@Audited
 public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
     protected Integer kolichestvoKomnat;
     @Enumerated(EnumType.STRING)
@@ -39,12 +41,12 @@ public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
     protected String pokrytieKryshi;
     protected Double vysotaPotolkov;
 
-    protected Boolean reshetkiNaOknah;
-    protected Boolean domofon;
-    protected Boolean signalizaciya;
-    protected Boolean videomofon;
-    protected Boolean videonablyudeniye;
-    protected Boolean kruglosutochnayaOhrana;
+//    protected Boolean reshetkiNaOknah;
+//    protected Boolean domofon;
+//    protected Boolean signalizaciya;
+//    protected Boolean videomofon;
+//    protected Boolean videonablyudeniye;
+//    protected Boolean kruglosutochnayaOhrana;
 
     public Integer getKolichestvoKomnat() {
         return kolichestvoKomnat;
@@ -196,53 +198,5 @@ public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
 
     public void setVysotaPotolkov(Double vysotaPotolkov) {
         this.vysotaPotolkov = vysotaPotolkov;
-    }
-
-    public Boolean getReshetkiNaOknah() {
-        return reshetkiNaOknah;
-    }
-
-    public void setReshetkiNaOknah(Boolean reshetkiNaOknah) {
-        this.reshetkiNaOknah = reshetkiNaOknah;
-    }
-
-    public Boolean getDomofon() {
-        return domofon;
-    }
-
-    public void setDomofon(Boolean domofon) {
-        this.domofon = domofon;
-    }
-
-    public Boolean getSignalizaciya() {
-        return signalizaciya;
-    }
-
-    public void setSignalizaciya(Boolean signalizaciya) {
-        this.signalizaciya = signalizaciya;
-    }
-
-    public Boolean getVideomofon() {
-        return videomofon;
-    }
-
-    public void setVideomofon(Boolean videomofon) {
-        this.videomofon = videomofon;
-    }
-
-    public Boolean getVideonablyudeniye() {
-        return videonablyudeniye;
-    }
-
-    public void setVideonablyudeniye(Boolean videonablyudeniye) {
-        this.videonablyudeniye = videonablyudeniye;
-    }
-
-    public Boolean getKruglosutochnayaOhrana() {
-        return kruglosutochnayaOhrana;
-    }
-
-    public void setKruglosutochnayaOhrana(Boolean kruglosutochnayaOhrana) {
-        this.kruglosutochnayaOhrana = kruglosutochnayaOhrana;
     }
 }

@@ -15,7 +15,6 @@ public class KvartiraSaleDto extends AbstractKvartiraDto {
     public String toString() {
         return "AbstractKvartiraDto{" +
                 "kolichestvoKomnat=" + kolichestvoKomnat +
-                ", zhiloyKomplex='" + zhiloyKomplex + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +
                 ", godPostroyki=" + godPostroyki +
                 ", etazh=" + etazh +
@@ -23,25 +22,12 @@ public class KvartiraSaleDto extends AbstractKvartiraDto {
                 ", ploshadObshaya=" + ploshadObshaya +
                 ", ploshadZhilaya=" + ploshadZhilaya +
                 ", ploshadKuhnya=" + ploshadKuhnya +
-                ", isObwyaga=" + isObwyaga +
                 ", sostoyaniye=" + sostoyaniye +
                 ", telefon=" + telefon +
-                ", internet=" + internet +
                 ", sanuzel=" + sanuzel +
                 ", balkon=" + balkon +
                 ", dver=" + dver +
-                ", parkovka=" + parkovka +
-                ", mebel=" + mebel +
                 ", pol=" + pol +
-                ", vysotaPotolkov=" + vysotaPotolkov +
-                ", reshetkiNaOknah=" + reshetkiNaOknah +
-                ", ohrana=" + ohrana +
-                ", domofon=" + domofon +
-                ", kodovyZamok=" + kodovyZamok +
-                ", signalizaciya=" + signalizaciya +
-                ", videonablyudeniye=" + videonablyudeniye +
-                ", videomofon=" + videomofon +
-                ", konsyerzh=" + konsyerzh +
                 ", isZalog=" + isZalog +
                 '}';
     }

@@ -1,12 +1,14 @@
 package kz.maks.realestate.parser.entities;
 
 import kz.maks.core.back.entities.AbstractBaseEntity;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass
+@Audited
 public abstract class AbstractKrishaEntity extends AbstractBaseEntity {
 
     @Column(unique = true)

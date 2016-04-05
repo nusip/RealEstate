@@ -11,7 +11,7 @@ public abstract class AbstractKvartiraDtoAssembler<ENTITY extends AbstractKvarti
     public DETAILS assemble(ENTITY entity, DETAILS details) {
         details = super.assemble(entity, details);
         details.setKolichestvoKomnat(entity.getKolichestvoKomnat());
-        details.setZhiloyKomplex(entity.getZhiloyKomplex());
+//        details.setZhiloyKomplex(entity.getZhiloyKomplex());
         details.setTipStroyeniya(entity.getTipStroyeniya());
         details.setGodPostroyki(entity.getGodPostroyki());
         details.setEtazh(entity.getEtazh());
@@ -19,26 +19,26 @@ public abstract class AbstractKvartiraDtoAssembler<ENTITY extends AbstractKvarti
         details.setPloshadObshaya(entity.getPloshadObshaya());
         details.setPloshadZhilaya(entity.getPloshadZhilaya());
         details.setPloshadKuhnya(entity.getPloshadKuhnya());
-        details.setIsObwyaga(entity.getIsObwyaga());
+//        details.setIsObwyaga(entity.getIsObwyaga());
         details.setSostoyaniye(entity.getSostoyaniye());
         details.setTelefon(entity.getTelefon());
-        details.setInternet(entity.getInternet());
+//        details.setInternet(entity.getInternet());
         details.setSanuzel(entity.getSanuzel());
         details.setBalkon(entity.getBalkon());
         details.setDver(entity.getDver());
-        details.setParkovka(entity.getParkovka());
-        details.setMebel(entity.getMebel());
+//        details.setParkovka(entity.getParkovka());
+//        details.setMebel(entity.getMebel());
         details.setPol(entity.getPol());
         details.setPlanirovka(entity.getPlanirovka());
-        details.setVysotaPotolkov(entity.getVysotaPotolkov());
-        details.setReshetkiNaOknah(entity.getReshetkiNaOknah());
-        details.setOhrana(entity.getOhrana());
-        details.setDomofon(entity.getDomofon());
-        details.setKodovyZamok(entity.getKodovyZamok());
-        details.setSignalizaciya(entity.getSignalizaciya());
-        details.setVideonablyudeniye(entity.getVideonablyudeniye());
-        details.setVideomofon(entity.getVideomofon());
-        details.setKonsyerzh(entity.getKonsyerzh());
+//        details.setVysotaPotolkov(entity.getVysotaPotolkov());
+//        details.setReshetkiNaOknah(entity.getReshetkiNaOknah());
+//        details.setOhrana(entity.getOhrana());
+//        details.setDomofon(entity.getDomofon());
+//        details.setKodovyZamok(entity.getKodovyZamok());
+//        details.setSignalizaciya(entity.getSignalizaciya());
+//        details.setVideonablyudeniye(entity.getVideonablyudeniye());
+//        details.setVideomofon(entity.getVideomofon());
+//        details.setKonsyerzh(entity.getKonsyerzh());
         details.setKvartira(entity.getKvartira());
         return details;
     }

@@ -1,9 +1,9 @@
 package kz.maks.realestate.front.columns;
 
 import kz.maks.core.front.ui.IColumn;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraSaleListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
-public enum KvartiraSaleColumn implements IColumn<KvartiraSaleListDto> {
+public enum KvartiraSaleColumn implements IColumn<KvartiraSaleDto> {
     cena("Цена"),
     valyuta("Валюта"),
     isZalog("В залоге"),
@@ -36,8 +36,8 @@ public enum KvartiraSaleColumn implements IColumn<KvartiraSaleListDto> {
     }
 
     @Override
-    public Class<KvartiraSaleListDto> tableClass() {
-        return KvartiraSaleListDto.class;
+    public Class<KvartiraSaleDto> tableClass() {
+        return KvartiraSaleDto.class;
     }
 
     @Override

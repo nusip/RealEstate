@@ -25,4 +25,6 @@ public interface KvartiraSaleService {
 
     List<KvartiraSaleDto> listNew(Long lastUpdatedAt);
 
+    List<KvartiraSaleDto> listHistory(Long id);
+
 }

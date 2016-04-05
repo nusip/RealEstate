@@ -1,11 +1,15 @@
 package kz.maks.realestate.front.ui.kvartira;
 
-import kz.maks.core.front.Cache;
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.base.Strings;
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.ui.TextField;
+import kz.maks.core.front.validation.AbstractFieldValidator;
 import kz.maks.core.front.validation.AbstractForm;
-import kz.maks.core.shared.models.ICombo;
+import kz.maks.realestate.front.columns.KvartiraSaleHistoryColumn;
+import kz.maks.realestate.front.columns.KvartiraSalePhoneColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.refs.IstochnikInfo;
@@ -13,12 +17,21 @@ import kz.maks.realestate.shared.refs.Valyuta;
 import kz.maks.realestate.shared.refs.kvartira.*;
 
 import javax.swing.*;
-import java.awt.*;
 
+import java.awt.*;
+import java.util.List;
+
+import static com.google.common.collect.Collections2.filter;
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Lists.transform;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
+import static kz.maks.core.front.FrontUtils.setForcedWidth;
+import static kz.maks.core.shared.Utils.DATE_FORMAT_FULL;
+import static kz.maks.core.shared.Utils.extractId;
+import static kz.maks.realestate.front.UserUtils.connected;
 import static kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField.*;
 
 public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
-
     private static final int COL_1_1_WIDTH = 360;
     private static final int COL_1_2_WIDTH = 270;
 
@@ -31,33 +44,39 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
 
     private static final int LABEL_WIDTH_2 = 70;
     private static final int LABEL_WIDTH_3 = 120;
-    private static final String DATE_FORMAT_FULL = "yyyy-MM-dd HH:mm:ss";
+
+    public final JTabbedPane tabs = new JTabbedPane();
+    public final JScrollPane historyPanel = new JScrollPane();
+    public final Table<KvartiraSaleDto> table = new Table<>(KvartiraSaleHistoryColumn.values());
 
     public KvartiraSaleForm(Frame containerFrame) {
-        super(KvartiraSaleFormField.values());
-        JTabbedPane tabs = new JTabbedPane();
+        super(containerFrame, KvartiraSaleFormField.values());
         tabs.setBorder(BorderFactory.createEmptyBorder());
-        tabs.addTab("Квартира", buildForm(containerFrame));
+        tabs.addTab("Квартира", buildForm());
         tabs.addTab("История изменений", buildHistoryPanel());
         ui.add(tabs);
+        processAnnotations();
     }
 
     private Component buildHistoryPanel() {
-        JPanel historyPanel = new JPanel();
-
-
-
-        // TODO
+        table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        historyPanel.setViewportView(table.ui);
+        historyPanel.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
         return historyPanel;
     }
 
-    private Component buildForm(Frame parent) {
+    private Component buildForm() {
         JPanel formPanel = new JPanel();
         FrontUtils.addMargins(formPanel);
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         {
             fieldValues.put(id, new HiddenField(id));
-            fieldValues.put(modifiedById, new HiddenField(modifiedById));
+            fieldValues.put(modifiedById, new HiddenField(modifiedById) {
+                @Override
+                public Object get() {
+                    return extractId(connected());
+                }
+            });
         }
         {
             Box hBox = Box.createHorizontalBox();
@@ -98,7 +117,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
                 addPrimechanie(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
-                FrontUtils.setForcedWidth(vBox, COL_1_1_WIDTH);
+                setForcedWidth(vBox, COL_1_1_WIDTH);
             }
             hBox.add(FrontUtils.hGap(COL_GAP_SIZE));
             {
@@ -112,7 +131,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
                 addPol(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
-                FrontUtils.setForcedWidth(vBox, COL_1_2_WIDTH);
+                setForcedWidth(vBox, COL_1_2_WIDTH);
             }
             formPanel.add(hBox);
         }
@@ -128,7 +147,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
                 addDataIzmeneniya(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
-                FrontUtils.setForcedWidth(vBox, COL_3_1_WIDTH);
+                setForcedWidth(vBox, COL_3_1_WIDTH);
             }
             hBox.add(FrontUtils.hGap(COL_GAP_SIZE));
             {
@@ -137,7 +156,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
                 addIstochnikInformacii(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
-                FrontUtils.setForcedWidth(vBox, COL_3_2_WIDTH);
+                setForcedWidth(vBox, COL_3_2_WIDTH);
             }
             formPanel.add(hBox);
         }
@@ -195,16 +214,12 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addRealtor(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(assignedToId.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_3);
+            JLabel label = getLabel(assignedToId);
+            setForcedWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            ComboBox comboBox = new ComboBox(KvartiraSaleFormField.assignedToId,
-                    Cache.getCombo("User").toArray(new ICombo[] {}));
-            fieldValues.put(KvartiraSaleFormField.assignedToId, comboBox);
-            fieldRow.add(comboBox.ui);
+            
+            fieldRow.add(FrontUtils.hGap());
+            fieldRow.add(addField(assignedToId));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -214,15 +229,15 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addDataIzmeneniya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(updatedAt.title());
+            JLabel label = getLabel(updatedAt);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
             DateSpinner dateSpinner = new DateSpinner(KvartiraSaleFormField.updatedAt, DATE_FORMAT_FULL);
-            dateSpinner.ui.setEnabled(false);
             fieldValues.put(KvartiraSaleFormField.updatedAt, dateSpinner);
+            fieldComponents.put(updatedAt, dateSpinner.ui);
             fieldRow.add(dateSpinner.ui);
         }
         setFieldHeight(fieldRow);
@@ -233,15 +248,15 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addDataSozdaniya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(createdAt.title());
+            JLabel label = getLabel(createdAt);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
             DateSpinner dateSpinner = new DateSpinner(KvartiraSaleFormField.createdAt, DATE_FORMAT_FULL);
-            dateSpinner.ui.setEnabled(false);
             fieldValues.put(KvartiraSaleFormField.createdAt, dateSpinner);
+            fieldComponents.put(createdAt, dateSpinner.ui);
             fieldRow.add(dateSpinner.ui);
         }
         setFieldHeight(fieldRow);
@@ -252,15 +267,12 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addVArhive(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(isArchive.title());
+            JLabel label = getLabel(isArchive);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            CheckBox checkBox = new CheckBox(KvartiraSaleFormField.isArchive);
-            fieldValues.put(KvartiraSaleFormField.isArchive, checkBox);
-            fieldRow.add(checkBox.ui);
+
+            fieldRow.add(FrontUtils.hGap());
+            fieldRow.add(addField(isArchive));
         }
         fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -271,16 +283,13 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addPlanirovka(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(planirovka.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            JLabel label = getLabel(planirovka);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            EnumBox comboBox = new EnumBox(KvartiraSaleFormField.planirovka, Planirovka.values());
+
+            fieldRow.add(FrontUtils.hGap());
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldValues.put(KvartiraSaleFormField.planirovka, comboBox);
-            fieldRow.add(comboBox.ui);
+            fieldRow.add(addField(planirovka));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -288,7 +297,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         addFieldRowGap(vBox);
     }
 
-    private void addTelNumbers(Box vBox) {
+    private void addTelNumbers2(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(telNumbers.title());
@@ -297,8 +306,52 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         fieldRow.add(FrontUtils.hGap());
         {
             TextFieldList textFieldList = new TextFieldList(telNumbers);
-            fieldValues.put(KvartiraSaleFormField.telNumbers, textFieldList);
+            fieldValues.put(telNumbers, textFieldList);
             fieldRow.add(textFieldList.ui);
+        }
+//        setFieldHeight(fieldRow);
+        vBox.add(fieldRow);
+        addFieldRowGap(vBox);
+    }
+
+    private void addTelNumbers(Box vBox) {
+        Box fieldRow = Box.createHorizontalBox();
+        {
+            final TableField<KvartiraSalePhoneRecord> numbers = new TableField<>(telNumbers, KvartiraSalePhoneColumn.values());
+            fieldValues.put(telNumbers, new AbstractFieldValidator<List<String>>(telNumbers) {
+                @Override
+                public List<String> get() {
+                    return newArrayList(
+                            filter(
+                                    transform(
+                                            numbers.get(),
+                                            new Function<KvartiraSalePhoneRecord, String>() {
+                                                @Override
+                                                public String apply(KvartiraSalePhoneRecord kvartiraSalePhoneRecord) {
+                                                    return kvartiraSalePhoneRecord.getNumber();
+                                                }
+                                            }
+                                    ),
+                                    new Predicate<String>() {
+                                        @Override
+                                        public boolean apply(String s) {
+                                            return !Strings.isNullOrEmpty(s);
+                                        }
+                                    }
+                            ));
+                }
+
+                @Override
+                public void set(List<String> val) {
+                    numbers.set(val != null ? newArrayList(transform(val, new Function<String, KvartiraSalePhoneRecord>() {
+                        @Override
+                        public KvartiraSalePhoneRecord apply(String s) {
+                            return new KvartiraSalePhoneRecord(s);
+                        }
+                    })) : null);
+                }
+            });
+            fieldRow.add(numbers.ui);
         }
 //        setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -309,7 +362,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(pol.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -329,7 +382,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(dver.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -349,7 +402,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(balkon.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -369,7 +422,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(sanuzel.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -389,7 +442,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(telefon.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -427,7 +480,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(KvartiraSaleFormField.istochnikInfo.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_3);
+            setForcedWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -445,7 +498,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         Box fieldRow = Box.createHorizontalBox();
         {
             JLabel label = new JLabel(KvartiraSaleFormField.sostoyaniye.title());
-            FrontUtils.setForcedWidth(label, LABEL_WIDTH_2);
+            setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
@@ -490,7 +543,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         fieldRow.add(FrontUtils.hGap());
         {
             TextField textField = new TextField(KvartiraSaleFormField.dom);
-            FrontUtils.setForcedWidth(textField.ui, SHORT_FIELD_WIDTH);
+            setForcedWidth(textField.ui, SHORT_FIELD_WIDTH);
             fieldValues.put(KvartiraSaleFormField.dom, textField);
             fieldRow.add(textField.ui);
         }
@@ -502,7 +555,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         fieldRow.add(FrontUtils.hGap());
         {
             Spinner spinner = new Spinner(KvartiraSaleFormField.kvartira);
-            FrontUtils.setForcedWidth(spinner.ui, SHORT_FIELD_WIDTH);
+            setForcedWidth(spinner.ui, SHORT_FIELD_WIDTH);
             fieldValues.put(KvartiraSaleFormField.kvartira, spinner);
             fieldRow.add(spinner.ui);
         }
@@ -534,25 +587,22 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addCena(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.cena.title());
-            fieldRow.add(label);
+            fieldRow.add(getLabel(cena));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.cena, Spinner.DECIMAL_MODE);
-            FrontUtils.setPreferredWidth(spinner.ui, 100);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleFormField.cena, spinner);
+            JComponent component = addField(cena);
+            FrontUtils.setPreferredWidth(component, 100);
+            fieldRow.add(component);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.valyuta.title());
-            fieldRow.add(label);
+            fieldRow.add(getLabel(valyuta));
         }
         fieldRow.add(FrontUtils.hGap());
         {
             EnumBox comboBox = new EnumBox(KvartiraSaleFormField.valyuta, Valyuta.values());
-            FrontUtils.setForcedWidth(comboBox.ui, SHORT_FIELD_WIDTH);
+            setForcedWidth(comboBox.ui, SHORT_FIELD_WIDTH);
             fieldValues.put(KvartiraSaleFormField.valyuta, comboBox);
             fieldRow.add(comboBox.ui);
         }
@@ -564,14 +614,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addPeresechenie(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.peresechenie.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            TextField textField = new TextField(KvartiraSaleFormField.peresechenie);
-            fieldValues.put(KvartiraSaleFormField.peresechenie, textField);
-            fieldRow.add(textField.ui);
+            fieldRow.add(getLabel(peresechenie));
+            fieldRow.add(FrontUtils.hGap());
+            fieldRow.add(addField(peresechenie));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -581,14 +626,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addUlica(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.ulica.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            TextField textField = new TextField(KvartiraSaleFormField.ulica);
-            fieldValues.put(KvartiraSaleFormField.ulica, textField);
-            fieldRow.add(textField.ui);
+            fieldRow.add(getLabel(ulica));
+            fieldRow.add(FrontUtils.hGap());
+            fieldRow.add(addField(ulica));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -598,14 +638,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addRegion(Box vBox, Frame parent) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.regionId.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            TreeLink treeLink = new TreeLink(parent, KvartiraSaleFormField.regionId);
-            fieldValues.put(KvartiraSaleFormField.regionId, treeLink);
-            fieldRow.add(treeLink.ui);
+            fieldRow.add(getLabel(regionId));
+            fieldRow.add(FrontUtils.hGap());
+            fieldRow.add(addField(regionId));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -615,39 +650,33 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addPloshad(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.ploshadObshaya.title());
-            fieldRow.add(label);
+            fieldRow.add(getLabel(ploshadObshaya));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.ploshadObshaya, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            FrontUtils.setPreferredWidth(spinner.ui, SHORT_FIELD_WIDTH);
-            fieldValues.put(KvartiraSaleFormField.ploshadObshaya, spinner);
+            JComponent component = addField(ploshadObshaya);
+            fieldRow.add(component);
+            FrontUtils.setPreferredWidth(component, SHORT_FIELD_WIDTH);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.ploshadZhilaya.title());
-            fieldRow.add(label);
+            fieldRow.add(getLabel(ploshadZhilaya));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.ploshadZhilaya, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            FrontUtils.setPreferredWidth(spinner.ui, SHORT_FIELD_WIDTH);
-            fieldValues.put(KvartiraSaleFormField.ploshadZhilaya, spinner);
+            JComponent component = addField(ploshadZhilaya);
+            fieldRow.add(component);
+            FrontUtils.setPreferredWidth(component, SHORT_FIELD_WIDTH);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = new JLabel(KvartiraSaleFormField.ploshadKuhnya.title());
-            fieldRow.add(label);
+            fieldRow.add(getLabel(ploshadKuhnya));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.ploshadKuhnya, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            FrontUtils.setPreferredWidth(spinner.ui, SHORT_FIELD_WIDTH);
-            fieldValues.put(KvartiraSaleFormField.ploshadKuhnya, spinner);
+            JComponent component = addField(ploshadKuhnya);
+            fieldRow.add(component);
+            FrontUtils.setPreferredWidth(component, SHORT_FIELD_WIDTH);
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -657,36 +686,25 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addKolichestvoKomnat_etazh(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(kolichestvoKomnat.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            Spinner spinner = new Spinner(kolichestvoKomnat);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(kolichestvoKomnat, spinner);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            JLabel label = new JLabel(KvartiraSaleFormField.etazh.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.etazh);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleFormField.etazh, spinner);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            JLabel label = new JLabel(KvartiraSaleFormField.etazhnost.title());
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            Spinner spinner = new Spinner(KvartiraSaleFormField.etazhnost);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleFormField.etazhnost, spinner);
+            fieldRow.add(getLabel(kolichestvoKomnat));
+            fieldRow.add(FrontUtils.hGap());
+            JComponent kolichestvoKomnat = addField(KvartiraSaleFormField.kolichestvoKomnat);
+            setForcedWidth(kolichestvoKomnat, SHORT_FIELD_WIDTH);
+            fieldRow.add(kolichestvoKomnat);
+            fieldRow.add(FrontUtils.hGap());
+
+            fieldRow.add(getLabel(etazh));
+            fieldRow.add(FrontUtils.hGap());
+            JComponent etazh = addField(KvartiraSaleFormField.etazh);
+            setForcedWidth(etazh, SHORT_FIELD_WIDTH);
+            fieldRow.add(etazh);
+            fieldRow.add(FrontUtils.hGap());
+
+            fieldRow.add(getLabel(etazhnost));
+            fieldRow.add(FrontUtils.hGap());
+            JComponent etazhnost = addField(KvartiraSaleFormField.etazhnost);
+            setForcedWidth(etazhnost, SHORT_FIELD_WIDTH);
+            fieldRow.add(etazhnost);
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -702,5 +720,4 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     public void addFieldRowGap(Box fieldRow) {
         fieldRow.add(FrontUtils.vGap());
     }
-
 }

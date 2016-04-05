@@ -44,6 +44,11 @@ public class User extends AbstractUserEntity implements ICombo {
     @Override
     @Transient
     public String title() {
+        return getFullName();
+    }
+
+    @Transient
+    public String getFullName() {
         return Joiner.on(" ").skipNulls().join(getLastName(), getFirstName(), getMiddleName());
     }
 }

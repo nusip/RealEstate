@@ -20,13 +20,10 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private static final String FROM_STR = "с";
     private static final String TO_STR = "по";
 
-    private final Frame parent;
-
     public final JButton btnSearch = new JButton("Поиск");
 
     public KvartiraSaleSearchForm(Frame parent) {
-        super(KvartiraSaleSearchFormField.values());
-        this.parent = parent;
+        super(parent, KvartiraSaleSearchFormField.values());
         FrontUtils.addMargins(ui);
         ui.setLayout(new BoxLayout(ui, BoxLayout.Y_AXIS));
         {
@@ -64,6 +61,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
             hBox.add(Box.createHorizontalGlue());
             ui.add(hBox);
         }
+        processAnnotations();
     }
 
     private void addBtnSearch(Box vBox) {

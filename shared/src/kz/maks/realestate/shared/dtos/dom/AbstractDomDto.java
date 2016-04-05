@@ -25,12 +25,12 @@ public abstract class AbstractDomDto extends AbstractKrishaAdDto {
     protected String pokrytieKryshi;
     protected Double vysotaPotolkov;
 
-    protected Boolean reshetkiNaOknah;
-    protected Boolean domofon;
-    protected Boolean signalizaciya;
-    protected Boolean videomofon;
-    protected Boolean videonablyudeniye;
-    protected Boolean kruglosutochnayaOhrana;
+//    protected Boolean reshetkiNaOknah;
+//    protected Boolean domofon;
+//    protected Boolean signalizaciya;
+//    protected Boolean videomofon;
+//    protected Boolean videonablyudeniye;
+//    protected Boolean kruglosutochnayaOhrana;
 
     public Integer getKolichestvoKomnat() {
         return kolichestvoKomnat;
@@ -184,51 +184,4 @@ public abstract class AbstractDomDto extends AbstractKrishaAdDto {
         this.vysotaPotolkov = vysotaPotolkov;
     }
 
-    public Boolean getReshetkiNaOknah() {
-        return reshetkiNaOknah;
-    }
-
-    public void setReshetkiNaOknah(Boolean reshetkiNaOknah) {
-        this.reshetkiNaOknah = reshetkiNaOknah;
-    }
-
-    public Boolean getDomofon() {
-        return domofon;
-    }
-
-    public void setDomofon(Boolean domofon) {
-        this.domofon = domofon;
-    }
-
-    public Boolean getSignalizaciya() {
-        return signalizaciya;
-    }
-
-    public void setSignalizaciya(Boolean signalizaciya) {
-        this.signalizaciya = signalizaciya;
-    }
-
-    public Boolean getVideomofon() {
-        return videomofon;
-    }
-
-    public void setVideomofon(Boolean videomofon) {
-        this.videomofon = videomofon;
-    }
-
-    public Boolean getVideonablyudeniye() {
-        return videonablyudeniye;
-    }
-
-    public void setVideonablyudeniye(Boolean videonablyudeniye) {
-        this.videonablyudeniye = videonablyudeniye;
-    }
-
-    public Boolean getKruglosutochnayaOhrana() {
-        return kruglosutochnayaOhrana;
-    }
-
-    public void setKruglosutochnayaOhrana(Boolean kruglosutochnayaOhrana) {
-        this.kruglosutochnayaOhrana = kruglosutochnayaOhrana;
-    }
 }

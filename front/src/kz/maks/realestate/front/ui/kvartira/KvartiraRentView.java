@@ -6,7 +6,6 @@ import kz.maks.realestate.front.columns.KvartiraRentColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraRentFormField;
 import kz.maks.realestate.front.forms.kvartira.KvartiraRentSearchFormField;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ public class KvartiraRentView {
     public final JFrame frame;
     public final DynamicForm<KvartiraRentSearchParams> searchForm;
     public final JButton btnSearch;
-    public final Table<KvartiraRentListDto> table;
+    public final Table<KvartiraRentDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
     public final FormDialog<KvartiraRentDto> formDialog;

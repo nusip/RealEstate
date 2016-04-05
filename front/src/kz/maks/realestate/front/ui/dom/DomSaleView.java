@@ -6,7 +6,6 @@ import kz.maks.realestate.front.columns.DomSaleColumn;
 import kz.maks.realestate.front.forms.dom.DomSaleFormField;
 import kz.maks.realestate.front.forms.dom.DomSaleSearchFormField;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomSaleListDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ public class DomSaleView {
     public final JFrame frame;
     public final DynamicForm<DomSaleSearchParams> searchForm;
     public final JButton btnSearch;
-    public final Table<DomSaleListDto> table;
+    public final Table<DomSaleDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
     public final FormDialog<DomSaleDto> formDialog;

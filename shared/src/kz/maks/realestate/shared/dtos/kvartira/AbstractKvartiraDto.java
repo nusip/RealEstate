@@ -22,43 +22,21 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
     protected Dver dver;
     protected Pol pol;
 
-    protected String zhiloyKomplex;
-
-
-
-    protected Boolean isObwyaga;
-
-
-
-    protected Internet internet;
-
-
-
-    protected Parkovka parkovka;
-    protected Mebel mebel;
-
-
-    protected Double vysotaPotolkov;
-
-    protected Boolean reshetkiNaOknah;
-    protected Boolean ohrana;
-    protected Boolean domofon;
-    protected Boolean kodovyZamok;
-    protected Boolean signalizaciya;
-    protected Boolean videonablyudeniye;
-    protected Boolean videomofon;
-    protected Boolean konsyerzh;
-
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    protected String zhiloyKomplex;
+//    protected Boolean isObwyaga;
+//    protected Internet internet;
+//    protected Parkovka parkovka;
+//    protected Mebel mebel;
+//    protected Double vysotaPotolkov;
+//
+//    protected Boolean reshetkiNaOknah;
+//    protected Boolean ohrana;
+//    protected Boolean domofon;
+//    protected Boolean kodovyZamok;
+//    protected Boolean signalizaciya;
+//    protected Boolean videonablyudeniye;
+//    protected Boolean videomofon;
+//    protected Boolean konsyerzh;
 
     public Integer getKolichestvoKomnat() {
         return kolichestvoKomnat;
@@ -66,30 +44,6 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
 
     public void setKolichestvoKomnat(Integer kolichestvoKomnat) {
         this.kolichestvoKomnat = kolichestvoKomnat;
-    }
-
-    public String getZhiloyKomplex() {
-        return zhiloyKomplex;
-    }
-
-    public void setZhiloyKomplex(String zhiloyKomplex) {
-        this.zhiloyKomplex = zhiloyKomplex;
-    }
-
-    public TipStroyeniya getTipStroyeniya() {
-        return tipStroyeniya;
-    }
-
-    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
-        this.tipStroyeniya = tipStroyeniya;
-    }
-
-    public Integer getGodPostroyki() {
-        return godPostroyki;
-    }
-
-    public void setGodPostroyki(Integer godPostroyki) {
-        this.godPostroyki = godPostroyki;
     }
 
     public Integer getEtazh() {
@@ -132,12 +86,28 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.ploshadKuhnya = ploshadKuhnya;
     }
 
-    public Boolean getIsObwyaga() {
-        return isObwyaga;
+    public Integer getGodPostroyki() {
+        return godPostroyki;
     }
 
-    public void setIsObwyaga(Boolean isObwyaga) {
-        this.isObwyaga = isObwyaga;
+    public void setGodPostroyki(Integer godPostroyki) {
+        this.godPostroyki = godPostroyki;
+    }
+
+    public TipStroyeniya getTipStroyeniya() {
+        return tipStroyeniya;
+    }
+
+    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
+        this.tipStroyeniya = tipStroyeniya;
+    }
+
+    public Integer getKvartira() {
+        return kvartira;
+    }
+
+    public void setKvartira(Integer kvartira) {
+        this.kvartira = kvartira;
     }
 
     public Sostoyaniye getSostoyaniye() {
@@ -148,20 +118,20 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.sostoyaniye = sostoyaniye;
     }
 
+    public Planirovka getPlanirovka() {
+        return planirovka;
+    }
+
+    public void setPlanirovka(Planirovka planirovka) {
+        this.planirovka = planirovka;
+    }
+
     public Telefon getTelefon() {
         return telefon;
     }
 
     public void setTelefon(Telefon telefon) {
         this.telefon = telefon;
-    }
-
-    public Internet getInternet() {
-        return internet;
-    }
-
-    public void setInternet(Internet internet) {
-        this.internet = internet;
     }
 
     public Sanuzel getSanuzel() {
@@ -188,22 +158,6 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.dver = dver;
     }
 
-    public Parkovka getParkovka() {
-        return parkovka;
-    }
-
-    public void setParkovka(Parkovka parkovka) {
-        this.parkovka = parkovka;
-    }
-
-    public Mebel getMebel() {
-        return mebel;
-    }
-
-    public void setMebel(Mebel mebel) {
-        this.mebel = mebel;
-    }
-
     public Pol getPol() {
         return pol;
     }
@@ -212,99 +166,10 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.pol = pol;
     }
 
-    public Double getVysotaPotolkov() {
-        return vysotaPotolkov;
-    }
-
-    public void setVysotaPotolkov(Double vysotaPotolkov) {
-        this.vysotaPotolkov = vysotaPotolkov;
-    }
-
-    public Boolean getReshetkiNaOknah() {
-        return reshetkiNaOknah;
-    }
-
-    public void setReshetkiNaOknah(Boolean reshetkiNaOknah) {
-        this.reshetkiNaOknah = reshetkiNaOknah;
-    }
-
-    public Boolean getOhrana() {
-        return ohrana;
-    }
-
-    public void setOhrana(Boolean ohrana) {
-        this.ohrana = ohrana;
-    }
-
-    public Boolean getDomofon() {
-        return domofon;
-    }
-
-    public void setDomofon(Boolean domofon) {
-        this.domofon = domofon;
-    }
-
-    public Boolean getKodovyZamok() {
-        return kodovyZamok;
-    }
-
-    public void setKodovyZamok(Boolean kodovyZamok) {
-        this.kodovyZamok = kodovyZamok;
-    }
-
-    public Boolean getSignalizaciya() {
-        return signalizaciya;
-    }
-
-    public void setSignalizaciya(Boolean signalizaciya) {
-        this.signalizaciya = signalizaciya;
-    }
-
-    public Boolean getVideonablyudeniye() {
-        return videonablyudeniye;
-    }
-
-    public void setVideonablyudeniye(Boolean videonablyudeniye) {
-        this.videonablyudeniye = videonablyudeniye;
-    }
-
-    public Boolean getVideomofon() {
-        return videomofon;
-    }
-
-    public void setVideomofon(Boolean videomofon) {
-        this.videomofon = videomofon;
-    }
-
-    public Boolean getKonsyerzh() {
-        return konsyerzh;
-    }
-
-    public void setKonsyerzh(Boolean konsyerzh) {
-        this.konsyerzh = konsyerzh;
-    }
-
-    public Integer getKvartira() {
-        return kvartira;
-    }
-
-    public void setKvartira(Integer kvartira) {
-        this.kvartira = kvartira;
-    }
-
-    public Planirovka getPlanirovka() {
-        return planirovka;
-    }
-
-    public void setPlanirovka(Planirovka planirovka) {
-        this.planirovka = planirovka;
-    }
-
     @Override
     public String toString() {
         return "AbstractKvartiraDto{" +
                 "kolichestvoKomnat=" + kolichestvoKomnat +
-                ", zhiloyKomplex='" + zhiloyKomplex + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +
                 ", godPostroyki=" + godPostroyki +
                 ", etazh=" + etazh +
@@ -312,25 +177,12 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
                 ", ploshadObshaya=" + ploshadObshaya +
                 ", ploshadZhilaya=" + ploshadZhilaya +
                 ", ploshadKuhnya=" + ploshadKuhnya +
-                ", isObwyaga=" + isObwyaga +
                 ", sostoyaniye=" + sostoyaniye +
                 ", telefon=" + telefon +
-                ", internet=" + internet +
                 ", sanuzel=" + sanuzel +
                 ", balkon=" + balkon +
                 ", dver=" + dver +
-                ", parkovka=" + parkovka +
-                ", mebel=" + mebel +
                 ", pol=" + pol +
-                ", vysotaPotolkov=" + vysotaPotolkov +
-                ", reshetkiNaOknah=" + reshetkiNaOknah +
-                ", ohrana=" + ohrana +
-                ", domofon=" + domofon +
-                ", kodovyZamok=" + kodovyZamok +
-                ", signalizaciya=" + signalizaciya +
-                ", videonablyudeniye=" + videonablyudeniye +
-                ", videomofon=" + videomofon +
-                ", konsyerzh=" + konsyerzh +
                 '}';
     }
 }

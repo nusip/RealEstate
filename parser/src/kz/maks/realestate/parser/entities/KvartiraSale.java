@@ -1,8 +1,11 @@
 package kz.maks.realestate.parser.entities;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.Entity;
 
 @Entity
+@Audited
 public class KvartiraSale extends AbstractKvartiraEntity {
     private Boolean isZalog;
 
@@ -21,7 +24,6 @@ public class KvartiraSale extends AbstractKvartiraEntity {
                 ", cena=" + cena +
                 ", valyuta=" + valyuta +
                 ", region='" + region + '\'' +
-                ", zhiloyKomplex='" + zhiloyKomplex + '\'' +
                 ", ulica='" + ulica + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +
                 ", godPostroyki=" + godPostroyki +
@@ -30,25 +32,12 @@ public class KvartiraSale extends AbstractKvartiraEntity {
                 ", ploshadObshaya=" + ploshadObshaya +
                 ", ploshadZhilaya=" + ploshadZhilaya +
                 ", ploshadKuhnya=" + ploshadKuhnya +
-                ", isObwyaga=" + isObwyaga +
                 ", sostoyaniye=" + sostoyaniye +
                 ", telefon=" + telefon +
-                ", internet=" + internet +
                 ", sanuzel=" + sanuzel +
                 ", balkon=" + balkon +
                 ", dver=" + dver +
-                ", parkovka=" + parkovka +
-                ", mebel=" + mebel +
                 ", pol=" + pol +
-                ", vysotaPotolkov=" + vysotaPotolkov +
-                ", reshetkiNaOknah=" + reshetkiNaOknah +
-                ", ohrana=" + ohrana +
-                ", domofon=" + domofon +
-                ", kodovyZamok=" + kodovyZamok +
-                ", signalizaciya=" + signalizaciya +
-                ", videonablyudeniye=" + videonablyudeniye +
-                ", videomofon=" + videomofon +
-                ", konsyerzh=" + konsyerzh +
                 ", raznoe='" + raznoe + '\'' +
                 ", telNumbers=" + telNumbers +
                 ", photoPaths=" + photoPaths +

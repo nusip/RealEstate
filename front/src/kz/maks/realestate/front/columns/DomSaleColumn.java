@@ -1,16 +1,26 @@
 package kz.maks.realestate.front.columns;
 
 import kz.maks.core.front.ui.IColumn;
-import kz.maks.realestate.shared.dtos.list.dom.DomSaleListDto;
+import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
-public enum DomSaleColumn implements IColumn<DomSaleListDto> {
-    kolichestvoKomnat("Количество комнат"),
-    region("Регион"),
-    ulicaDom("Улица/Дом"),
-    tipStroyeniya("Тип строения"),
-    godPostroyki("Год постройки"),
+public enum DomSaleColumn implements IColumn<DomSaleDto> {
     cena("Цена"),
-    valyuta("Валюта");
+    valyuta("Валюта"),
+    isZalog("В залоге"),
+    kolichestvoKomnat("Количество комнат"),
+    godPostroyki("Год постройки"),
+    etazh("Этаж"),
+    etazhnost("Этажность"),
+    tipStroyeniya("Тип строения"),
+    ploshadObshaya("Площадь общая"),
+    ploshadZhilaya("Площадь жилая"),
+    ploshadKuhnya("Площадь кухни"),
+    sanuzel("Санузел"),
+    sostoyaniye("Состояние"),
+    region("Регион"),
+    ulica("Улица"),
+    createdAt("Дата создания"),
+    ;
 
     private final String title;
 
@@ -24,8 +34,8 @@ public enum DomSaleColumn implements IColumn<DomSaleListDto> {
     }
 
     @Override
-    public Class<DomSaleListDto> tableClass() {
-        return DomSaleListDto.class;
+    public Class<DomSaleDto> tableClass() {
+        return DomSaleDto.class;
     }
 
     @Override

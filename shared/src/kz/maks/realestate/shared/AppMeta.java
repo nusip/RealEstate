@@ -1,6 +1,7 @@
 package kz.maks.realestate.shared;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class AppMeta {

@@ -97,7 +97,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
             entity.setValyuta(Valyuta.TENGE);
         }
 
-        entity.setZhiloyKomplex(kvartiraPlain.getZhiloyKomplex());
+//        entity.setZhiloyKomplex(kvartiraPlain.getZhiloyKomplex());
 
         if (kvartiraPlain.getDom() != null) {
             String[] tokens = kvartiraPlain.getDom().split(",");
@@ -147,7 +147,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
             }
         }
 
-        entity.setIsObwyaga("да".equalsIgnoreCase(kvartiraPlain.getObwyaga()));
+//        entity.setIsObwyaga("да".equalsIgnoreCase(kvartiraPlain.getObwyaga()));
 
         if (kvartiraPlain.getSostoyanie() != null) {
             entity.setSostoyaniye(Sostoyaniye.getByTitle(kvartiraPlain.getSostoyanie()));
@@ -155,9 +155,9 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
         if (kvartiraPlain.getTelefon() != null) {
             entity.setTelefon(Telefon.getByTitle(kvartiraPlain.getTelefon()));
         }
-        if (kvartiraPlain.getInternet() != null) {
-            entity.setInternet(Internet.getByTitle(kvartiraPlain.getInternet()));
-        }
+//        if (kvartiraPlain.getInternet() != null) {
+//            entity.setInternet(Internet.getByTitle(kvartiraPlain.getInternet()));
+//        }
         if (kvartiraPlain.getSanuzel() != null) {
             entity.setSanuzel(Sanuzel.getByTitle(kvartiraPlain.getSanuzel()));
         }
@@ -167,53 +167,53 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
         if (kvartiraPlain.getDver() != null) {
             entity.setDver(Dver.getByTitle(kvartiraPlain.getDver()));
         }
-        if (kvartiraPlain.getParkovka() != null) {
-            entity.setParkovka(Parkovka.getByTitle(kvartiraPlain.getParkovka()));
-        }
-        if (kvartiraPlain.getMebel() != null) {
-            entity.setMebel(Mebel.getByTitle(kvartiraPlain.getMebel()));
-        }
+//        if (kvartiraPlain.getParkovka() != null) {
+//            entity.setParkovka(Parkovka.getByTitle(kvartiraPlain.getParkovka()));
+//        }
+//        if (kvartiraPlain.getMebel() != null) {
+//            entity.setMebel(Mebel.getByTitle(kvartiraPlain.getMebel()));
+//        }
         if (kvartiraPlain.getPol() != null) {
             entity.setPol(Pol.getByTitle(kvartiraPlain.getPol()));
         }
 
-        if (kvartiraPlain.getPotolki() != null) {
-            String vysotaPotolkov = kvartiraPlain.getPotolki().replaceAll("\\D+", "");
-            entity.setVysotaPotolkov(Double.parseDouble(vysotaPotolkov));
-        }
+//        if (kvartiraPlain.getPotolki() != null) {
+//            String vysotaPotolkov = kvartiraPlain.getPotolki().replaceAll("\\D+", "");
+//            entity.setVysotaPotolkov(Double.parseDouble(vysotaPotolkov));
+//        }
 
-        if (kvartiraPlain.getBezopasnost() != null) {
-            String[] tokens = kvartiraPlain.getBezopasnost().split(",");
-
-            for (String token : tokens) {
-                token = token.trim();
-
-                if ("решетки на окнах".equalsIgnoreCase(token)) {
-                    entity.setReshetkiNaOknah(true);
-                }
-                if ("охрана".equalsIgnoreCase(token)) {
-                    entity.setOhrana(true);
-                }
-                if ("домофон".equalsIgnoreCase(token)) {
-                    entity.setDomofon(true);
-                }
-                if ("кодовый замок".equalsIgnoreCase(token)) {
-                    entity.setKodovyZamok(true);
-                }
-                if ("сигнализация".equalsIgnoreCase(token)) {
-                    entity.setSignalizaciya(true);
-                }
-                if ("видеонаблюдение".equalsIgnoreCase(token)) {
-                    entity.setVideonablyudeniye(true);
-                }
-                if ("видеодомофон".equalsIgnoreCase(token)) {
-                    entity.setVideomofon(true);
-                }
-                if ("консьерж".equalsIgnoreCase(token)) {
-                    entity.setKonsyerzh(true);
-                }
-            }
-        }
+//        if (kvartiraPlain.getBezopasnost() != null) {
+//            String[] tokens = kvartiraPlain.getBezopasnost().split(",");
+//
+//            for (String token : tokens) {
+//                token = token.trim();
+//
+//                if ("решетки на окнах".equalsIgnoreCase(token)) {
+//                    entity.setReshetkiNaOknah(true);
+//                }
+//                if ("охрана".equalsIgnoreCase(token)) {
+//                    entity.setOhrana(true);
+//                }
+//                if ("домофон".equalsIgnoreCase(token)) {
+//                    entity.setDomofon(true);
+//                }
+//                if ("кодовый замок".equalsIgnoreCase(token)) {
+//                    entity.setKodovyZamok(true);
+//                }
+//                if ("сигнализация".equalsIgnoreCase(token)) {
+//                    entity.setSignalizaciya(true);
+//                }
+//                if ("видеонаблюдение".equalsIgnoreCase(token)) {
+//                    entity.setVideonablyudeniye(true);
+//                }
+//                if ("видеодомофон".equalsIgnoreCase(token)) {
+//                    entity.setVideomofon(true);
+//                }
+//                if ("консьерж".equalsIgnoreCase(token)) {
+//                    entity.setKonsyerzh(true);
+//                }
+//            }
+//        }
 
         entity.setRaznoe(kvartiraPlain.getRaznoe());
 

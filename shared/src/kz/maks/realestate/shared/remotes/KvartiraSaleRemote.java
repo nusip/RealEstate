@@ -20,4 +20,6 @@ public interface KvartiraSaleRemote extends Remote {
 
     List<KvartiraSaleDto> listNew(Long lastUpdatedAt) throws RemoteException;
 
+    List<KvartiraSaleDto> listHistory(Long id) throws RemoteException;
+
 }

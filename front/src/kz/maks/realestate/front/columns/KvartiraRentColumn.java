@@ -1,17 +1,27 @@
 package kz.maks.realestate.front.columns;
 
 import kz.maks.core.front.ui.IColumn;
-import kz.maks.realestate.shared.dtos.list.kvartira.KvartiraRentListDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 
-public enum KvartiraRentColumn implements IColumn<KvartiraRentListDto> {
-    kolichestvoKomnat("Количество комнат"),
-    region("Регион"),
-    zhiloyKomplex("ЖК"),
-    ulicaDom("Улица/Дом"),
-    tipStroyeniya("Тип строения"),
-    godPostroyki("Год постройки"),
+public enum KvartiraRentColumn implements IColumn<KvartiraRentDto> {
     cena("Цена"),
-    valyuta("Валюта");
+    valyuta("Валюта"),
+    kolichestvoKomnat("Количество комнат"),
+    godPostroyki("Год постройки"),
+    etazh("Этаж"),
+    etazhnost("Этажность"),
+    tipStroyeniya("Тип строения"),
+    ploshadObshaya("Площадь общая"),
+    ploshadZhilaya("Площадь жилая"),
+    ploshadKuhnya("Площадь кухни"),
+    balkon("Балкон"),
+    planirovka("Планировка"),
+    sanuzel("Санузел"),
+    sostoyaniye("Состояние"),
+    region("Регион"),
+    ulica("Улица"),
+    createdAt("Дата создания"),
+    ;
 
     private final String title;
 
@@ -25,8 +35,8 @@ public enum KvartiraRentColumn implements IColumn<KvartiraRentListDto> {
     }
 
     @Override
-    public Class<KvartiraRentListDto> tableClass() {
-        return KvartiraRentListDto.class;
+    public Class<KvartiraRentDto> tableClass() {
+        return KvartiraRentDto.class;
     }
 
     @Override

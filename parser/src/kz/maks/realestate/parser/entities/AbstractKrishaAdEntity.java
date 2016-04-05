@@ -3,6 +3,7 @@ package kz.maks.realestate.parser.entities;
 import kz.maks.realestate.shared.refs.IstochnikInfo;
 import kz.maks.realestate.shared.refs.Valyuta;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ public abstract class AbstractKrishaAdEntity extends AbstractKrishaEntity {
     protected Valyuta valyuta;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Region region;
     protected String ulica;
     protected String peresechenie;
@@ -41,9 +43,11 @@ public abstract class AbstractKrishaAdEntity extends AbstractKrishaEntity {
     protected IstochnikInfo istochnikInfo;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected User assignedTo;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected User modifiedBy;
 
     public BigDecimal getCena() {

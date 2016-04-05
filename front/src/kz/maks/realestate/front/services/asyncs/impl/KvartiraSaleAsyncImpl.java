@@ -7,6 +7,7 @@ import kz.maks.realestate.front.services.asyncs.KvartiraSaleAsync;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import static kz.maks.realestate.front.services.FrontRemotes.kvartiraSaleRemote;
@@ -51,6 +52,16 @@ public class KvartiraSaleAsyncImpl extends AbstractAsyncImpl implements Kvartira
             public Void call() throws Exception {
                 kvartiraSaleRemote().delete(id);
                 return null;
+            }
+        }, callback);
+    }
+
+    @Override
+    public void listHistory(final Long id, Callback<List<KvartiraSaleDto>> callback) {
+        executeAsync(new Callable<List<KvartiraSaleDto>>() {
+            @Override
+            public List<KvartiraSaleDto> call() throws Exception {
+                return kvartiraSaleRemote().listHistory(id);
             }
         }, callback);
     }

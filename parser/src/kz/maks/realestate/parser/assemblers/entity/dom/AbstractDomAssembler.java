@@ -29,12 +29,12 @@ public abstract class AbstractDomAssembler<DTO extends AbstractDomDto, ENTITY ex
         entity.setGaz(dto.getGaz());
         entity.setPokrytieKryshi(dto.getPokrytieKryshi());
         entity.setVysotaPotolkov(dto.getVysotaPotolkov());
-        entity.setReshetkiNaOknah(dto.getReshetkiNaOknah());
-        entity.setDomofon(dto.getDomofon());
-        entity.setSignalizaciya(dto.getSignalizaciya());
-        entity.setVideomofon(dto.getVideomofon());
-        entity.setVideonablyudeniye(dto.getVideonablyudeniye());
-        entity.setKruglosutochnayaOhrana(dto.getKruglosutochnayaOhrana());
+//        entity.setReshetkiNaOknah(dto.getReshetkiNaOknah());
+//        entity.setDomofon(dto.getDomofon());
+//        entity.setSignalizaciya(dto.getSignalizaciya());
+//        entity.setVideomofon(dto.getVideomofon());
+//        entity.setVideonablyudeniye(dto.getVideonablyudeniye());
+//        entity.setKruglosutochnayaOhrana(dto.getKruglosutochnayaOhrana());
         return entity;
     }
 

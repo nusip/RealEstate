@@ -23,6 +23,7 @@ public abstract class AbstractKrishaAdAssembler<DTO extends AbstractKrishaAdDto,
     public ENTITY assemble(DTO dto, ENTITY entity) {
         entity.setId(dto.getId());
         entity.setKrishaId(dto.getKrishaId());
+        entity.setCena(dto.getCena() != null ? BigDecimal.valueOf(dto.getCena()) : null);
         entity.setCenaProdazhi(dto.getCenaProdazhi() != null ? BigDecimal.valueOf(dto.getCenaProdazhi()) : null);
         entity.setValyuta(dto.getValyuta());
         {
@@ -45,6 +46,13 @@ public abstract class AbstractKrishaAdAssembler<DTO extends AbstractKrishaAdDto,
             User user = userService.get(dto.getAssignedToId());
             entity.setAssignedTo(user);
         }
+
+        if (dto.getModifiedById() != null) {
+            User user = userService.get(dto.getModifiedById());
+            entity.setModifiedBy(user);
+        }
+
+        entity.setIsArchive(dto.getIsArchive());
 
         return entity;
     }

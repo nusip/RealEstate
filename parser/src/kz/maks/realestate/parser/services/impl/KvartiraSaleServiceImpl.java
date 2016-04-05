@@ -18,6 +18,9 @@ import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,9 +42,6 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
 
     @Inject
     private KvartiraSaleDtoAssembler kvartiraSaleDTOAssembler;
-
-    @Inject
-    private KvartiraSaleDtoAssembler kvartiraSaleDetailsAssembler;
 
     @Inject
     private KvartiraSaleEntityAssembler kvartiraSaleEntityAssembler;
@@ -124,7 +124,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     @Override
     public KvartiraSaleDto get(Long id) {
         KvartiraSale entity = db.load(KvartiraSale.class, id);
-        KvartiraSaleDto details = kvartiraSaleDetailsAssembler.assemble(entity, new KvartiraSaleDto());
+        KvartiraSaleDto details = kvartiraSaleDTOAssembler.assemble(entity, new KvartiraSaleDto());
         return details;
     }
 
@@ -203,11 +203,27 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
         List<KvartiraSaleDto> dtoList = new ArrayList<>();
 
         for (KvartiraSale kvartiraSale : list) {
-            KvartiraSaleDto dto = kvartiraSaleDetailsAssembler.assemble(kvartiraSale, new KvartiraSaleDto());
+            KvartiraSaleDto dto = kvartiraSaleDTOAssembler.assemble(kvartiraSale, new KvartiraSaleDto());
             dtoList.add(dto);
         }
 
         return dtoList;
+    }
+
+    @Override
+    public List<KvartiraSaleDto> listHistory(Long id) {
+        AuditReader reader = AuditReaderFactory.get(session());
+        List<KvartiraSale> revisions = reader.createQuery().forRevisionsOfEntity(KvartiraSale.class, true, true)
+                .add(AuditEntity.id().eq(id)).getResultList();
+
+        List<KvartiraSaleDto> revisionDtoList = new ArrayList<>();
+
+        for (KvartiraSale rev : revisions) {
+            KvartiraSaleDto revDto = kvartiraSaleDTOAssembler.assemble(rev, new KvartiraSaleDto());
+            revisionDtoList.add(revDto);
+        }
+
+        return revisionDtoList;
     }
 
 }

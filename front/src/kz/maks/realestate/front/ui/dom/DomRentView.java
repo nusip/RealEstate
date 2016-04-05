@@ -6,7 +6,6 @@ import kz.maks.realestate.front.columns.DomRentColumn;
 import kz.maks.realestate.front.forms.dom.DomRentFormField;
 import kz.maks.realestate.front.forms.dom.DomRentSearchFormField;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomRentListDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ public class DomRentView {
     public final JFrame frame;
     public final DynamicForm<DomRentSearchParams> searchForm;
     public final JButton btnSearch;
-    public final Table<DomRentListDto> table;
+    public final Table<DomRentDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
     public final FormDialog<DomRentDto> formDialog;

@@ -4,7 +4,6 @@ import kz.maks.core.front.ui.CRUD;
 import kz.maks.core.front.ui.SearchPanel;
 import kz.maks.realestate.front.services.asyncs.Asyncs;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
-import kz.maks.realestate.shared.dtos.list.dom.DomSaleListDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 public class DomSaleController {
@@ -13,7 +12,7 @@ public class DomSaleController {
     public DomSaleController(DomSaleView view) {
         this.view = view;
 
-        CRUD<DomSaleSearchParams, DomSaleListDto, DomSaleDto> crud = new CRUD<>(
+        CRUD<DomSaleSearchParams, DomSaleDto, DomSaleDto> crud = new CRUD<>(
                 view.frame,
                 new SearchPanel<>(DomSaleSearchParams.class, view.searchForm, view.btnSearch),
                 view.table,
