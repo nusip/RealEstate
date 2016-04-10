@@ -9,6 +9,7 @@ public class FrontRemotes {
     private static DomRentRemote domRentRemote;
     private static ActivationRemote activationRemote;
     private static UserRemote userRemote;
+    private static RefRemote refRemote;
 
     public static KvartiraSaleRemote kvartiraSaleRemote() {
         return kvartiraSaleRemote;
@@ -31,4 +32,8 @@ public class FrontRemotes {
     }
 
     public static UserRemote userRemote() { return userRemote; }
+
+    public static RefRemote refRemote() {
+        return refRemote;
+    }
 }

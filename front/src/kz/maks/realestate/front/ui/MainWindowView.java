@@ -6,10 +6,16 @@ import kz.maks.realestate.front.ui.dom.DomRentView;
 import kz.maks.realestate.front.ui.dom.DomSaleView;
 import kz.maks.realestate.front.ui.kvartira.KvartiraRentView;
 import kz.maks.realestate.front.ui.kvartira.KvartiraSaleView;
+import kz.maks.realestate.front.ui.refs.RefManagementView;
 import kz.maks.realestate.shared.AppMeta;
+import kz.maks.realestate.shared.refs.Ref;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static javax.swing.SwingConstants.LEFT;
 
 public class MainWindowView {
     public final JFrame ui;
@@ -17,6 +23,8 @@ public class MainWindowView {
     public final KvartiraRentView kvartiraRentView;
     public final DomSaleView domSaleView;
     public final DomRentView domRentView;
+    public final Map<Ref, RefManagementView> refRefManagementViewMap = new HashMap<>();
+    public final JTabbedPane refs;
 
     public MainWindowView() {
         JFrame frame = new JFrame();
@@ -54,6 +62,16 @@ public class MainWindowView {
             {
                 JPanel salesPanel = new JPanel();
                 tabs.addTab("Риэлторы", salesPanel);
+            }
+            {
+                refs = new JTabbedPane(LEFT);
+
+                for (Ref ref : Ref.values()) {
+                    RefManagementView refManagementView = new RefManagementView(frame, ref);
+                    refs.addTab(ref.getTitle(), refManagementView.ui);
+                    refRefManagementViewMap.put(ref, refManagementView);
+                }
+                tabs.addTab("Справочники", refs);
             }
             frame.getContentPane().add(tabs);
         }

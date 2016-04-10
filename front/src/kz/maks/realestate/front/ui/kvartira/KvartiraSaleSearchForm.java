@@ -85,7 +85,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addEtazhnost(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhnostMin.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhnostMin.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -119,7 +119,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addObwyaga(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.obwyaga.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.obwyaga.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -137,7 +137,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addPloshadKuhnya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadKuhnyaMin.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadKuhnyaMin.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -171,7 +171,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addPloshadObshaya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadObshayaMin.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadObshayaMin.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -205,7 +205,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addEtazh(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhMin.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhMin.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -239,7 +239,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addKolichestvoKomnat(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.rooms.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.rooms.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -257,7 +257,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addRegion(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.regionId.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.regionId.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -275,7 +275,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addDataSozdaniya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.dataSozdaniyaFrom.title());
+            JLabel label = new JLabel(KvartiraSaleSearchFormField.dataSozdaniyaFrom.getTitle());
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }

@@ -43,7 +43,7 @@ public class User extends AbstractUserEntity implements ICombo {
 
     @Override
     @Transient
-    public String title() {
+    public String getTitle() {
         return getFullName();
     }
 

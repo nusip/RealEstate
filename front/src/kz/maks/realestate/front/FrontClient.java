@@ -18,6 +18,10 @@ public class FrontClient extends BaseClient {
     public void afterInit() {
         ActivationChecker.check();
 
+        if (config.useCache()) {
+            
+        }
+
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 

@@ -4,6 +4,7 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
 public enum DomSaleColumn implements IColumn<DomSaleDto> {
+    id("ID", 0),
     cena("Цена"),
     valyuta("Валюта"),
     isZalog("В залоге"),
@@ -23,13 +24,19 @@ public enum DomSaleColumn implements IColumn<DomSaleDto> {
     ;
 
     private final String title;
+    private final int width;
 
     DomSaleColumn(String title) {
+        this(title, IColumn.DEFAULT_WIDTH);
+    }
+
+    DomSaleColumn(String title, int width) {
         this.title = title;
+        this.width = width;
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
@@ -37,6 +44,17 @@ public enum DomSaleColumn implements IColumn<DomSaleDto> {
     public Class<DomSaleDto> tableClass() {
         return DomSaleDto.class;
     }
+
+    @Override
+    public boolean isEditable() {
+        return false;
+    }
+
+    @Override
+    public int width() {
+        return width;
+    }
+
 
     @Override
     public String toString() {

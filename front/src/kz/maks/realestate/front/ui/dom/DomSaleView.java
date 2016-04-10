@@ -10,6 +10,9 @@ import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 import javax.swing.*;
 
+import static kz.maks.core.front.ui.BtnCRUDPanel.Button.ADD;
+import static kz.maks.core.front.ui.BtnCRUDPanel.Button.EDIT;
+
 public class DomSaleView {
     public final JSplitPane ui;
     public final JFrame frame;
@@ -44,8 +47,7 @@ public class DomSaleView {
                     hBox.add(scrollPane);
                 }
                 {
-                    btnCRUDPanel = new BtnCRUDPanel();
-                    btnCRUDPanel.btnDelete.setVisible(false);
+                    btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);
                     hBox.add(btnCRUDPanel.ui);
                 }
 

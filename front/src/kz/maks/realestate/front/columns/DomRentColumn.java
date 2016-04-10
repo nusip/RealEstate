@@ -4,6 +4,7 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 
 public enum DomRentColumn implements IColumn<DomRentDto> {
+    id("ID", 0),
     cena("Цена"),
     valyuta("Валюта"),
     kolichestvoKomnat("Количество комнат"),
@@ -22,13 +23,19 @@ public enum DomRentColumn implements IColumn<DomRentDto> {
     ;
 
     private final String title;
+    private final int width;
 
     DomRentColumn(String title) {
+        this(title, IColumn.DEFAULT_WIDTH);
+    }
+
+    DomRentColumn(String title, int width) {
         this.title = title;
+        this.width = width;
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
@@ -36,6 +43,17 @@ public enum DomRentColumn implements IColumn<DomRentDto> {
     public Class<DomRentDto> tableClass() {
         return DomRentDto.class;
     }
+
+    @Override
+    public boolean isEditable() {
+        return false;
+    }
+
+    @Override
+    public int width() {
+        return width;
+    }
+
 
     @Override
     public String toString() {

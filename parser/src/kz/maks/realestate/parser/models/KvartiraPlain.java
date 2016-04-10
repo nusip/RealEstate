@@ -234,7 +234,7 @@ public class KvartiraPlain implements Serializable {
     public String toString() {
         return "KvartiraPlain{" +
                 "krishaId='" + krishaId + '\'' +
-                ", title='" + title + '\'' +
+                ", getTitle='" + title + '\'' +
                 ", price='" + price + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", zalog='" + zalog + '\'' +

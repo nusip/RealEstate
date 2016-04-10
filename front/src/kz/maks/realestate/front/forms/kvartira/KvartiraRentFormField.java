@@ -6,7 +6,7 @@ import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 
 public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     @Hidden
-    id("ID"),
+    id("id"),
     @Required
     kolichestvoKomnat("Количество комнат"),
     dom("Дом"),
@@ -59,7 +59,7 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 

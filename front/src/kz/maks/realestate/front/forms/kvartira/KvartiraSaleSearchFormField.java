@@ -28,7 +28,7 @@ public enum KvartiraSaleSearchFormField implements FormField<KvartiraSaleSearchP
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 

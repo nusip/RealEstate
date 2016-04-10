@@ -1,9 +1,11 @@
 package kz.maks.realestate.front.columns;
 
+import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
 public enum KvartiraSaleColumn implements IColumn<KvartiraSaleDto> {
+    id("ID", 0),
     cena("Цена"),
     valyuta("Валюта"),
     isZalog("В залоге"),
@@ -25,19 +27,35 @@ public enum KvartiraSaleColumn implements IColumn<KvartiraSaleDto> {
     ;
 
     private final String title;
+    private final int width;
 
     KvartiraSaleColumn(String title) {
+        this(title, IColumn.DEFAULT_WIDTH);
+    }
+
+    KvartiraSaleColumn(String title, int width) {
         this.title = title;
+        this.width = width;
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
     @Override
     public Class<KvartiraSaleDto> tableClass() {
         return KvartiraSaleDto.class;
+    }
+
+    @Override
+    public boolean isEditable() {
+        return false;
+    }
+
+    @Override
+    public int width() {
+        return width;
     }
 
     @Override

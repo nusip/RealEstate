@@ -4,6 +4,7 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 
 public enum KvartiraRentColumn implements IColumn<KvartiraRentDto> {
+    id("ID", 0),
     cena("Цена"),
     valyuta("Валюта"),
     kolichestvoKomnat("Количество комнат"),
@@ -24,19 +25,35 @@ public enum KvartiraRentColumn implements IColumn<KvartiraRentDto> {
     ;
 
     private final String title;
+    private final int width;
 
     KvartiraRentColumn(String title) {
+        this(title, IColumn.DEFAULT_WIDTH);
+    }
+
+    KvartiraRentColumn(String title, int width) {
         this.title = title;
+        this.width = width;
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
     @Override
     public Class<KvartiraRentDto> tableClass() {
         return KvartiraRentDto.class;
+    }
+
+    @Override
+    public boolean isEditable() {
+        return false;
+    }
+
+    @Override
+    public int width() {
+        return width;
     }
 
     @Override

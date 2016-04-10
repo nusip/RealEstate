@@ -40,13 +40,19 @@ public enum KvartiraSaleHistoryColumn implements IColumn<KvartiraSaleDto> {
     ;
 
     private final String title;
+    private final int width;
 
     KvartiraSaleHistoryColumn(String title) {
+        this(title, IColumn.DEFAULT_WIDTH);
+    }
+
+    KvartiraSaleHistoryColumn(String title, int width) {
         this.title = title;
+        this.width = width;
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
@@ -54,6 +60,17 @@ public enum KvartiraSaleHistoryColumn implements IColumn<KvartiraSaleDto> {
     public Class<KvartiraSaleDto> tableClass() {
         return KvartiraSaleDto.class;
     }
+
+    @Override
+    public boolean isEditable() {
+        return false;
+    }
+
+    @Override
+    public int width() {
+        return width;
+    }
+
 
     @Override
     public String toString() {

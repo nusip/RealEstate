@@ -12,4 +12,6 @@ public class Asyncs {
 
     public static final UserAsync USER_ASYNC = new UserAsyncImpl();
 
+    public static final RefAsync REF_ASYNC = new RefAsyncImpl();
+
 }

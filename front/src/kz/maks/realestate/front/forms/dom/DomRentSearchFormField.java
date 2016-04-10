@@ -19,7 +19,7 @@ public enum DomRentSearchFormField implements FormField<DomRentSearchParams> {
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 

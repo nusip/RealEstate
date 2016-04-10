@@ -15,7 +15,7 @@ public enum Mebel implements HasTitle {
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 

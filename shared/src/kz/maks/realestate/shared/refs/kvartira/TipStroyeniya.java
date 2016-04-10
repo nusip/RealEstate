@@ -17,7 +17,7 @@ public enum TipStroyeniya implements HasTitle {
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
