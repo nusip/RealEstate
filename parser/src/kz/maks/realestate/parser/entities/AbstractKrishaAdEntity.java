@@ -1,7 +1,7 @@
 package kz.maks.realestate.parser.entities;
 
-import kz.maks.realestate.shared.refs.IstochnikInfo;
-import kz.maks.realestate.shared.refs.Valyuta;
+import kz.maks.realestate.parser.entities.refs.IstochnikInfo;
+import kz.maks.realestate.parser.entities.refs.Valyuta;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
@@ -16,7 +16,8 @@ public abstract class AbstractKrishaAdEntity extends AbstractKrishaEntity {
     protected BigDecimal cena;
     protected BigDecimal cenaProdazhi;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Valyuta valyuta;
 
     @ManyToOne
@@ -39,7 +40,8 @@ public abstract class AbstractKrishaAdEntity extends AbstractKrishaEntity {
     @ElementCollection
     protected List<String> photoPaths = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected IstochnikInfo istochnikInfo;
 
     @ManyToOne

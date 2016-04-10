@@ -13,9 +13,12 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     cena("Цена"),
     cenaProdazhi("Цена продажи"),
     @Required
-    valyuta("Валюта"),
-    kakSdayete("Как сдаете"),
-    tipStroyeniya("Тип строения"),
+    @ComboName("Valyuta")
+    valyutaId("Валюта"),
+    @ComboName("KakSdayete")
+    kakSdayeteId("Как сдаете"),
+    @ComboName("DomTipStroyeniya")
+    tipStroyeniyaId("Тип строения"),
     kolichestvoUrovney("Количество уровней"),
     @Required
     ploshadObshaya("Площадь общая"),
@@ -23,15 +26,24 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     ploshadKuhnya("Площадь кухни"),
     ploshadUchastka("Площадь участка"),
     kakOgorojen("Как огорожен участок"),
-    sostoyaniye("Состояние"),
-    telefon("Телефон"),
-    internet("Интернет"),
-    sanuzel("Санузел"),
-    kanalizaciya("Канализация"),
-    voda("Вода"),
-    elektrichestvo("Электричество"),
-    otopleniye("Отопление"),
-    gaz("Газ"),
+    @ComboName("DomSostoyaniye")
+    sostoyaniyeId("Состояние"),
+    @ComboName("DomTelefon")
+    telefonId("Телефон"),
+    @ComboName("Internet")
+    internetId("Интернет"),
+    @ComboName("DomSanuzel")
+    sanuzelId("Санузел"),
+    @ComboName("Kanalizaciya")
+    kanalizaciyaId("Канализация"),
+    @ComboName("Voda")
+    vodaId("Вода"),
+    @ComboName("Elektrichestvo")
+    elektrichestvoId("Электричество"),
+    @ComboName("Otopleniye")
+    otopleniyeId("Отопление"),
+    @ComboName("Gaz")
+    gazId("Газ"),
     pokrytieKryshi("Покрытие крыши"),
     vysotaPotolkov("Высота потолков"),
     @TextArea

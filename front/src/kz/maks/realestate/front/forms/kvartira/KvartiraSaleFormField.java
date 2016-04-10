@@ -15,9 +15,11 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     cena("Цена"),
     cenaProdazhi("Цена продажи"),
     @Required
-    valyuta("Валюта"),
+    @ComboName("Valyuta")
+    valyutaId("Валюта"),
     godPostroyki("Год постройки"),
-    tipStroyeniya("Тип строения"),
+    @ComboName("KvartiraTipStroyeniya")
+    tipStroyeniyaId("Тип строения"),
     isZalog("В залоге"),
     @Required
     etazh("Этаж"),
@@ -26,15 +28,23 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     ploshadObshaya("Площадь, общая"),
     ploshadZhilaya("жилая"),
     ploshadKuhnya("кухня"),
-    sostoyaniye("Состояние"),
-    istochnikInfo("Источник информации"),
+    @ComboName("KvartiraSostoyaniye")
+    sostoyaniyeId("Состояние"),
+    @ComboName("IstochnikInfo")
+    istochnikInfoId("Источник информации"),
     primechanie("Примечание"),
-    telefon("Телефон"),
-    sanuzel("Санузел"),
-    balkon("Балкон"),
-    dver("Дверь"),
-    pol("Пол"),
-    planirovka("Планировка"),
+    @ComboName("KvartiraTelefon")
+    telefonId("Телефон"),
+    @ComboName("KvartiraSanuzel")
+    sanuzelId("Санузел"),
+    @ComboName("Balkon")
+    balkonId("Балкон"),
+    @ComboName("Dver")
+    dverId("Дверь"),
+    @ComboName("Pol")
+    polId("Пол"),
+    @ComboName("PlanirovkaId")
+    planirovkaId("Планировка"),
     @TextArea
     raznoe("Описание"),
     @Required

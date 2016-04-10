@@ -1,18 +1,28 @@
 package kz.maks.realestate.parser.assemblers.entity.kvartira;
 
+import kz.maks.core.back.annotations.Inject;
 import kz.maks.realestate.parser.assemblers.entity.AbstractKrishaAdAssembler;
 import kz.maks.realestate.parser.entities.AbstractKvartiraEntity;
+import kz.maks.realestate.parser.entities.refs.*;
+import kz.maks.realestate.parser.services.RefService;
 import kz.maks.realestate.shared.dtos.kvartira.AbstractKvartiraDto;
+import kz.maks.realestate.shared.refs.Ref;
 
 public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraDto, ENTITY extends AbstractKvartiraEntity>
         extends AbstractKrishaAdAssembler<DTO, ENTITY> {
+
+    @Inject
+    protected RefService refService;
 
     @Override
     public ENTITY assemble(DTO dto, ENTITY entity) {
         entity = super.assemble(dto, entity);
         entity.setKolichestvoKomnat(dto.getKolichestvoKomnat());
 //        entity.setZhiloyKomplex(dto.getZhiloyKomplex());
-        entity.setTipStroyeniya(dto.getTipStroyeniya());
+        if (dto.getTipStroyeniyaId() != null) {
+            KvartiraTipStroyeniya ref = (KvartiraTipStroyeniya) refService.get(Ref.KvartiraTipStroyeniya, dto.getTipStroyeniyaId());
+            entity.setTipStroyeniya(ref);
+        }
         entity.setGodPostroyki(dto.getGodPostroyki());
         entity.setEtazh(dto.getEtazh());
         entity.setEtazhnost(dto.getEtazhnost());
@@ -20,16 +30,45 @@ public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraDto,
         entity.setPloshadZhilaya(dto.getPloshadZhilaya());
         entity.setPloshadKuhnya(dto.getPloshadKuhnya());
 //        entity.setIsObwyaga(dto.getIsObwyaga());
-        entity.setSostoyaniye(dto.getSostoyaniye());
-        entity.setTelefon(dto.getTelefon());
+
+        if (dto.getSostoyaniyeId() != null) {
+            KvartiraSostoyaniye ref = (KvartiraSostoyaniye) refService.get(Ref.KvartiraSostoyaniye, dto.getSostoyaniyeId());
+            entity.setSostoyaniye(ref);
+        }
+
+        if (dto.getTelefonId() != null) {
+            KvartiraTelefon ref = (KvartiraTelefon) refService.get(Ref.KvartiraTelefon, dto.getTelefonId());
+            entity.setTelefon(ref);
+        }
 //        entity.setInternet(dto.getInternet());
-        entity.setSanuzel(dto.getSanuzel());
-        entity.setBalkon(dto.getBalkon());
-        entity.setDver(dto.getDver());
+
+        if (dto.getSanuzelId() != null) {
+            KvartiraSanuzel ref = (KvartiraSanuzel) refService.get(Ref.KvartiraSanuzel, dto.getSanuzelId());
+            entity.setSanuzel(ref);
+        }
+
+        if (dto.getBalkonId() != null) {
+            Balkon ref = (Balkon) refService.get(Ref.Balkon, dto.getBalkonId());
+            entity.setBalkon(ref);
+        }
+
+        if (dto.getDverId() != null) {
+            Dver ref = (Dver) refService.get(Ref.Dver, dto.getDverId());
+            entity.setDver(ref);
+        }
 //        entity.setParkovka(dto.getParkovka());
 //        entity.setMebel(dto.getMebel());
-        entity.setPol(dto.getPol());
-        entity.setPlanirovka(dto.getPlanirovka());
+
+        if (dto.getPolId() != null) {
+            Pol ref = (Pol) refService.get(Ref.Pol, dto.getPolId());
+            entity.setPol(ref);
+        }
+
+        if (dto.getPlanirovkaId() != null) {
+            Planirovka ref = (Planirovka) refService.get(Ref.Planirovka, dto.getPlanirovkaId());
+            entity.setPlanirovka(ref);
+        }
+
 //        entity.setVysotaPotolkov(dto.getVysotaPotolkov());
 //        entity.setReshetkiNaOknah(dto.getReshetkiNaOknah());
 //        entity.setOhrana(dto.getOhrana());

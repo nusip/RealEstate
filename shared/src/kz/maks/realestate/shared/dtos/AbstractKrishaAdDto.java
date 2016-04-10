@@ -14,7 +14,8 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
     protected Date updatedAt;
     protected Double cena;
     protected Double cenaProdazhi;
-    protected Valyuta valyuta;
+    protected Long valyutaId;
+    protected String valyuta;
     protected Long regionId;
     protected String region;
     protected String regionKrishaId;
@@ -25,7 +26,8 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
     protected String primechanie;
     protected List<String> telNumbers;
     protected List<String> photoPaths;
-    protected IstochnikInfo istochnikInfo;
+    protected Long istochnikInfoId;
+    protected String istochnikInfo;
     protected Long assignedToId;
     protected String assignedTo;
     protected Long modifiedById;
@@ -79,11 +81,19 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
         this.cenaProdazhi = cenaProdazhi;
     }
 
-    public Valyuta getValyuta() {
+    public Long getValyutaId() {
+        return valyutaId;
+    }
+
+    public void setValyutaId(Long valyutaId) {
+        this.valyutaId = valyutaId;
+    }
+
+    public String getValyuta() {
         return valyuta;
     }
 
-    public void setValyuta(Valyuta valyuta) {
+    public void setValyuta(String valyuta) {
         this.valyuta = valyuta;
     }
 
@@ -167,11 +177,19 @@ public abstract class AbstractKrishaAdDto extends AbstractIdDto {
         this.photoPaths = photoPaths;
     }
 
-    public IstochnikInfo getIstochnikInfo() {
+    public Long getIstochnikInfoId() {
+        return istochnikInfoId;
+    }
+
+    public void setIstochnikInfoId(Long istochnikInfoId) {
+        this.istochnikInfoId = istochnikInfoId;
+    }
+
+    public String getIstochnikInfo() {
         return istochnikInfo;
     }
 
-    public void setIstochnikInfo(IstochnikInfo istochnikInfo) {
+    public void setIstochnikInfo(String istochnikInfo) {
         this.istochnikInfo = istochnikInfo;
     }
 

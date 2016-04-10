@@ -22,7 +22,7 @@ public class KvartiraSale extends AbstractKvartiraEntity {
         return "KvartiraSale{" +
                 "kolichestvoKomnat=" + kolichestvoKomnat +
                 ", cena=" + cena +
-                ", valyuta=" + valyuta +
+                ", valyutaId=" + valyuta +
                 ", region='" + region + '\'' +
                 ", ulica='" + ulica + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +

@@ -5,10 +5,16 @@ import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.assemblers.IAssembler;
 import kz.maks.realestate.parser.entities.AbstractKvartiraEntity;
 import kz.maks.realestate.parser.entities.Region;
+import kz.maks.realestate.parser.entities.refs.*;
 import kz.maks.realestate.parser.models.KvartiraPlain;
+import kz.maks.realestate.parser.services.RefService;
 import kz.maks.realestate.parser.services.RegionService;
 import kz.maks.realestate.shared.refs.*;
+import kz.maks.realestate.shared.refs.Valyuta;
 import kz.maks.realestate.shared.refs.kvartira.*;
+import kz.maks.realestate.shared.refs.kvartira.Balkon;
+import kz.maks.realestate.shared.refs.kvartira.Dver;
+import kz.maks.realestate.shared.refs.kvartira.Pol;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,6 +25,9 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
 
     @Inject
     private RegionService regionService;
+
+    @Inject
+    private RefService refService;
 
     @Override
     public ENTITY assemble(KvartiraPlain kvartiraPlain, ENTITY entity) {
@@ -94,7 +103,7 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
         {
             String price = kvartiraPlain.getPrice().replaceAll("\\D+", "");
             entity.setCena(BigDecimal.valueOf(Double.parseDouble(price)));
-            entity.setValyuta(Valyuta.TENGE);
+            entity.setValyuta((kz.maks.realestate.parser.entities.refs.Valyuta) refService.get(Ref.Valyuta, Valyuta.TENGE.name()));
         }
 
 //        entity.setZhiloyKomplex(kvartiraPlain.getZhiloyKomplex());
@@ -103,7 +112,10 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
             String[] tokens = kvartiraPlain.getDom().split(",");
 
             String tipStroyeniya = tokens[0].trim();
-            entity.setTipStroyeniya(TipStroyeniya.getByTitle(tipStroyeniya));
+            KvartiraTipStroyeniya ref = (KvartiraTipStroyeniya) refService.get(
+                    Ref.KvartiraTipStroyeniya,
+                    TipStroyeniya.getByTitle(tipStroyeniya).name());
+            entity.setTipStroyeniya(ref);
 
             if (tokens.length > 1) {
                 String godPostroyki = tokens[1].replaceAll("\\D+", "");
@@ -150,22 +162,32 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
 //        entity.setIsObwyaga("да".equalsIgnoreCase(kvartiraPlain.getObwyaga()));
 
         if (kvartiraPlain.getSostoyanie() != null) {
-            entity.setSostoyaniye(Sostoyaniye.getByTitle(kvartiraPlain.getSostoyanie()));
+            KvartiraSostoyaniye ref = (KvartiraSostoyaniye) refService.get(Ref.KvartiraSostoyaniye,
+                    Sostoyaniye.getByTitle(kvartiraPlain.getSostoyanie()).name());
+            entity.setSostoyaniye(ref);
         }
         if (kvartiraPlain.getTelefon() != null) {
-            entity.setTelefon(Telefon.getByTitle(kvartiraPlain.getTelefon()));
+            KvartiraTelefon ref = (KvartiraTelefon) refService.get(Ref.KvartiraTelefon,
+                    Telefon.getByTitle(kvartiraPlain.getTelefon()).name());
+            entity.setTelefon(ref);
         }
 //        if (kvartiraPlain.getInternet() != null) {
 //            entity.setInternet(Internet.getByTitle(kvartiraPlain.getInternet()));
 //        }
         if (kvartiraPlain.getSanuzel() != null) {
-            entity.setSanuzel(Sanuzel.getByTitle(kvartiraPlain.getSanuzel()));
+            KvartiraSanuzel ref = (KvartiraSanuzel) refService.get(Ref.KvartiraSanuzel,
+                    Sanuzel.getByTitle(kvartiraPlain.getSanuzel()).name());
+            entity.setSanuzel(ref);
         }
         if (kvartiraPlain.getBalkon() != null) {
-            entity.setBalkon(Balkon.getByTitle(kvartiraPlain.getBalkon()));
+            kz.maks.realestate.parser.entities.refs.Balkon ref = (kz.maks.realestate.parser.entities.refs.Balkon) refService.get(Ref.Balkon,
+                    Balkon.getByTitle(kvartiraPlain.getBalkon()).name());
+            entity.setBalkon(ref);
         }
         if (kvartiraPlain.getDver() != null) {
-            entity.setDver(Dver.getByTitle(kvartiraPlain.getDver()));
+            kz.maks.realestate.parser.entities.refs.Dver ref = (kz.maks.realestate.parser.entities.refs.Dver) refService.get(Ref.Dver,
+                    Dver.getByTitle(kvartiraPlain.getDver()).name());
+            entity.setDver(ref);
         }
 //        if (kvartiraPlain.getParkovka() != null) {
 //            entity.setParkovka(Parkovka.getByTitle(kvartiraPlain.getParkovka()));
@@ -174,7 +196,9 @@ public abstract class AbstractKvartiraEntityAssembler<ENTITY extends AbstractKva
 //            entity.setMebel(Mebel.getByTitle(kvartiraPlain.getMebel()));
 //        }
         if (kvartiraPlain.getPol() != null) {
-            entity.setPol(Pol.getByTitle(kvartiraPlain.getPol()));
+            kz.maks.realestate.parser.entities.refs.Pol ref = (kz.maks.realestate.parser.entities.refs.Pol) refService.get(Ref.Pol,
+                    Pol.getByTitle(kvartiraPlain.getPol()).name());
+            entity.setPol(ref);
         }
 
 //        if (kvartiraPlain.getPotolki() != null) {

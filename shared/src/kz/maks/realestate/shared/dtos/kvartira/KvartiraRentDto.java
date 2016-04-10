@@ -1,15 +1,22 @@
 package kz.maks.realestate.shared.dtos.kvartira;
 
-import kz.maks.realestate.shared.refs.KakSdayete;
-
 public class KvartiraRentDto extends AbstractKvartiraDto {
-    private KakSdayete kakSdayete;
+    private Long kakSdayeteId;
+    private String kakSdayete;
 
-    public KakSdayete getKakSdayete() {
+    public Long getKakSdayeteId() {
+        return kakSdayeteId;
+    }
+
+    public void setKakSdayeteId(Long kakSdayeteId) {
+        this.kakSdayeteId = kakSdayeteId;
+    }
+
+    public String getKakSdayete() {
         return kakSdayete;
     }
 
-    public void setKakSdayete(KakSdayete kakSdayete) {
+    public void setKakSdayete(String kakSdayete) {
         this.kakSdayete = kakSdayete;
     }
 }

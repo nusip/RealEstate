@@ -1,15 +1,23 @@
 package kz.maks.realestate.shared.dtos.dom;
 
-import kz.maks.realestate.shared.refs.KakSdayete;
 
 public class DomRentDto extends AbstractDomDto {
-    private KakSdayete kakSdayete;
+    private Long kakSdayeteId;
+    private String kakSdayete;
 
-    public KakSdayete getKakSdayete() {
+    public Long getKakSdayeteId() {
+        return kakSdayeteId;
+    }
+
+    public void setKakSdayeteId(Long kakSdayeteId) {
+        this.kakSdayeteId = kakSdayeteId;
+    }
+
+    public String getKakSdayete() {
         return kakSdayete;
     }
 
-    public void setKakSdayete(KakSdayete kakSdayete) {
+    public void setKakSdayete(String kakSdayete) {
         this.kakSdayete = kakSdayete;
     }
 }

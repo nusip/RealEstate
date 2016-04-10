@@ -45,4 +45,19 @@ public class RefServiceImpl extends AbstractServiceImpl implements RefService {
         }
     }
 
+    @Override
+    public AbstractRefEntity get(Ref ref, Long id) {
+        RefToEntity refToEntity = RefToEntity.valueOf(ref.name());
+        AbstractRefEntity refEntity = db.load(refToEntity.entityClass, id);
+        return refEntity;
+    }
+
+    @Override
+    public AbstractRefEntity get(Ref ref, String code) {
+        RefToEntity refToEntity = RefToEntity.valueOf(ref.name());
+        AbstractRefEntity refEntity = (AbstractRefEntity) session().createCriteria(refToEntity.entityClass)
+                .add(Restrictions.eq("code", code)).uniqueResult();
+        return refEntity;
+    }
+
 }

@@ -1,7 +1,8 @@
 package kz.maks.realestate.parser.entities;
 
-import kz.maks.realestate.shared.refs.kvartira.*;
+import kz.maks.realestate.parser.entities.refs.*;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 
@@ -10,8 +11,9 @@ import javax.persistence.*;
 public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
     protected Integer kolichestvoKomnat;
 
-    @Enumerated(EnumType.STRING)
-    protected TipStroyeniya tipStroyeniya;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected KvartiraTipStroyeniya tipStroyeniya;
     protected Integer godPostroyki;
     protected Integer etazh;
     protected Integer etazhnost;
@@ -19,21 +21,28 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
     protected Double ploshadZhilaya;
     protected Double ploshadKuhnya;
 
-    @Enumerated(EnumType.STRING)
-    protected Sostoyaniye sostoyaniye;
-    @Enumerated(EnumType.STRING)
-    protected Telefon telefon;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected KvartiraSostoyaniye sostoyaniye;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected KvartiraTelefon telefon;
 
-    @Enumerated(EnumType.STRING)
-    protected Sanuzel sanuzel;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected KvartiraSanuzel sanuzel;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Balkon balkon;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Dver dver;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Pol pol;
     protected Integer kvartira;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Planirovka planirovka;
 
 //    protected Boolean isObwyaga;
@@ -64,11 +73,11 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
         this.kolichestvoKomnat = kolichestvoKomnat;
     }
 
-    public TipStroyeniya getTipStroyeniya() {
+    public KvartiraTipStroyeniya getTipStroyeniya() {
         return tipStroyeniya;
     }
 
-    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
+    public void setTipStroyeniya(KvartiraTipStroyeniya tipStroyeniya) {
         this.tipStroyeniya = tipStroyeniya;
     }
 
@@ -120,27 +129,27 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
         this.ploshadKuhnya = ploshadKuhnya;
     }
 
-    public Sostoyaniye getSostoyaniye() {
+    public KvartiraSostoyaniye getSostoyaniye() {
         return sostoyaniye;
     }
 
-    public void setSostoyaniye(Sostoyaniye sostoyaniye) {
+    public void setSostoyaniye(KvartiraSostoyaniye sostoyaniye) {
         this.sostoyaniye = sostoyaniye;
     }
 
-    public Telefon getTelefon() {
+    public KvartiraTelefon getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Telefon telefon) {
+    public void setTelefon(KvartiraTelefon telefon) {
         this.telefon = telefon;
     }
 
-    public Sanuzel getSanuzel() {
+    public KvartiraSanuzel getSanuzel() {
         return sanuzel;
     }
 
-    public void setSanuzel(Sanuzel sanuzel) {
+    public void setSanuzel(KvartiraSanuzel sanuzel) {
         this.sanuzel = sanuzel;
     }
 
@@ -189,7 +198,7 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
         return "AbstractKvartiraEntity{" +
                 "kolichestvoKomnat=" + kolichestvoKomnat +
                 ", cena=" + cena +
-                ", valyuta=" + valyuta +
+                ", valyutaId=" + valyuta +
                 ", region='" + region + '\'' +
                 ", ulica='" + ulica + '\'' +
                 ", tipStroyeniya=" + tipStroyeniya +

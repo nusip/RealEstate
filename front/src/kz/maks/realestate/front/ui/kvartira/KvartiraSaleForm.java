@@ -2,14 +2,10 @@ package kz.maks.realestate.front.ui.kvartira;
 
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
-import kz.maks.core.front.ui.TextField;
 import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.realestate.front.columns.KvartiraSaleHistoryColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
-import kz.maks.realestate.shared.refs.IstochnikInfo;
-import kz.maks.realestate.shared.refs.Valyuta;
-import kz.maks.realestate.shared.refs.kvartira.*;
 
 import javax.swing.*;
 
@@ -188,12 +184,12 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = getLabel(tipStroyeniya);
+            JLabel label = getLabel(tipStroyeniyaId);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(tipStroyeniya));
+            fieldRow.add(addField(tipStroyeniyaId));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -272,13 +268,13 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addPlanirovka(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(planirovka);
+            JLabel label = getLabel(planirovkaId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
 
             fieldRow.add(FrontUtils.hGap());
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(planirovka));
+            fieldRow.add(addField(planirovkaId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -299,14 +295,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addPol(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(pol);
+            JLabel label = getLabel(polId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(pol));
+            fieldRow.add(addField(polId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -317,14 +313,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addDver(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(dver);
+            JLabel label = getLabel(dverId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(dver));
+            fieldRow.add(addField(dverId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -335,14 +331,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addBalkon(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(balkon);
+            JLabel label = getLabel(balkonId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(balkon));
+            fieldRow.add(addField(balkonId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -353,14 +349,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addSanuzel(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(sanuzel);
+            JLabel label = getLabel(sanuzelId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(sanuzel));
+            fieldRow.add(addField(sanuzelId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -371,14 +367,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addTelefon(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(telefon);
+            JLabel label = getLabel(telefonId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(telefon));
+            fieldRow.add(addField(telefonId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -405,13 +401,13 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addIstochnikInformacii(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(istochnikInfo);
+            JLabel label = getLabel(istochnikInfoId);
             setForcedWidth(label, LABEL_WIDTH_3);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(istochnikInfo));
+            fieldRow.add(addField(istochnikInfoId));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -421,14 +417,14 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addSostoyanie(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(sostoyaniye);
+            JLabel label = getLabel(sostoyaniyeId);
             setForcedWidth(label, LABEL_WIDTH_2);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
 //            FrontUtils.setForcedWidth(comboBox.ui, FIELD_WIDTH);
-            fieldRow.add(addField(sostoyaniye));
+            fieldRow.add(addField(sostoyaniyeId));
         }
 //        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -511,11 +507,11 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(getLabel(valyuta));
+            fieldRow.add(getLabel(valyutaId));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JComponent fieldComponent = addField(valyuta);
+            JComponent fieldComponent = addField(valyutaId);
             setForcedWidth(fieldComponent, SHORT_FIELD_WIDTH);
             fieldRow.add(fieldComponent);
         }

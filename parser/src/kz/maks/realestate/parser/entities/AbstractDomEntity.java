@@ -1,42 +1,51 @@
 package kz.maks.realestate.parser.entities;
 
-import kz.maks.realestate.shared.refs.Internet;
-import kz.maks.realestate.shared.refs.dom.*;
+import kz.maks.realestate.parser.entities.refs.*;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @Audited
 public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
     protected Integer kolichestvoKomnat;
-    @Enumerated(EnumType.STRING)
-    protected TipStroyeniya tipStroyeniya;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected DomTipStroyeniya tipStroyeniya;
     protected Integer kolichestvoUrovney;
     protected Double ploshadObshaya;
     protected Double ploshadZhilaya;
     protected Double ploshadKuhnya;
     protected Double ploshadUchastka;
     protected String kakOgorojen;
-    @Enumerated(EnumType.STRING)
-    protected Sostoyaniye sostoyaniye;
-    @Enumerated(EnumType.STRING)
-    protected Telefon telefon;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected DomSostoyaniye sostoyaniye;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected DomTelefon telefon;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Internet internet;
-    @Enumerated(EnumType.STRING)
-    protected Sanuzel sanuzel;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    protected DomSanuzel sanuzel;
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Kanalizaciya kanalizaciya;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Voda voda;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Elektrichestvo elektrichestvo;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Otopleniye otopleniye;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Gaz gaz;
     protected String pokrytieKryshi;
     protected Double vysotaPotolkov;
@@ -56,11 +65,11 @@ public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
         this.kolichestvoKomnat = kolichestvoKomnat;
     }
 
-    public TipStroyeniya getTipStroyeniya() {
+    public DomTipStroyeniya getTipStroyeniya() {
         return tipStroyeniya;
     }
 
-    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
+    public void setTipStroyeniya(DomTipStroyeniya tipStroyeniya) {
         this.tipStroyeniya = tipStroyeniya;
     }
 
@@ -112,19 +121,19 @@ public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
         this.kakOgorojen = kakOgorojen;
     }
 
-    public Sostoyaniye getSostoyaniye() {
+    public DomSostoyaniye getSostoyaniye() {
         return sostoyaniye;
     }
 
-    public void setSostoyaniye(Sostoyaniye sostoyaniye) {
+    public void setSostoyaniye(DomSostoyaniye sostoyaniye) {
         this.sostoyaniye = sostoyaniye;
     }
 
-    public Telefon getTelefon() {
+    public DomTelefon getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Telefon telefon) {
+    public void setTelefon(DomTelefon telefon) {
         this.telefon = telefon;
     }
 
@@ -136,11 +145,11 @@ public abstract class AbstractDomEntity extends AbstractKrishaAdEntity {
         this.internet = internet;
     }
 
-    public Sanuzel getSanuzel() {
+    public DomSanuzel getSanuzel() {
         return sanuzel;
     }
 
-    public void setSanuzel(Sanuzel sanuzel) {
+    public void setSanuzel(DomSanuzel sanuzel) {
         this.sanuzel = sanuzel;
     }
 

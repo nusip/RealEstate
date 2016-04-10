@@ -12,15 +12,23 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
     protected Double ploshadZhilaya;
     protected Double ploshadKuhnya;
     protected Integer godPostroyki;
-    protected TipStroyeniya tipStroyeniya;
+    protected Long tipStroyeniyaId;
+    protected String tipStroyeniya;
     protected Integer kvartira;
-    protected Sostoyaniye sostoyaniye;
-    protected Planirovka planirovka;
-    protected Telefon telefon;
-    protected Sanuzel sanuzel;
-    protected Balkon balkon;
-    protected Dver dver;
-    protected Pol pol;
+    protected Long sostoyaniyeId;
+    protected String sostoyaniye;
+    protected Long planirovkaId;
+    protected String planirovka;
+    protected Long telefonId;
+    protected String telefon;
+    protected Long sanuzelId;
+    protected String sanuzel;
+    protected Long balkonId;
+    protected String balkon;
+    protected Long dverId;
+    protected String dver;
+    protected Long polId;
+    protected String pol;
 
 //    protected String zhiloyKomplex;
 //    protected Boolean isObwyaga;
@@ -94,11 +102,19 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.godPostroyki = godPostroyki;
     }
 
-    public TipStroyeniya getTipStroyeniya() {
+    public Long getTipStroyeniyaId() {
+        return tipStroyeniyaId;
+    }
+
+    public void setTipStroyeniyaId(Long tipStroyeniyaId) {
+        this.tipStroyeniyaId = tipStroyeniyaId;
+    }
+
+    public String getTipStroyeniya() {
         return tipStroyeniya;
     }
 
-    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
+    public void setTipStroyeniya(String tipStroyeniya) {
         this.tipStroyeniya = tipStroyeniya;
     }
 
@@ -110,59 +126,115 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
         this.kvartira = kvartira;
     }
 
-    public Sostoyaniye getSostoyaniye() {
+    public Long getSostoyaniyeId() {
+        return sostoyaniyeId;
+    }
+
+    public void setSostoyaniyeId(Long sostoyaniyeId) {
+        this.sostoyaniyeId = sostoyaniyeId;
+    }
+
+    public String getSostoyaniye() {
         return sostoyaniye;
     }
 
-    public void setSostoyaniye(Sostoyaniye sostoyaniye) {
+    public void setSostoyaniye(String sostoyaniye) {
         this.sostoyaniye = sostoyaniye;
     }
 
-    public Planirovka getPlanirovka() {
+    public Long getPlanirovkaId() {
+        return planirovkaId;
+    }
+
+    public void setPlanirovkaId(Long planirovkaId) {
+        this.planirovkaId = planirovkaId;
+    }
+
+    public String getPlanirovka() {
         return planirovka;
     }
 
-    public void setPlanirovka(Planirovka planirovka) {
+    public void setPlanirovka(String planirovka) {
         this.planirovka = planirovka;
     }
 
-    public Telefon getTelefon() {
+    public Long getTelefonId() {
+        return telefonId;
+    }
+
+    public void setTelefonId(Long telefonId) {
+        this.telefonId = telefonId;
+    }
+
+    public String getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Telefon telefon) {
+    public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
 
-    public Sanuzel getSanuzel() {
+    public Long getSanuzelId() {
+        return sanuzelId;
+    }
+
+    public void setSanuzelId(Long sanuzelId) {
+        this.sanuzelId = sanuzelId;
+    }
+
+    public String getSanuzel() {
         return sanuzel;
     }
 
-    public void setSanuzel(Sanuzel sanuzel) {
+    public void setSanuzel(String sanuzel) {
         this.sanuzel = sanuzel;
     }
 
-    public Balkon getBalkon() {
+    public Long getBalkonId() {
+        return balkonId;
+    }
+
+    public void setBalkonId(Long balkonId) {
+        this.balkonId = balkonId;
+    }
+
+    public String getBalkon() {
         return balkon;
     }
 
-    public void setBalkon(Balkon balkon) {
+    public void setBalkon(String balkon) {
         this.balkon = balkon;
     }
 
-    public Dver getDver() {
+    public Long getDverId() {
+        return dverId;
+    }
+
+    public void setDverId(Long dverId) {
+        this.dverId = dverId;
+    }
+
+    public String getDver() {
         return dver;
     }
 
-    public void setDver(Dver dver) {
+    public void setDver(String dver) {
         this.dver = dver;
     }
 
-    public Pol getPol() {
+    public Long getPolId() {
+        return polId;
+    }
+
+    public void setPolId(Long polId) {
+        this.polId = polId;
+    }
+
+    public String getPol() {
         return pol;
     }
 
-    public void setPol(Pol pol) {
+    public void setPol(String pol) {
         this.pol = pol;
     }
 

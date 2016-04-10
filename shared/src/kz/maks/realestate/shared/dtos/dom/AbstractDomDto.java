@@ -6,22 +6,32 @@ import kz.maks.realestate.shared.refs.dom.*;
 
 public abstract class AbstractDomDto extends AbstractKrishaAdDto {
     protected Integer kolichestvoKomnat;
-    protected TipStroyeniya tipStroyeniya;
+    protected Long tipStroyeniyaId;
+    protected String tipStroyeniya;
     protected Integer kolichestvoUrovney;
     protected Double ploshadObshaya;
     protected Double ploshadZhilaya;
     protected Double ploshadKuhnya;
     protected Double ploshadUchastka;
     protected String kakOgorojen;
-    protected Sostoyaniye sostoyaniye;
-    protected Telefon telefon;
-    protected Internet internet;
-    protected Sanuzel sanuzel;
-    protected Kanalizaciya kanalizaciya;
-    protected Voda voda;
-    protected Elektrichestvo elektrichestvo;
-    protected Otopleniye otopleniye;
-    protected Gaz gaz;
+    protected Long sostoyaniyeId;
+    protected String sostoyaniye;
+    protected Long telefonId;
+    protected String telefon;
+    protected Long internetId;
+    protected String internet;
+    protected Long sanuzelId;
+    protected String sanuzel;
+    protected Long kanalizaciyaId;
+    protected String kanalizaciya;
+    protected Long vodaId;
+    protected String voda;
+    protected Long elektrichestvoId;
+    protected String elektrichestvo;
+    protected Long otopleniyeId;
+    protected String otopleniye;
+    protected Long gazId;
+    protected String gaz;
     protected String pokrytieKryshi;
     protected Double vysotaPotolkov;
 
@@ -40,11 +50,19 @@ public abstract class AbstractDomDto extends AbstractKrishaAdDto {
         this.kolichestvoKomnat = kolichestvoKomnat;
     }
 
-    public TipStroyeniya getTipStroyeniya() {
+    public Long getTipStroyeniyaId() {
+        return tipStroyeniyaId;
+    }
+
+    public void setTipStroyeniyaId(Long tipStroyeniyaId) {
+        this.tipStroyeniyaId = tipStroyeniyaId;
+    }
+
+    public String getTipStroyeniya() {
         return tipStroyeniya;
     }
 
-    public void setTipStroyeniya(TipStroyeniya tipStroyeniya) {
+    public void setTipStroyeniya(String tipStroyeniya) {
         this.tipStroyeniya = tipStroyeniya;
     }
 
@@ -96,75 +114,147 @@ public abstract class AbstractDomDto extends AbstractKrishaAdDto {
         this.kakOgorojen = kakOgorojen;
     }
 
-    public Sostoyaniye getSostoyaniye() {
+    public Long getSostoyaniyeId() {
+        return sostoyaniyeId;
+    }
+
+    public void setSostoyaniyeId(Long sostoyaniyeId) {
+        this.sostoyaniyeId = sostoyaniyeId;
+    }
+
+    public String getSostoyaniye() {
         return sostoyaniye;
     }
 
-    public void setSostoyaniye(Sostoyaniye sostoyaniye) {
+    public void setSostoyaniye(String sostoyaniye) {
         this.sostoyaniye = sostoyaniye;
     }
 
-    public Telefon getTelefon() {
+    public Long getTelefonId() {
+        return telefonId;
+    }
+
+    public void setTelefonId(Long telefonId) {
+        this.telefonId = telefonId;
+    }
+
+    public String getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Telefon telefon) {
+    public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
 
-    public Internet getInternet() {
+    public Long getInternetId() {
+        return internetId;
+    }
+
+    public void setInternetId(Long internetId) {
+        this.internetId = internetId;
+    }
+
+    public String getInternet() {
         return internet;
     }
 
-    public void setInternet(Internet internet) {
+    public void setInternet(String internet) {
         this.internet = internet;
     }
 
-    public Sanuzel getSanuzel() {
+    public Long getSanuzelId() {
+        return sanuzelId;
+    }
+
+    public void setSanuzelId(Long sanuzelId) {
+        this.sanuzelId = sanuzelId;
+    }
+
+    public String getSanuzel() {
         return sanuzel;
     }
 
-    public void setSanuzel(Sanuzel sanuzel) {
+    public void setSanuzel(String sanuzel) {
         this.sanuzel = sanuzel;
     }
 
-    public Kanalizaciya getKanalizaciya() {
+    public Long getKanalizaciyaId() {
+        return kanalizaciyaId;
+    }
+
+    public void setKanalizaciyaId(Long kanalizaciyaId) {
+        this.kanalizaciyaId = kanalizaciyaId;
+    }
+
+    public String getKanalizaciya() {
         return kanalizaciya;
     }
 
-    public void setKanalizaciya(Kanalizaciya kanalizaciya) {
+    public void setKanalizaciya(String kanalizaciya) {
         this.kanalizaciya = kanalizaciya;
     }
 
-    public Voda getVoda() {
+    public Long getVodaId() {
+        return vodaId;
+    }
+
+    public void setVodaId(Long vodaId) {
+        this.vodaId = vodaId;
+    }
+
+    public String getVoda() {
         return voda;
     }
 
-    public void setVoda(Voda voda) {
+    public void setVoda(String voda) {
         this.voda = voda;
     }
 
-    public Elektrichestvo getElektrichestvo() {
+    public Long getElektrichestvoId() {
+        return elektrichestvoId;
+    }
+
+    public void setElektrichestvoId(Long elektrichestvoId) {
+        this.elektrichestvoId = elektrichestvoId;
+    }
+
+    public String getElektrichestvo() {
         return elektrichestvo;
     }
 
-    public void setElektrichestvo(Elektrichestvo elektrichestvo) {
+    public void setElektrichestvo(String elektrichestvo) {
         this.elektrichestvo = elektrichestvo;
     }
 
-    public Otopleniye getOtopleniye() {
+    public Long getOtopleniyeId() {
+        return otopleniyeId;
+    }
+
+    public void setOtopleniyeId(Long otopleniyeId) {
+        this.otopleniyeId = otopleniyeId;
+    }
+
+    public String getOtopleniye() {
         return otopleniye;
     }
 
-    public void setOtopleniye(Otopleniye otopleniye) {
+    public void setOtopleniye(String otopleniye) {
         this.otopleniye = otopleniye;
     }
 
-    public Gaz getGaz() {
+    public Long getGazId() {
+        return gazId;
+    }
+
+    public void setGazId(Long gazId) {
+        this.gazId = gazId;
+    }
+
+    public String getGaz() {
         return gaz;
     }
 
-    public void setGaz(Gaz gaz) {
+    public void setGaz(String gaz) {
         this.gaz = gaz;
     }
 

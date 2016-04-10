@@ -21,7 +21,8 @@ public abstract class AbstractKrishaAdDtoAssembler<ENTITY extends AbstractKrisha
         dto.setUpdatedAt(entity.getUpdatedAt() != null ? new Date(entity.getUpdatedAt()) : null);
         dto.setCena(entity.getCena() != null ? entity.getCena().doubleValue() : null);
         dto.setCenaProdazhi(entity.getCenaProdazhi() != null ? entity.getCenaProdazhi().doubleValue() : null);
-        dto.setValyuta(entity.getValyuta());
+        dto.setValyutaId(extractId(entity.getValyuta()));
+        dto.setValyuta(entity.getValyuta() != null ? entity.getValyuta().getTitle() : null);
         dto.setRegionId(extractId(entity.getRegion()));
         dto.setRegion(entity.getRegion() != null ? entity.getRegion().getName() : null);
         dto.setRegionKrishaId(entity.getRegion() != null ? entity.getRegion().getKrishaId() : null);
@@ -32,7 +33,8 @@ public abstract class AbstractKrishaAdDtoAssembler<ENTITY extends AbstractKrisha
         dto.setPrimechanie(entity.getPrimechanie());
         dto.setTelNumbers(Lists.newArrayList(entity.getTelNumbers()));
         dto.setPhotoPaths(Lists.newArrayList(entity.getPhotoPaths()));
-        dto.setIstochnikInfo(entity.getIstochnikInfo());
+        dto.setIstochnikInfoId(extractId(entity.getIstochnikInfo()));
+        dto.setIstochnikInfo(entity.getIstochnikInfo() != null ? entity.getIstochnikInfo().getTitle() : null);
         dto.setAssignedToId(Utils.extractId(entity.getAssignedTo()));
         dto.setAssignedTo(entity.getAssignedTo() != null ? entity.getAssignedTo().getFullName() : null);
         dto.setModifiedById(Utils.extractId(entity.getModifiedBy()));
