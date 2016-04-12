@@ -4,6 +4,7 @@ import kz.maks.realestate.front.ui.dom.DomRentController;
 import kz.maks.realestate.front.ui.dom.DomSaleController;
 import kz.maks.realestate.front.ui.kvartira.KvartiraRentController;
 import kz.maks.realestate.front.ui.kvartira.KvartiraSaleController;
+import kz.maks.realestate.front.ui.realtors.RealtorController;
 import kz.maks.realestate.front.ui.refs.RefManagementController;
 import kz.maks.realestate.shared.refs.Ref;
 
@@ -31,6 +32,8 @@ public class MainWindowController {
                 }
             });
         }
+
+        new RealtorController(view.realtorView);
     }
 
 }

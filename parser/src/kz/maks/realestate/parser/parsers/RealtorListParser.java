@@ -1,54 +1,33 @@
 package kz.maks.realestate.parser.parsers;
 
 import kz.maks.core.back.annotations.Bean;
-import kz.maks.core.back.annotations.Inject;
-import kz.maks.realestate.parser.models.KvartiraPlain;
-import kz.maks.realestate.parser.services.KvartiraSaleService;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Bean
-public class AdsParser {
+public class RealtorListParser {
 
     private int PAGE_LIMIT = 5; // remove later, for testing only
 
-    @Inject(proxy = true)
-    private KvartiraSaleService kvartiraSaleService;
-
-    @Inject
-    private KvartiraParser kvartiraParser;
-
-    public void parseAds() throws InterruptedException, SQLException, IOException {
-        parseKvartiraSales();
-    }
-
-    private void parseKvartiraSales() throws IOException, InterruptedException {
+    public void parseRealtors() {
         List<String> adLinks = collectAdLinks();
 
         for (String adLink : adLinks) {
-            parseKvartiraSale(adLink);
+            parseRealtor(adLink);
         }
     }
 
-    private void parseKvartiraSale(String adLink) throws IOException, InterruptedException {
-        String krishaId = ParserUtils.extractKrishaId(adLink);
-        boolean exists = kvartiraSaleService.kvartiraSaleExists(krishaId);
+    private void parseRealtor(String adLink) {
 
-        if (!exists) {
-            KvartiraPlain kvartiraPlain = kvartiraParser.parse(adLink);
-            kvartiraSaleService.saveKvartiraSale(kvartiraPlain);
-        }
     }
 
     private List<String> collectAdLinks() {
         String domain = "http://krisha.kz";
-        String uri = "/prodazha/kvartiry/almaty/?das[who]=1";
+        String uri = "/pro/specialist/almaty/?&sort-by[status-and-date]=desc";
 
         List<String> adLinks = new ArrayList<>();
 
@@ -61,7 +40,7 @@ public class AdsParser {
 
             Document document = ParserUtils.jSoupParse(domain + uri);
 
-            Elements elements = document.select("div.item > div.descr > div.getTitle > a");
+            Elements elements = document.select("div.pitem > div.pr_block > div > a.name");
 
             System.out.println("COUNT: " + elements.size());
 

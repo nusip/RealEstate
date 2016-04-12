@@ -14,4 +14,6 @@ public class Asyncs {
 
     public static final RefAsync REF_ASYNC = new RefAsyncImpl();
 
+    public static final RealtorAsync REALTOR_ASYNC = new RealtorAsyncImpl();
+
 }

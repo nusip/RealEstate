@@ -12,6 +12,8 @@ import javax.swing.*;
 
 import java.awt.*;
 
+import static kz.maks.realestate.front.forms.kvartira.KvartiraSaleSearchFormField.*;
+
 public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParams> {
     private static final int COL_WIDTH = 300;
     private static final int LABEL_WIDTH = 100;
@@ -85,7 +87,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addEtazhnost(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhnostMin.getTitle());
+            JLabel label = getLabel(etazhnostMin);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -96,9 +98,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.etazhnostMin);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.etazhnostMin, spinner);
+            fieldRow.add(addField(etazhnostMin));
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -107,9 +107,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.etazhnostMax);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.etazhnostMax, spinner);
+            fieldRow.add(addField(etazhnostMax));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -119,15 +117,13 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addObwyaga(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.obwyaga.getTitle());
+            JLabel label = getLabel(obwyaga);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            EnumBox comboBox = new EnumBox(KvartiraSaleSearchFormField.obwyaga, YesNo.values());
-            fieldValues.put(KvartiraSaleSearchFormField.obwyaga, comboBox);
-            fieldRow.add(comboBox.ui);
+            fieldRow.add(addField(obwyaga));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -137,7 +133,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addPloshadKuhnya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadKuhnyaMin.getTitle());
+            JLabel label = getLabel(ploshadKuhnyaMin);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -148,9 +144,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.ploshadKuhnyaMin, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.ploshadKuhnyaMin, spinner);
+            fieldRow.add(addField(ploshadKuhnyaMin));
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -159,9 +153,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.ploshadKuhnyaMax, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.ploshadKuhnyaMax, spinner);
+            fieldRow.add(addField(ploshadKuhnyaMax));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -171,7 +163,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addPloshadObshaya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.ploshadObshayaMin.getTitle());
+            JLabel label = getLabel(ploshadObshayaMin);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -182,9 +174,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.ploshadObshayaMin, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.ploshadObshayaMin, spinner);
+            fieldRow.add(addField(ploshadObshayaMin));
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -193,9 +183,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.ploshadObshayaMax, Spinner.DECIMAL_MODE);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.ploshadObshayaMax, spinner);
+            fieldRow.add(addField(ploshadObshayaMax));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -205,7 +193,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addEtazh(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.etazhMin.getTitle());
+            JLabel label = getLabel(etazhMin);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -216,9 +204,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.etazhMin);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.etazhMin, spinner);
+            fieldRow.add(addField(etazhMin));
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -227,9 +213,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            Spinner spinner = new Spinner(KvartiraSaleSearchFormField.etazhMax);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.etazhMax, spinner);
+            fieldRow.add(addField(etazhMax));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -239,15 +223,13 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addKolichestvoKomnat(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.rooms.getTitle());
+            JLabel label = getLabel(rooms);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            EnumBox comboBox = new EnumBox(KvartiraSaleSearchFormField.rooms, RoomRange.values());
-            fieldValues.put(KvartiraSaleSearchFormField.rooms, comboBox);
-            fieldRow.add(comboBox.ui);
+            fieldRow.add(addField(rooms));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -257,15 +239,13 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addRegion(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.regionId.getTitle());
+            JLabel label = getLabel(regionId);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            TreeLink treeLink = new TreeLink(parent, KvartiraSaleSearchFormField.regionId);
-            fieldValues.put(KvartiraSaleSearchFormField.regionId, treeLink);
-            fieldRow.add(treeLink.ui);
+            fieldRow.add(addField(regionId));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
@@ -275,7 +255,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
     private void addDataSozdaniya(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(KvartiraSaleSearchFormField.dataSozdaniyaFrom.getTitle());
+            JLabel label = getLabel(dataSozdaniyaFrom);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
@@ -286,9 +266,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            DateSpinner spinner = new DateSpinner(KvartiraSaleSearchFormField.dataSozdaniyaFrom);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.dataSozdaniyaFrom, spinner);
+            fieldRow.add(addField(dataSozdaniyaFrom));
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -297,9 +275,7 @@ public class KvartiraSaleSearchForm extends AbstractForm<KvartiraSaleSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            DateSpinner spinner = new DateSpinner(KvartiraSaleSearchFormField.dataSozdaniyaTo);
-            fieldRow.add(spinner.ui);
-            fieldValues.put(KvartiraSaleSearchFormField.dataSozdaniyaTo, spinner);
+            fieldRow.add(addField(dataSozdaniyaTo));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);

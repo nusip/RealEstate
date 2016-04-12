@@ -1,6 +1,7 @@
 package kz.maks.realestate.parser.parsers;
 
 import kz.maks.core.back.annotations.Bean;
+import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.shared.Utils;
 import kz.maks.realestate.parser.models.KvartiraPlain;
 import org.jsoup.nodes.Document;
@@ -16,6 +17,9 @@ import java.util.concurrent.Callable;
 @Bean
 public class KvartiraParser {
     private KvartiraPlain kvartiraPlain;
+
+    @Inject
+    private RealtorParser realtorParser;
 
     public KvartiraPlain parse(String adLink) throws IOException, InterruptedException {
         kvartiraPlain = new KvartiraPlain();
