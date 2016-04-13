@@ -3,6 +3,7 @@ package kz.maks.realestate.shared.dtos;
 import kz.maks.core.shared.dtos.AbstractIdDto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RegionDto extends AbstractIdDto {
@@ -13,7 +14,7 @@ public class RegionDto extends AbstractIdDto {
     private String krishaAlias;
     private String path;
     private Boolean deleted;
-    private Long updatedAt;
+    private Date updatedAt;
 
     public String getName() {
         return name;
@@ -71,11 +72,11 @@ public class RegionDto extends AbstractIdDto {
         this.deleted = deleted;
     }
 
-    public Long getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Long updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

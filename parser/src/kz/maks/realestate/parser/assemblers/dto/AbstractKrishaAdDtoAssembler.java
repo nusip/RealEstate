@@ -18,7 +18,7 @@ public abstract class AbstractKrishaAdDtoAssembler<ENTITY extends AbstractKrisha
         dto.setId(entity.getId());
         dto.setKrishaId(entity.getKrishaId());
         dto.setCreatedAt(entity.getCreatedAt());
-        dto.setUpdatedAt(entity.getUpdatedAt() != null ? new Date(entity.getUpdatedAt()) : null);
+        dto.setUpdatedAt(entity.getUpdatedAt());
         dto.setCena(entity.getCena() != null ? entity.getCena().doubleValue() : null);
         dto.setCenaProdazhi(entity.getCenaProdazhi() != null ? entity.getCenaProdazhi().doubleValue() : null);
         dto.setValyutaId(extractId(entity.getValyuta()));

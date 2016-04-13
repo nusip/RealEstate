@@ -50,4 +50,15 @@ public class RealtorDto extends AbstractIdDto {
     public void setTelNumbers(List<String> telNumbers) {
         this.telNumbers = telNumbers;
     }
+
+    @Override
+    public String toString() {
+        return "RealtorDto{" +
+                "krishaId='" + krishaId + '\'' +
+                ", name='" + name + '\'' +
+                ", company='" + company + '\'' +
+                ", vidDeyatelnosti='" + vidDeyatelnosti + '\'' +
+                ", telNumbers=" + telNumbers +
+                '}';
+    }
 }

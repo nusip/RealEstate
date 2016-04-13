@@ -16,10 +16,7 @@ public abstract class AbstractKrishaEntity extends AbstractBaseEntity {
 
     protected Date createdAt;
 
-    /**
-     * create or update time from krisha in millis
-     */
-    protected Long updatedAt;
+    protected Date updatedAt;
 
     public String getKrishaId() {
         return krishaId;
@@ -37,11 +34,11 @@ public abstract class AbstractKrishaEntity extends AbstractBaseEntity {
         this.createdAt = createdAt;
     }
 
-    public Long getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Long updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

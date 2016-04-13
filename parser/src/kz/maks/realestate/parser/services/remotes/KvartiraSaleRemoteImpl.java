@@ -10,6 +10,7 @@ import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 import kz.maks.realestate.shared.remotes.KvartiraSaleRemote;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 @Remote
@@ -31,7 +32,7 @@ public class KvartiraSaleRemoteImpl extends AbstractRemoteImpl implements Kvarti
     }
 
     @Override
-    public List<KvartiraSaleDto> listNew(Long lastUpdatedAt) throws RemoteException {
+    public List<KvartiraSaleDto> listNew(Date lastUpdatedAt) throws RemoteException {
         return service.listNew(lastUpdatedAt);
     }
 

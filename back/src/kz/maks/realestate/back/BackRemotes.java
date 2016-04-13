@@ -9,6 +9,7 @@ public class BackRemotes {
     private static DomRentRemote domRentRemote;
     private static RegionRemote regionRemote;
     private static ActivationRemote activationRemote;
+    private static RealtorRemote realtorRemote;
 
     public static KvartiraSaleRemote kvartiraSaleRemote() {
         return kvartiraSaleRemote;
@@ -32,5 +33,9 @@ public class BackRemotes {
 
     public static ActivationRemote activationRemote() {
         return activationRemote;
+    }
+
+    public static RealtorRemote realtorRemote() {
+        return realtorRemote;
     }
 }

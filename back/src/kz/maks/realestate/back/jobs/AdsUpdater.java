@@ -7,6 +7,7 @@ import kz.maks.realestate.parser.services.KvartiraSaleService;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 @Bean
@@ -16,7 +17,7 @@ public class AdsUpdater {
     private KvartiraSaleService kvartiraSaleService;
 
     public void update() throws RemoteException {
-        Long maxUpdatedAt = kvartiraSaleService.getMaxUpdatedAt();
+        Date maxUpdatedAt = kvartiraSaleService.getMaxUpdatedAt();
         List<KvartiraSaleDto> dtoList = BackRemotes.kvartiraSaleRemote().listNew(maxUpdatedAt);
 
         for (KvartiraSaleDto dto : dtoList) {

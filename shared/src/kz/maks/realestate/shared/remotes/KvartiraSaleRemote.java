@@ -6,6 +6,7 @@ import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 public interface KvartiraSaleRemote extends Remote {
@@ -18,7 +19,7 @@ public interface KvartiraSaleRemote extends Remote {
 
     void delete(Long id) throws RemoteException;
 
-    List<KvartiraSaleDto> listNew(Long lastUpdatedAt) throws RemoteException;
+    List<KvartiraSaleDto> listNew(Date lastUpdatedAt) throws RemoteException;
 
     List<KvartiraSaleDto> listHistory(Long id) throws RemoteException;
 

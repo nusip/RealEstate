@@ -9,11 +9,11 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 
 @Bean
-public class RealtorParser { // TODO check
+public class RealtorParser {
 
     private RealtorDto realtorDto;
 
-    public void parse(String link) {
+    public RealtorDto parse(String link) {
         realtorDto = new RealtorDto();
 
         Document document = ParserUtils.jSoupParse(link);
@@ -21,6 +21,8 @@ public class RealtorParser { // TODO check
         parseId(link);
         parseHeader(document);
         parsePhoneNumbers(document);
+
+        return realtorDto;
     }
 
     private void parseHeader(Document document) {
@@ -39,7 +41,7 @@ public class RealtorParser { // TODO check
 
             {
                 String vidDeyatelnosti = speciality.ownText()
-                        .replaceAll("[\\W^ ]", "").trim();
+                        .replaceAll("[«»]", "").trim();
                 realtorDto.setVidDeyatelnosti(vidDeyatelnosti);
             }
         }

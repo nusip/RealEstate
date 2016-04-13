@@ -6,9 +6,13 @@ import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
+import java.util.List;
 
 public interface RealtorRemote extends Remote {
 
     ListResponse<RealtorDto> list(RealtorSearchParams params) throws RemoteException;
+
+    List<RealtorDto> listNew(Date lastUpdatedAt) throws RemoteException;
 
 }

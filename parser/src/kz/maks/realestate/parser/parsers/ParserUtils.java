@@ -85,6 +85,7 @@ public class ParserUtils {
     }
 
     public static String extractKrishaId(String adLink) {
+        adLink = adLink.endsWith("/") ? adLink.substring(0, adLink.lastIndexOf("/")) : adLink;
         String id = adLink.substring(adLink.lastIndexOf("/") + 1);
         return id;
     }

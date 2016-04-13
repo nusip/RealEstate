@@ -23,12 +23,13 @@ import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import static kz.maks.core.shared.Utils.beginningOfDay;
-import static kz.maks.core.shared.Utils.endOfDay;
-import static kz.maks.core.shared.Utils.isNullOrZero;
+import static java.util.Calendar.DAY_OF_YEAR;
+import static kz.maks.core.shared.Utils.*;
 import static org.hibernate.criterion.Projections.max;
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.ge;
@@ -144,7 +145,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
             kvartiraSale.setCreatedAt(new Date());
         }
 
-        kvartiraSale.setUpdatedAt(new Date().getTime());
+        kvartiraSale.setUpdatedAt(new Date());
 
         KvartiraSale entity = kvartiraSaleAssembler.assemble(dto, kvartiraSale);
 
@@ -167,7 +168,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
             entity.setCreatedAt(new Date());
         }
 
-        entity.setUpdatedAt(new Date().getTime());
+        entity.setUpdatedAt(new Date());
 
         db.save(entity);
     }
@@ -185,18 +186,21 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     }
 
     @Override
-    public Long getMaxUpdatedAt() {
-        Long maxUpdatedAt = (Long) session().createCriteria(KvartiraSale.class).add(isNotNull("updatedAt"))
+    public Date getMaxUpdatedAt() {
+        Date maxUpdatedAt = (Date) session().createCriteria(KvartiraSale.class).add(isNotNull("updatedAt"))
                 .setProjection(max("updatedAt")).uniqueResult();
         return maxUpdatedAt;
     }
 
     @Override
-    public List<KvartiraSaleDto> listNew(Long lastUpdatedAt) {
-        Long now = new Date().getTime();
+    public List<KvartiraSaleDto> listNew(Date lastUpdatedAt) {
+        Date now = new Date();
 
-        if (lastUpdatedAt == null || (now - lastUpdatedAt) / Utils.ONE_DAY > 3) {
-            lastUpdatedAt = now - Utils.ONE_DAY * 3;
+        if (lastUpdatedAt == null || getDateDifference(now, lastUpdatedAt, TimeUnit.DAYS) > 3) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(now);
+            c.add(DAY_OF_YEAR, -3);
+            lastUpdatedAt = c.getTime();
         }
 
         List<KvartiraSale> list = session().createCriteria(KvartiraSale.class).add(ge("updatedAt", lastUpdatedAt)).list();

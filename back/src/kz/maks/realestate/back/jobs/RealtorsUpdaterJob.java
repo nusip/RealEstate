@@ -1,20 +1,19 @@
-package kz.maks.realestate.parser.jobs;
+package kz.maks.realestate.back.jobs;
 
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Job;
 import kz.maks.core.back.jobs.IJob;
 import kz.maks.core.shared.Utils;
-import kz.maks.realestate.parser.parsers.RealtorListParser;
 
 @Job(interval = Utils.ONE_WEEK)
-public class RealtorsParserJob implements IJob {
+public class RealtorsUpdaterJob implements IJob {
 
     @Inject
-    private RealtorListParser realtorListParser;
+    private RealtorsUpdater realtorsUpdater;
 
     @Override
     public void execute() throws Exception {
-        realtorListParser.parseRealtors();
+        realtorsUpdater.update();
     }
 
 }

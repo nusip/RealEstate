@@ -98,7 +98,7 @@ public class RegionServiceImpl extends AbstractServiceImpl implements RegionServ
             }
 
             region.setPath(Utils.getTreePath(region));
-            region.setUpdatedAt(new Date().getTime());
+            region.setUpdatedAt(new Date());
 
             saveRegionsInner(krishaRegion.getChildren(), region);
         }

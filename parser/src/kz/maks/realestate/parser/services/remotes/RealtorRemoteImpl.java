@@ -10,6 +10,8 @@ import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 import kz.maks.realestate.shared.remotes.RealtorRemote;
 
 import java.rmi.RemoteException;
+import java.util.Date;
+import java.util.List;
 
 @Remote
 public class RealtorRemoteImpl extends AbstractRemoteImpl implements RealtorRemote {
@@ -22,6 +24,11 @@ public class RealtorRemoteImpl extends AbstractRemoteImpl implements RealtorRemo
     @Override
     public ListResponse<RealtorDto> list(RealtorSearchParams params) throws RemoteException {
         return service.list(params);
+    }
+
+    @Override
+    public List<RealtorDto> listNew(Date lastUpdatedAt) throws RemoteException {
+        return service.listNew(lastUpdatedAt);
     }
 
 }

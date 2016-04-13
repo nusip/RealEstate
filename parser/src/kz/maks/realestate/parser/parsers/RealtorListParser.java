@@ -1,6 +1,11 @@
 package kz.maks.realestate.parser.parsers;
 
 import kz.maks.core.back.annotations.Bean;
+import kz.maks.core.back.annotations.Inject;
+import kz.maks.realestate.parser.models.KvartiraPlain;
+import kz.maks.realestate.parser.services.KvartiraSaleService;
+import kz.maks.realestate.parser.services.RealtorService;
+import kz.maks.realestate.shared.dtos.RealtorDto;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -13,6 +18,12 @@ public class RealtorListParser {
 
     private int PAGE_LIMIT = 5; // remove later, for testing only
 
+    @Inject(proxy = true)
+    private RealtorService realtorService;
+
+    @Inject
+    private RealtorParser realtorParser;
+
     public void parseRealtors() {
         List<String> adLinks = collectAdLinks();
 
@@ -22,11 +33,18 @@ public class RealtorListParser {
     }
 
     private void parseRealtor(String adLink) {
+        String krishaId = ParserUtils.extractKrishaId(adLink);
+        boolean exists = realtorService.realtorExists(krishaId);
 
+        if (!exists) {
+            RealtorDto realtorDto = realtorParser.parse(adLink);
+            realtorService.save(realtorDto);
+        }
     }
 
     private List<String> collectAdLinks() {
-        String domain = "http://krisha.kz";
+        final String domain = "http://krisha.kz";
+        final String baseUri = "/pro/specialist/almaty/";
         String uri = "/pro/specialist/almaty/?&sort-by[status-and-date]=desc";
 
         List<String> adLinks = new ArrayList<>();
@@ -36,7 +54,10 @@ public class RealtorListParser {
         boolean firstPage = true;
 
         while (PAGE_LIMIT-- > 0) {
-            uri = nav == null ? uri : nav.last().attr("href");
+            if (nav != null) {
+                String href = nav.last().attr("href");
+                uri = baseUri + href;
+            }
 
             Document document = ParserUtils.jSoupParse(domain + uri);
 

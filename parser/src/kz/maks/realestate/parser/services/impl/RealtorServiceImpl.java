@@ -5,8 +5,10 @@ import kz.maks.core.back.BackUtils;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
+import kz.maks.core.shared.Utils;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.dto.realtor.RealtorDtoAssembler;
+import kz.maks.realestate.parser.assemblers.entity.RealtorAssembler;
 import kz.maks.realestate.parser.entities.KvartiraSale;
 import kz.maks.realestate.parser.entities.Realtor;
 import kz.maks.realestate.parser.services.RealtorService;
@@ -19,15 +21,27 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.persister.collection.CollectionPropertyNames;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.Calendar.DAY_OF_YEAR;
+import static kz.maks.core.shared.Utils.getDateDifference;
+import static org.hibernate.criterion.Projections.max;
+import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.ge;
+import static org.hibernate.criterion.Restrictions.isNotNull;
 
 @Service
 public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorService {
 
     @Inject
     private RealtorDtoAssembler realtorDtoAssembler;
+
+    @Inject
+    private RealtorAssembler realtorAssembler;
 
     @Override
     public ListResponse<RealtorDto> list(RealtorSearchParams params) {
@@ -64,6 +78,70 @@ public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorSe
         }
 
         return criteria;
+    }
+
+    @Override
+    public Date getMaxUpdatedAt() {
+        Date maxUpdatedAt = (Date) session().createCriteria(Realtor.class).add(isNotNull("updatedAt"))
+                .setProjection(max("updatedAt")).uniqueResult();
+        return maxUpdatedAt;
+    }
+
+    @Override
+    public List<RealtorDto> listNew(Date lastUpdatedAt) {
+        Date now = new Date();
+
+        if (lastUpdatedAt == null || getDateDifference(now, lastUpdatedAt, TimeUnit.DAYS) > 3) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(now);
+            c.add(DAY_OF_YEAR, -3);
+            lastUpdatedAt = c.getTime();
+        }
+
+        List<Realtor> list = session().createCriteria(Realtor.class).add(ge("updatedAt", lastUpdatedAt)).list();
+        List<RealtorDto> dtoList = new ArrayList<>();
+
+        for (Realtor realtor : list) {
+            RealtorDto dto = realtorDtoAssembler.assemble(realtor, new RealtorDto());
+            dtoList.add(dto);
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public boolean realtorExists(String krishaId) {
+        Realtor realtor = getByKrishaId(krishaId);
+        return realtor != null;
+    }
+
+    private Realtor getByKrishaId(String krishaId) {
+        Realtor realtor = (Realtor) session().createCriteria(Realtor.class)
+                .add(eq("krishaId", krishaId)).uniqueResult();
+        return realtor;
+    }
+
+    @Override
+    public void save(RealtorDto dto) {
+        Realtor realtor = null;
+
+        if (dto.getId() == null && dto.getKrishaId() != null) {
+            realtor = getByKrishaId(dto.getKrishaId());
+
+            if (realtor != null)
+                dto.setId(realtor.getId());
+        }
+
+        if (realtor == null) {
+            realtor = new Realtor();
+            realtor.setCreatedAt(new Date());
+        }
+
+        realtor.setUpdatedAt(new Date());
+
+        Realtor entity = realtorAssembler.assemble(dto, realtor);
+
+        db.save(entity);
     }
 
 }

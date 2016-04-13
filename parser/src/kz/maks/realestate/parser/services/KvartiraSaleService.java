@@ -5,6 +5,7 @@ import kz.maks.realestate.parser.models.KvartiraPlain;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
+import java.util.Date;
 import java.util.List;
 
 public interface KvartiraSaleService {
@@ -21,9 +22,9 @@ public interface KvartiraSaleService {
 
     boolean kvartiraSaleExists(String krishaId);
 
-    Long getMaxUpdatedAt();
+    Date getMaxUpdatedAt();
 
-    List<KvartiraSaleDto> listNew(Long lastUpdatedAt);
+    List<KvartiraSaleDto> listNew(Date lastUpdatedAt);
 
     List<KvartiraSaleDto> listHistory(Long id);
 

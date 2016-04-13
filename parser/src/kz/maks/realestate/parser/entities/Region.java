@@ -22,14 +22,6 @@ public class Region extends AbstractKrishaEntity implements ITreeNode<Region> {
 
     private Boolean deleted;
 
-    public Long getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Long updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String getName() {
         return name;
