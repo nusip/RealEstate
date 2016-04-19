@@ -6,7 +6,7 @@ import kz.maks.core.back.jobs.IJob;
 import kz.maks.core.shared.Utils;
 import kz.maks.realestate.parser.parsers.RealtorListParser;
 
-@Job(interval = Utils.ONE_WEEK)
+//@Job(interval = Utils.ONE_WEEK)
 public class RealtorsParserJob implements IJob {
 
     @Inject

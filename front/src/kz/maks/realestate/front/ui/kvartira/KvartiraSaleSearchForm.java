@@ -1,12 +1,9 @@
 package kz.maks.realestate.front.ui.kvartira;
 
 import kz.maks.core.front.FrontUtils;
-import kz.maks.core.front.ui.*;
 import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleSearchFormField;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
-import kz.maks.realestate.shared.models.RoomRange;
-import kz.maks.realestate.shared.models.YesNo;
 
 import javax.swing.*;
 

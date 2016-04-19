@@ -31,4 +31,9 @@ public class RealtorRemoteImpl extends AbstractRemoteImpl implements RealtorRemo
         return service.listNew(lastUpdatedAt);
     }
 
+    @Override
+    public List<String> listRealtorsNumbers(List<String> phoneNumbers) throws RemoteException {
+        return service.listRealtorsNumbers(phoneNumbers);
+    }
+
 }

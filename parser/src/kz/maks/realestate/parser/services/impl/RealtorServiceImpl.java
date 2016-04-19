@@ -5,34 +5,28 @@ import kz.maks.core.back.BackUtils;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
-import kz.maks.core.shared.Utils;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.dto.realtor.RealtorDtoAssembler;
 import kz.maks.realestate.parser.assemblers.entity.RealtorAssembler;
-import kz.maks.realestate.parser.entities.KvartiraSale;
 import kz.maks.realestate.parser.entities.Realtor;
 import kz.maks.realestate.parser.services.RealtorService;
 import kz.maks.realestate.shared.dtos.RealtorDto;
-import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.persister.collection.CollectionPropertyNames;
+import org.hibernate.type.BasicType;
+import org.hibernate.type.Type;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Calendar.DAY_OF_YEAR;
 import static kz.maks.core.shared.Utils.getDateDifference;
 import static org.hibernate.criterion.Projections.max;
-import static org.hibernate.criterion.Restrictions.eq;
-import static org.hibernate.criterion.Restrictions.ge;
-import static org.hibernate.criterion.Restrictions.isNotNull;
+import static org.hibernate.criterion.Restrictions.*;
 
 @Service
 public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorService {
@@ -142,6 +136,32 @@ public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorSe
         Realtor entity = realtorAssembler.assemble(dto, realtor);
 
         db.save(entity);
+    }
+
+    @Override
+    public List<String> listRealtorsNumbers(List<String> phoneNumbers) {
+        List<String> realtorsNumbers = new ArrayList<>();
+
+        for (String phoneNumber : phoneNumbers) {
+            if (isRealtorNumber(phoneNumber))
+                realtorsNumbers.add(phoneNumber);
+        }
+
+        return realtorsNumbers;
+    }
+
+    private boolean isRealtorNumber(String phoneNumber) {
+        phoneNumber = phoneNumber.replaceAll("\\D+", "");
+
+        BasicType basicType = session().getTypeHelper().basic(String.class);
+
+        Criteria criteria = session().createCriteria(Realtor.class);
+        Criteria telNumbersCri = criteria.createCriteria("telNumbers");
+
+        telNumbersCri.add(sqlRestriction("regexp_replace({alias}.telNumbers, '\\D+', '', 'g') = ?", phoneNumber, basicType));
+
+        List results = criteria.list();
+        return !results.isEmpty();
     }
 
 }

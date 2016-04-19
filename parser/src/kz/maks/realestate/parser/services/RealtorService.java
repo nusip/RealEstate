@@ -19,4 +19,6 @@ public interface RealtorService {
 
     void save(RealtorDto realtorDto);
 
+    List<String> listRealtorsNumbers(List<String> phoneNumbers);
+
 }

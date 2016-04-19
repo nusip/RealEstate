@@ -30,7 +30,6 @@ public class MainWindowView {
 
     public MainWindowView() {
         JFrame frame = new JFrame();
-        frame.setGlassPane(new ProgressGlassPane());
         frame.setTitle(AppMeta.PROJECT_NAME + " " + AppMeta.getVersion());
         {
             JTabbedPane tabs = new JTabbedPane();

@@ -8,6 +8,7 @@ import kz.maks.realestate.front.services.asyncs.RealtorAsync;
 import kz.maks.realestate.shared.dtos.RealtorDto;
 import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class RealtorAsyncImpl extends AbstractAsyncImpl implements RealtorAsync {
@@ -18,6 +19,16 @@ public class RealtorAsyncImpl extends AbstractAsyncImpl implements RealtorAsync 
             @Override
             public ListResponse<RealtorDto> call() throws Exception {
                 return FrontRemotes.realtorRemote().list(params);
+            }
+        }, callback);
+    }
+
+    @Override
+    public void listRealtorsNumbers(final List<String> phoneNumbers, Callback<List<String>> callback) {
+        executeAsync(new Callable<List<String>>() {
+            @Override
+            public List<String> call() throws Exception {
+                return FrontRemotes.realtorRemote().listRealtorsNumbers(phoneNumbers);
             }
         }, callback);
     }

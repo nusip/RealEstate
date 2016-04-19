@@ -15,4 +15,6 @@ public interface RealtorRemote extends Remote {
 
     List<RealtorDto> listNew(Date lastUpdatedAt) throws RemoteException;
 
+    List<String> listRealtorsNumbers(List<String> phoneNumbers) throws RemoteException;
+
 }

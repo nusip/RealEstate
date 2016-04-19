@@ -1,7 +1,9 @@
 package kz.maks.realestate.parser.entities;
 
 import kz.maks.core.back.entities.AbstractBaseEntity;
+import org.hibernate.annotations.Fetch;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import java.util.ArrayList;

@@ -61,7 +61,7 @@ public class AdsParser {
 
             Document document = ParserUtils.jSoupParse(domain + uri);
 
-            Elements elements = document.select("div.item > div.descr > div.getTitle > a");
+            Elements elements = document.select("div.item > div.descr > div.title > a");
 
             System.out.println("COUNT: " + elements.size());
 
