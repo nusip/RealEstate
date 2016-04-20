@@ -14,7 +14,7 @@ public class DomRentController {
 
         CRUD<DomRentSearchParams, DomRentDto, DomRentDto> crud = new CRUD<>(
                 view.frame,
-                new SearchPanel<>(DomRentSearchParams.class, view.searchForm, view.btnSearch),
+                new SearchPanel<>(DomRentSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
                 view.btnPgPanel,
                 view.btnCRUDPanel,

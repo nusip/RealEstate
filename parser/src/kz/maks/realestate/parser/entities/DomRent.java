@@ -4,13 +4,11 @@ import kz.maks.realestate.parser.entities.refs.KakSdayete;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Audited
+@SequenceGenerator(name = "id_gen", sequenceName = "dom_rent_seq")
 public class DomRent extends AbstractDomEntity {
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)

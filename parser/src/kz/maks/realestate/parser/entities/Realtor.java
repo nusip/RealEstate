@@ -6,10 +6,12 @@ import org.hibernate.annotations.Fetch;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name = "id_gen", sequenceName = "realtor_seq")
 public class Realtor extends AbstractKrishaEntity {
     private String name;
     private String company;

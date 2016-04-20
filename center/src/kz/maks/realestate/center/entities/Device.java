@@ -5,8 +5,10 @@ import kz.maks.core.back.entities.AbstractBaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "id_gen", sequenceName = "device_seq")
 public class Device extends AbstractBaseEntity {
     @ManyToOne(optional = false)
     private Client client;

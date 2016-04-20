@@ -13,12 +13,17 @@ import kz.maks.realestate.parser.services.KvartiraRentService;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.parser.models.KvartiraPlain;
+import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static kz.maks.core.shared.Utils.beginningOfDay;
+import static kz.maks.core.shared.Utils.endOfDay;
+import static kz.maks.core.shared.Utils.isNullOrZero;
 
 @Service
 public class KvartiraRentServiceImpl extends AbstractServiceImpl implements KvartiraRentService {
@@ -76,6 +81,12 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     private Criteria listCriteria(KvartiraRentSearchParams params) {
         Criteria criteria = session().createCriteria(KvartiraRent.class);
 
+        if (params.getDataSozdaniyaFrom() != null) {
+            criteria.add(Restrictions.ge("createdAt", beginningOfDay(params.getDataSozdaniyaFrom())));
+        }
+        if (params.getDataSozdaniyaTo() != null) {
+            criteria.add(Restrictions.le("createdAt", endOfDay(params.getDataSozdaniyaTo())));
+        }
         if (params.getRegionId() != null) {
             Criteria criRegion = criteria.createCriteria("region");
             criRegion.add(Restrictions.like("path", params.getRegionId() + "", MatchMode.ANYWHERE));
@@ -86,6 +97,38 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
             }
             if (params.getRooms().max() != null) {
                 criteria.add(Restrictions.le("kolichestvoKomnat", params.getRooms().max()));
+            }
+        }
+        if (!isNullOrZero(params.getEtazhMin())) {
+            criteria.add(Restrictions.ge("etazh", params.getEtazhMin()));
+        }
+        if (!isNullOrZero(params.getEtazhMax())) {
+            criteria.add(Restrictions.le("etazh", params.getEtazhMax()));
+        }
+        if (!isNullOrZero(params.getEtazhnostMin())) {
+            criteria.add(Restrictions.ge("etazhnost", params.getEtazhnostMin()));
+        }
+        if (!isNullOrZero(params.getEtazhnostMax())) {
+            criteria.add(Restrictions.le("etazhnost", params.getEtazhnostMax()));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMin())) {
+            criteria.add(Restrictions.ge("ploshadObshaya", params.getPloshadObshayaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMax())) {
+            criteria.add(Restrictions.le("ploshadObshaya", params.getPloshadObshayaMax()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMin())) {
+            criteria.add(Restrictions.ge("ploshadKuhnya", params.getPloshadKuhnyaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMax())) {
+            criteria.add(Restrictions.le("ploshadKuhnya", params.getPloshadKuhnyaMax()));
+        }
+        if (params.getObwyaga() != null && params.getObwyaga() != YesNo.NO_MATTER) {
+            if (params.getObwyaga() == YesNo.YES) {
+                criteria.add(Restrictions.eq("isObwyaga", true));
+
+            } else if (params.getObwyaga() == YesNo.NO) {
+                criteria.add(Restrictions.ne("isObwyaga", true));
             }
         }
         return criteria;

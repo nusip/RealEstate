@@ -5,11 +5,15 @@ import kz.maks.core.front.ui.FormField;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 public enum DomSaleSearchFormField implements FormField<DomSaleSearchParams> {
-    rooms("Количество комнат"),
-
+    dataSozdaniyaFrom("Дата создания"),
+    dataSozdaniyaTo("Дата создания"),
     @TreeName("Region")
     regionId("Регион"),
-
+    rooms("Количество комнат"),
+    ploshadObshayaMin("Площадь общая"),
+    ploshadObshayaMax("Площадь общая"),
+    ploshadKuhnyaMin("Площадь кухня"),
+    ploshadKuhnyaMax("Площадь кухня"),
     ;
 
     private String title;

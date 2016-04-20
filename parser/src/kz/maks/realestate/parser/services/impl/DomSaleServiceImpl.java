@@ -18,6 +18,10 @@ import org.hibernate.criterion.Restrictions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kz.maks.core.shared.Utils.beginningOfDay;
+import static kz.maks.core.shared.Utils.endOfDay;
+import static kz.maks.core.shared.Utils.isNullOrZero;
+
 @Service
 public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleService {
 
@@ -52,9 +56,27 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
     private Criteria listCriteria(DomSaleSearchParams params) {
         Criteria criteria = session().createCriteria(DomSale.class);
 
+        if (params.getDataSozdaniyaFrom() != null) {
+            criteria.add(Restrictions.ge("createdAt", beginningOfDay(params.getDataSozdaniyaFrom())));
+        }
+        if (params.getDataSozdaniyaTo() != null) {
+            criteria.add(Restrictions.le("createdAt", endOfDay(params.getDataSozdaniyaTo())));
+        }
         if (params.getRegionId() != null) {
             Criteria criRegion = criteria.createCriteria("region");
             criRegion.add(Restrictions.like("path", params.getRegionId() + "", MatchMode.ANYWHERE));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMin())) {
+            criteria.add(Restrictions.ge("ploshadObshaya", params.getPloshadObshayaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadObshayaMax())) {
+            criteria.add(Restrictions.le("ploshadObshaya", params.getPloshadObshayaMax()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMin())) {
+            criteria.add(Restrictions.ge("ploshadKuhnya", params.getPloshadKuhnyaMin()));
+        }
+        if (!isNullOrZero(params.getPloshadKuhnyaMax())) {
+            criteria.add(Restrictions.le("ploshadKuhnya", params.getPloshadKuhnyaMax()));
         }
         if (params.getRooms() != null) {
             if (params.getRooms().min() != null) {

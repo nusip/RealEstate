@@ -6,11 +6,20 @@ import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
 public enum KvartiraRentSearchFormField implements FormField<KvartiraRentSearchParams> {
-    rooms("Количество комнат"),
-
+    dataSozdaniyaFrom("Дата создания"),
+    dataSozdaniyaTo("Дата создания"),
     @TreeName("Region")
     regionId("Регион"),
-
+    rooms("Количество комнат"),
+    etazhMin("Этаж"),
+    etazhMax("Этаж"),
+    etazhnostMin("Этажность"),
+    etazhnostMax("Этажность"),
+    ploshadObshayaMin("Площадь общая"),
+    ploshadObshayaMax("Площадь общая"),
+    ploshadKuhnyaMin("Площадь кухня"),
+    ploshadKuhnyaMax("Площадь кухня"),
+    obwyaga("Общежитие"),
     ;
 
     private String title;

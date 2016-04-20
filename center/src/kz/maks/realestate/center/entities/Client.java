@@ -5,10 +5,12 @@ import kz.maks.core.back.entities.AbstractBaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name = "id_gen", sequenceName = "client_seq")
 public class Client extends AbstractBaseEntity {
     @Column(unique = true, nullable = false)
     private String name;

@@ -14,7 +14,7 @@ public class KvartiraRentController {
 
         CRUD<KvartiraRentSearchParams, KvartiraRentDto, KvartiraRentDto> crud = new CRUD<>(
                 view.frame,
-                new SearchPanel<>(KvartiraRentSearchParams.class, view.searchForm, view.btnSearch),
+                new SearchPanel<>(KvartiraRentSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
                 view.btnPgPanel,
                 view.btnCRUDPanel,

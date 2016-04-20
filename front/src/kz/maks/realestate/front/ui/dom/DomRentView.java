@@ -16,8 +16,7 @@ import static kz.maks.core.front.ui.BtnCRUDPanel.Button.EDIT;
 public class DomRentView {
     public final JSplitPane ui;
     public final JFrame frame;
-    public final DynamicForm<DomRentSearchParams> searchForm;
-    public final JButton btnSearch;
+    public final DomRentSearchForm searchForm;
     public final Table<DomRentDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
@@ -30,12 +29,8 @@ public class DomRentView {
         splitPane.setDividerSize(20);
         ui = splitPane;
         {
-            searchForm = new DynamicForm<>(frame, DomRentSearchFormField.values(), 2);
+            searchForm = new DomRentSearchForm(frame);
             splitPane.setTopComponent(new JScrollPane(searchForm.ui));
-            {
-                btnSearch = new JButton("Поиск");
-                searchForm.insertComponent(btnSearch, 5, 0);
-            }
         }
         {
             Box vBox = Box.createVerticalBox();

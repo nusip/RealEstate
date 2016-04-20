@@ -14,7 +14,7 @@ public class DomSaleController {
 
         CRUD<DomSaleSearchParams, DomSaleDto, DomSaleDto> crud = new CRUD<>(
                 view.frame,
-                new SearchPanel<>(DomSaleSearchParams.class, view.searchForm, view.btnSearch),
+                new SearchPanel<>(DomSaleSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
                 view.btnPgPanel,
                 view.btnCRUDPanel,

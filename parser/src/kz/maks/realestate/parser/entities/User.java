@@ -5,13 +5,11 @@ import kz.maks.core.back.entities.AbstractBaseEntity;
 import kz.maks.core.back.entities.AbstractUserEntity;
 import kz.maks.core.shared.models.ICombo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@SequenceGenerator(name = "id_gen", sequenceName = "user_seq")
 public class User extends AbstractUserEntity implements ICombo {
     private String firstName;
     private String lastName;

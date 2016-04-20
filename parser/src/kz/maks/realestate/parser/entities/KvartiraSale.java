@@ -3,9 +3,11 @@ package kz.maks.realestate.parser.entities;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 @Audited
+@SequenceGenerator(name = "id_gen", sequenceName = "kvartira_sale_seq")
 public class KvartiraSale extends AbstractKvartiraEntity {
     private Boolean isZalog;
 

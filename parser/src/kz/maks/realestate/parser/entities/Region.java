@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Region")
+@SequenceGenerator(name = "id_gen", sequenceName = "region_seq")
 public class Region extends AbstractKrishaEntity implements ITreeNode<Region> {
     private String name;
 

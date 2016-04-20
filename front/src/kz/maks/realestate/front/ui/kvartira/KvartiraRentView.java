@@ -16,8 +16,7 @@ import static kz.maks.core.front.ui.BtnCRUDPanel.Button.EDIT;
 public class KvartiraRentView {
     public final JSplitPane ui;
     public final JFrame frame;
-    public final DynamicForm<KvartiraRentSearchParams> searchForm;
-    public final JButton btnSearch;
+    public final KvartiraRentSearchForm searchForm;
     public final Table<KvartiraRentDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
@@ -30,12 +29,8 @@ public class KvartiraRentView {
         splitPane.setDividerSize(20);
         ui = splitPane;
         {
-            searchForm = new DynamicForm<>(frame, KvartiraRentSearchFormField.values(), 2);
+            searchForm = new KvartiraRentSearchForm(frame);
             splitPane.setTopComponent(new JScrollPane(searchForm.ui));
-            {
-                btnSearch = new JButton("Поиск");
-                searchForm.insertComponent(btnSearch, 5, 0);
-            }
         }
         {
             Box vBox = Box.createVerticalBox();
