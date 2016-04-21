@@ -43,7 +43,7 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     dverId("Дверь"),
     @ComboName("Pol")
     polId("Пол"),
-    @ComboName("PlanirovkaId")
+    @ComboName("Planirovka")
     planirovkaId("Планировка"),
     @TextArea
     raznoe("Описание"),

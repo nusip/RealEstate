@@ -20,7 +20,7 @@ public enum Ref implements HasTitle, Serializable {
     Balkon("Балкон"),
     Dver("Дверь"),
     Mebel("Мебель"),
-    Parkovka("Парковка"),
+    Parkovka("Парковка"), // not from krisha
     Planirovka("Планировка"),
     Pol("Пол"),
     KvartiraSanuzel("Санузел (квартира)"),
@@ -30,7 +30,7 @@ public enum Ref implements HasTitle, Serializable {
 
     // common
     Internet("Интернет"),
-    IstochnikInfo("Источник информации"),
+    IstochnikInfo("Источник информации"), // not from krisha
     KakSdayete("Как сдаёте"),
     Valyuta("Валюта"),
     ;
