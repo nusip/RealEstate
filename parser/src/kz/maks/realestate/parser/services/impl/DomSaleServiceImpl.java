@@ -38,7 +38,7 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
     public ListResponse<DomSaleDto> list(DomSaleSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
-        boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
+        boolean hasNext = BackUtils.setPaginationAndSorting(listCriteria, rowCount, params);
 
         List<DomSale> entityList = listCriteria.list();
         List<DomSaleDto> dtoList = new ArrayList<>();

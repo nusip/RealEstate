@@ -63,7 +63,7 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     public ListResponse<KvartiraRentDto> list(KvartiraRentSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
-        boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
+        boolean hasNext = BackUtils.setPaginationAndSorting(listCriteria, rowCount, params);
 
         List<KvartiraRent> entityList = listCriteria.list();
         List<KvartiraRentDto> dtoList = new ArrayList<>();

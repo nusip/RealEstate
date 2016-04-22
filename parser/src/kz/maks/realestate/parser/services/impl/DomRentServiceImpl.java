@@ -38,7 +38,7 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
     public ListResponse<DomRentDto> list(DomRentSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
-        boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
+        boolean hasNext = BackUtils.setPaginationAndSorting(listCriteria, rowCount, params);
 
         List<DomRent> entityList = listCriteria.list();
         List<DomRentDto> dtoList = new ArrayList<>();

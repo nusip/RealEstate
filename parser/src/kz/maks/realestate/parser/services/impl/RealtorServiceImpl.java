@@ -1,6 +1,5 @@
 package kz.maks.realestate.parser.services.impl;
 
-import com.google.common.base.Strings;
 import kz.maks.core.back.BackUtils;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
@@ -17,7 +16,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.persister.collection.CollectionPropertyNames;
 import org.hibernate.type.BasicType;
-import org.hibernate.type.Type;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +39,7 @@ public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorSe
     public ListResponse<RealtorDto> list(RealtorSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
-        boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
+        boolean hasNext = BackUtils.setPaginationAndSorting(listCriteria, rowCount, params);
 
         List<Realtor> entityList = listCriteria.list();
         List<RealtorDto> dtoList = new ArrayList<>();

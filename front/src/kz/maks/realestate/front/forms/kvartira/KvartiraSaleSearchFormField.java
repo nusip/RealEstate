@@ -19,6 +19,8 @@ public enum KvartiraSaleSearchFormField implements FormField<KvartiraSaleSearchP
     ploshadKuhnyaMin("Площадь кухня"),
     ploshadKuhnyaMax("Площадь кухня"),
     obwyaga("Общежитие"),
+    sortField("Сортировать по"),
+    sortAsc("по возрастанию"),
     ;
 
     private String title;

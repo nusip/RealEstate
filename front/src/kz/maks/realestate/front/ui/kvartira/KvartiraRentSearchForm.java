@@ -1,8 +1,12 @@
 package kz.maks.realestate.front.ui.kvartira;
 
 import kz.maks.core.front.FrontUtils;
+import kz.maks.core.front.ui.EnumBox;
+import kz.maks.core.front.validation.AbstractFieldValidator;
 import kz.maks.core.front.validation.AbstractForm;
+import kz.maks.core.shared.Utils;
 import kz.maks.realestate.front.forms.kvartira.KvartiraRentSearchFormField;
+import kz.maks.realestate.front.ui.SortField;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 
 import javax.swing.*;
@@ -11,7 +15,7 @@ import java.awt.*;
 import static kz.maks.realestate.front.forms.kvartira.KvartiraRentSearchFormField.*;
 
 public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParams> {
-    private static final int COL_WIDTH = 300;
+    private static final int COL_WIDTH = 340;
     private static final int LABEL_WIDTH = 100;
     private static final int FIELD_ROW_HEIGHT = 22;
     private static final int COL_GAP_SIZE = 20;
@@ -51,6 +55,7 @@ public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParam
                 Box vBox = Box.createVerticalBox();
                 addPloshadObshaya(vBox);
                 addPloshadKuhnya(vBox);
+                addSorting(vBox);
                 addBtnSearch(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
@@ -60,6 +65,43 @@ public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParam
             ui.add(hBox);
         }
         processAnnotations();
+    }
+
+    private void addSorting(Box vBox) {
+        Box fieldRow = Box.createHorizontalBox();
+        {
+            JLabel label = getLabel(sortField);
+            FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
+            fieldRow.add(label);
+        }
+        fieldRow.add(FrontUtils.hGap());
+        {
+            final EnumBox<SortField> enumBox = new EnumBox<>(sortField, SortField.values());
+            fieldValues.put(sortField, new AbstractFieldValidator<String>(sortField) {
+                @Override
+                public String get() {
+                    return Utils.extractEnumName(enumBox.get());
+                }
+
+                @Override
+                public void set(String val) {
+                    enumBox.set(val != null ? SortField.valueOf(val) : null);
+                }
+            });
+            fieldComponents.put(sortField, enumBox.ui);
+            fieldRow.add(enumBox.ui);
+        }
+        fieldRow.add(FrontUtils.hGap());
+        {
+            JLabel label = getLabel(sortAsc);
+            fieldRow.add(label);
+        }
+        {
+            fieldRow.add(addField(sortAsc));
+        }
+        setFieldHeight(fieldRow);
+        vBox.add(fieldRow);
+        addFieldRowGap(vBox);
     }
 
     private void addBtnSearch(Box vBox) {

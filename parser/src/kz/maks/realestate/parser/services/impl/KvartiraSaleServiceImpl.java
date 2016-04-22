@@ -4,7 +4,6 @@ import kz.maks.core.back.BackUtils;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
-import kz.maks.core.shared.Utils;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.dto.kvartira.KvartiraSaleDtoAssembler;
 import kz.maks.realestate.parser.assemblers.entity.kvartira.KvartiraSaleAssembler;
@@ -51,7 +50,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     public ListResponse<KvartiraSaleDto> list(KvartiraSaleSearchParams params) {
         long rowCount = BackUtils.getRowCount(listCriteria(params));
         Criteria listCriteria = listCriteria(params);
-        boolean hasNext = BackUtils.setPagination(listCriteria, rowCount, params.getPageSize(), params.getPage());
+        boolean hasNext = BackUtils.setPaginationAndSorting(listCriteria, rowCount, params);
 
         List<KvartiraSale> entityList = listCriteria.list();
         List<KvartiraSaleDto> dtoList = new ArrayList<>();
@@ -119,6 +118,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
                 criteria.add(Restrictions.ne("isObwyaga", true));
             }
         }
+
         return criteria;
     }
 
