@@ -6,6 +6,7 @@ import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 public interface DomSaleRemote extends Remote {
 
@@ -16,5 +17,7 @@ public interface DomSaleRemote extends Remote {
     void save(DomSaleDto dto) throws RemoteException;
 
     void delete(Long id) throws RemoteException;
+
+    List<DomSaleDto> listHistory(Long id) throws RemoteException;
 
 }

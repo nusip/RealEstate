@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import kz.maks.core.front.ui.CRUD;
 import kz.maks.core.front.ui.ProgressDialogCallback;
 import kz.maks.core.front.ui.SearchPanel;
-import kz.maks.realestate.front.services.asyncs.Asyncs;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraSaleSearchParams;
 
@@ -23,7 +22,7 @@ import static kz.maks.realestate.front.services.asyncs.Asyncs.REALTOR_ASYNC;
 public class KvartiraSaleController {
     private final KvartiraSaleView view;
     private final KvartiraSaleForm form;
-    private boolean historyLoaded = false;
+    private boolean needLoadHistory;
 
     public KvartiraSaleController(KvartiraSaleView view) {
         this.view = view;
@@ -43,8 +42,7 @@ public class KvartiraSaleController {
         form.tabs.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if (form.tabs.getSelectedComponent() == form.historyPanel
-                        && !historyLoaded && form.get().getId() != null) {
+                if (form.tabs.getSelectedComponent() == form.historyPanel && needLoadHistory) {
                     loadHistory(form.get().getId());
                 }
             }
@@ -54,7 +52,7 @@ public class KvartiraSaleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 form.tabs.setSelectedIndex(0);
-                historyLoaded = false;
+                needLoadHistory = false;
             }
         });
 
@@ -62,7 +60,7 @@ public class KvartiraSaleController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 form.tabs.setSelectedIndex(0);
-                historyLoaded = false;
+                needLoadHistory = true;
             }
         });
 
@@ -91,11 +89,11 @@ public class KvartiraSaleController {
     }
 
     public void loadHistory(Long id) {
-        KVARTIRA_SALE_ASYNC.listHistory(id, new ProgressDialogCallback<List<KvartiraSaleDto>>(view.frame) {
+        KVARTIRA_SALE_ASYNC.listHistory(id, new ProgressDialogCallback<List<KvartiraSaleDto>>(view.formDialog.ui) {
             @Override
             public void onSuccess(List<KvartiraSaleDto> kvartiraSaleDtos) {
                 form.table.set(kvartiraSaleDtos);
-                historyLoaded = true;
+                needLoadHistory = false;
             }
         });
     }

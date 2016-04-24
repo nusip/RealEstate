@@ -7,6 +7,7 @@ import kz.maks.realestate.front.services.asyncs.DomSaleAsync;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import static kz.maks.realestate.front.services.FrontRemotes.domSaleRemote;
@@ -51,6 +52,16 @@ public class DomSaleAsyncImpl extends AbstractAsyncImpl implements DomSaleAsync 
             public Void call() throws Exception {
                 domSaleRemote().delete(id);
                 return null;
+            }
+        }, callback);
+    }
+
+    @Override
+    public void listHistory(final Long id, Callback<List<DomSaleDto>> callback) {
+        executeAsync(new Callable<List<DomSaleDto>>() {
+            @Override
+            public List<DomSaleDto> call() throws Exception {
+                return domSaleRemote().listHistory(id);
             }
         }, callback);
     }

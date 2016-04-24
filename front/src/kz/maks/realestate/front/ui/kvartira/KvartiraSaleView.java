@@ -26,7 +26,7 @@ public class KvartiraSaleView {
         ui = splitPane;
         {
             searchForm = new KvartiraSaleSearchForm(frame);
-            splitPane.setTopComponent(new JScrollPane(searchForm.ui));
+            splitPane.setTopComponent(new JScrollPane(searchForm.ui()));
         }
         {
             Box vBox = Box.createVerticalBox();

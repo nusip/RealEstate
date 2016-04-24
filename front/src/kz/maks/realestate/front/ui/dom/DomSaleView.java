@@ -30,7 +30,7 @@ public class DomSaleView {
         ui = splitPane;
         {
             searchForm = new DomSaleSearchForm(frame);
-            splitPane.setTopComponent(new JScrollPane(searchForm.ui));
+            splitPane.setTopComponent(new JScrollPane(searchForm.ui()));
         }
         {
             Box vBox = Box.createVerticalBox();
@@ -45,11 +45,11 @@ public class DomSaleView {
                     btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);
                     hBox.add(btnCRUDPanel.ui);
                 }
-
-                DynamicForm<DomSaleDto> detailsForm = new DynamicForm<>(frame, DomSaleFormField.values());
-                FrontUtils.setPreferredWidth(detailsForm.ui, 400);
-                formDialog = new FormDialog<>(frame, detailsForm);
-
+                {
+                    DomSaleForm detailsForm = new DomSaleForm(frame);
+//                    FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
+                    formDialog = new FormDialog<>(frame, detailsForm);
+                }
                 vBox.add(hBox);
             }
             {

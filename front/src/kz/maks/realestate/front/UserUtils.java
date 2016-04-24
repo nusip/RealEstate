@@ -6,6 +6,12 @@ public class UserUtils {
 
     private static UserDto connected;
 
+    // TODO remove later
+    static {
+        connected = new UserDto();
+        connected.setId(1L);
+    }
+
     public static void setConnected(UserDto userDto) {
         connected = userDto;
     }

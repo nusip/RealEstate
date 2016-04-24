@@ -10,6 +10,7 @@ import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 import kz.maks.realestate.shared.remotes.DomSaleRemote;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 @Remote
 public class DomSaleRemoteImpl extends AbstractRemoteImpl implements DomSaleRemote {
@@ -27,6 +28,11 @@ public class DomSaleRemoteImpl extends AbstractRemoteImpl implements DomSaleRemo
     @Override
     public void delete(Long id) throws RemoteException {
         service.delete(id);
+    }
+
+    @Override
+    public List<DomSaleDto> listHistory(Long id) throws RemoteException {
+        return service.listHistory(id);
     }
 
     @Override

@@ -3,32 +3,51 @@ package kz.maks.realestate.front.columns;
 import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
-public enum DomSaleColumn implements IColumn<DomSaleDto> {
-    id("ID", 0),
+public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
+    kolichestvoKomnat("Количество комнат"),
     cena("Цена"),
+    cenaProdazhi("Цена продажи"),
     valyuta("Валюта"),
     isZalog("В залоге"),
-    kolichestvoKomnat("Количество комнат"),
-    kolichestvoUrovney("Количество уровней"),
     tipStroyeniya("Тип строения"),
+    kolichestvoUrovney("Количество уровней"),
     ploshadObshaya("Площадь общая"),
     ploshadZhilaya("Площадь жилая"),
     ploshadKuhnya("Площадь кухни"),
-    sanuzel("Санузел"),
+    ploshadUchastka("Площадь участка"),
+    kakOgorojen("Как огорожен участок"),
     sostoyaniye("Состояние"),
+    telefon("Телефон"),
+    internet("Интернет"),
+    sanuzel("Санузел"),
+    kanalizaciya("Канализация"),
+    voda("Вода"),
+    elektrichestvo("Электричество"),
+    otopleniye("Отопление"),
+    gaz("Газ"),
+    pokrytieKryshi("Покрытие крыши"),
+    vysotaPotolkov("Высота потолков"),
+    raznoe("Разное"),
     region("Регион"),
+    dom("Дом"),
     ulica("Улица"),
+    peresechenie("Пересечение"),
+    telNumbers("Тел. номер"),
+    assignedTo("Риэлтор"),
+    isArchive("В архиве"),
     createdAt("Дата создания"),
+    updatedAt("Дата изменения"),
+    modifiedBy("Автор изменения"),
     ;
 
     private final String title;
     private final int width;
 
-    DomSaleColumn(String title) {
+    DomSaleHistoryColumn(String title) {
         this(title, IColumn.DEFAULT_WIDTH);
     }
 
-    DomSaleColumn(String title, int width) {
+    DomSaleHistoryColumn(String title, int width) {
         this.title = title;
         this.width = width;
     }

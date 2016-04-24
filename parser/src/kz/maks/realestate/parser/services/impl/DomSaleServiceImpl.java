@@ -8,19 +8,26 @@ import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.dom.DomSaleAssembler;
 import kz.maks.realestate.parser.assemblers.dto.dom.DomSaleDtoAssembler;
 import kz.maks.realestate.parser.entities.DomSale;
+import kz.maks.realestate.parser.entities.KvartiraSale;
 import kz.maks.realestate.parser.services.DomSaleService;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static kz.maks.core.shared.Utils.beginningOfDay;
 import static kz.maks.core.shared.Utils.endOfDay;
 import static kz.maks.core.shared.Utils.isNullOrZero;
+import static org.hibernate.criterion.Restrictions.eq;
 
 @Service
 public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleService {
@@ -98,13 +105,52 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
 
     @Override
     public void save(DomSaleDto dto) {
-        DomSale entity = domSaleAssembler.assemble(dto, new DomSale());
+        DomSale domSale = null;
+
+        if (dto.getId() == null && dto.getKrishaId() != null) {
+            domSale = getByKrishaId(dto.getKrishaId());
+
+            if (domSale != null)
+                dto.setId(domSale.getId());
+        }
+
+        if (domSale == null) {
+            domSale = new DomSale();
+            domSale.setCreatedAt(new Date());
+        }
+
+        domSale.setUpdatedAt(new Date());
+
+        DomSale entity = domSaleAssembler.assemble(dto, domSale);
+
         db.save(entity);
+    }
+
+    private DomSale getByKrishaId(String krishaId) {
+        DomSale domSale = (DomSale) session().createCriteria(DomSale.class)
+                .add(eq("krishaId", krishaId)).uniqueResult();
+        return domSale;
     }
 
     @Override
     public void delete(Long id) {
         db.delete(DomSale.class, id);
+    }
+
+    @Override
+    public List<DomSaleDto> listHistory(Long id) {
+        AuditReader reader = AuditReaderFactory.get(session());
+        List<DomSale> revisions = reader.createQuery().forRevisionsOfEntity(DomSale.class, true, true)
+                .add(AuditEntity.id().eq(id)).getResultList();
+
+        List<DomSaleDto> revisionDtoList = new ArrayList<>();
+
+        for (DomSale rev : revisions) {
+            DomSaleDto revDto = domSaleDTOAssembler.assemble(rev, new DomSaleDto());
+            revisionDtoList.add(revDto);
+        }
+
+        return revisionDtoList;
     }
 
 }

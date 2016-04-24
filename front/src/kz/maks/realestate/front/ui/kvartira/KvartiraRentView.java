@@ -30,7 +30,7 @@ public class KvartiraRentView {
         ui = splitPane;
         {
             searchForm = new KvartiraRentSearchForm(frame);
-            splitPane.setTopComponent(new JScrollPane(searchForm.ui));
+            splitPane.setTopComponent(new JScrollPane(searchForm.ui()));
         }
         {
             Box vBox = Box.createVerticalBox();
@@ -47,7 +47,7 @@ public class KvartiraRentView {
                 }
 
                 DynamicForm<KvartiraRentDto> detailsForm = new DynamicForm<>(frame, KvartiraRentFormField.values());
-                FrontUtils.setPreferredWidth(detailsForm.ui, 400);
+                FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
                 formDialog = new FormDialog<>(frame, detailsForm);
 
                 vBox.add(hBox);

@@ -55,6 +55,7 @@ public enum DomSaleFormField implements FormField<DomSaleDto> {
     peresechenie("Пересечение"),
     @Required
     telNumbers("Тел. номер"),
+    @ComboName("User")
     assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),

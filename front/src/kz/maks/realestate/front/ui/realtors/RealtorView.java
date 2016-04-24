@@ -22,7 +22,7 @@ public class RealtorView {
         ui.setDividerSize(20);
         {
             searchForm = new RealtorSearchForm(rootFrame);
-            ui.setTopComponent(searchForm.ui);
+            ui.setTopComponent(searchForm.ui());
         }
         {
             Box vBox = Box.createVerticalBox();

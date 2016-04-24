@@ -3,7 +3,6 @@ package kz.maks.realestate.front.ui.kvartira;
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.validation.AbstractForm;
-import kz.maks.core.front.validation.ValidatableFieldAccessor;
 import kz.maks.realestate.front.columns.KvartiraSaleHistoryColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
@@ -12,7 +11,6 @@ import javax.swing.*;
 
 import java.awt.*;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
 import static kz.maks.core.front.FrontUtils.setForcedWidth;
 import static kz.maks.core.shared.Utils.DATE_FORMAT_FULL;
@@ -292,8 +290,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addTelNumbers(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
 
-        JComponent fieldComponent = addField(telNumbers);
-        fieldRow.add(fieldComponent);
+        fieldRow.add(addField(telNumbers));
 
         telNumbersField = (SimpleTableField) fieldValues.get(telNumbers);
 
