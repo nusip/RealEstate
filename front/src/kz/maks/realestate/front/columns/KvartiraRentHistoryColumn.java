@@ -27,6 +27,7 @@ public enum KvartiraRentHistoryColumn implements IColumn<KvartiraRentDto> {
     balkon("Балкон"),
     dver("Дверь"),
     pol("Пол"),
+    planirovka("Планировка"),
     raznoe("Разное"),
     region("Регион"),
     ulica("Улица"),

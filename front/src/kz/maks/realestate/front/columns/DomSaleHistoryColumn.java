@@ -17,6 +17,7 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     ploshadUchastka("Площадь участка"),
     kakOgorojen("Как огорожен участок"),
     sostoyaniye("Состояние"),
+    istochnikInfo("Источник информации"),
     telefon("Телефон"),
     internet("Интернет"),
     sanuzel("Санузел"),

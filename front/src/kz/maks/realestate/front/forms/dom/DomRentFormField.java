@@ -28,6 +28,8 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     kakOgorojen("Как огорожен участок"),
     @ComboName("DomSostoyaniye")
     sostoyaniyeId("Состояние"),
+    @ComboName("IstochnikInfo")
+    istochnikInfoId("Источник информации"),
     @ComboName("DomTelefon")
     telefonId("Телефон"),
     @ComboName("Internet")
@@ -48,23 +50,23 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     vysotaPotolkov("Высота потолков"),
     @TextArea
     raznoe("Разное"),
+    @Required
+    telNumbers("Тел. номер"),
     @TreeName("Region")
     @Required
     regionId("Регион"),
     dom("Дом"),
     ulica("Улица"),
     peresechenie("Пересечение"),
-    @Required
-    telNumbers("Тел. номер"),
+    @Disabled
+    createdAt("Дата создания"),
+    @Disabled
+    updatedAt("Дата изменения"),
     @ComboName("User")
     assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),
     isArchive("В архиве"),
-    @Disabled
-    createdAt("Дата создания"),
-    @Disabled
-    updatedAt("Дата изменения"),
     ;
 
     private String title;

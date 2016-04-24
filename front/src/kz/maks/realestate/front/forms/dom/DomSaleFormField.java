@@ -27,6 +27,8 @@ public enum DomSaleFormField implements FormField<DomSaleDto> {
     kakOgorojen("Как огорожен участок"),
     @ComboName("DomSostoyaniye")
     sostoyaniyeId("Состояние"),
+    @ComboName("IstochnikInfo")
+    istochnikInfoId("Источник информации"),
     @ComboName("DomTelefon")
     telefonId("Телефон"),
     @ComboName("Internet")
@@ -48,22 +50,22 @@ public enum DomSaleFormField implements FormField<DomSaleDto> {
     @TextArea
     raznoe("Разное"),
     @Required
+    telNumbers("Тел. номер"),
+    @Required
     @TreeName("Region")
     regionId("Регион"),
     dom("Дом"),
     ulica("Улица"),
     peresechenie("Пересечение"),
-    @Required
-    telNumbers("Тел. номер"),
+    @Disabled
+    createdAt("Дата создания"),
+    @Disabled
+    updatedAt("Дата изменения"),
     @ComboName("User")
     assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),
     isArchive("В архиве"),
-    @Disabled
-    createdAt("Дата создания"),
-    @Disabled
-    updatedAt("Дата изменения"),
     ;
 
     private String title;

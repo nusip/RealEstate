@@ -29,10 +29,10 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     ploshadObshaya("Площадь общая"),
     ploshadZhilaya("Площадь жилая"),
     ploshadKuhnya("Площадь кухни"),
-    @ComboName("KvartiraSostoyaniye")
-    sostoyaniyeId("Состояние"),
     @ComboName("IstochnikInfo")
     istochnikInfoId("Источник информации"),
+    @ComboName("KvartiraSostoyaniye")
+    sostoyaniyeId("Состояние"),
     @ComboName("KvartiraTelefon")
     telefonId("Телефон"),
     @ComboName("KvartiraSanuzel")
@@ -43,24 +43,26 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     dverId("Дверь"),
     @ComboName("Pol")
     polId("Пол"),
+    @ComboName("Planirovka")
+    planirovkaId("Планировка"),
     @TextArea
     raznoe("Разное"),
+    @Required
+    telNumbers("Тел. номер"),
     @Required
     @TreeName("Region")
     regionId("Регион"),
     ulica("Улица"),
     peresechenie("Пересечение"),
-    @Required
-    telNumbers("Тел. номер"),
+    @Disabled
+    createdAt("Дата создания"),
+    @Disabled
+    updatedAt("Дата изменения"),
     @ComboName("User")
     assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),
     isArchive("В архиве"),
-    @Disabled
-    createdAt("Дата создания"),
-    @Disabled
-    updatedAt("Дата изменения"),
     ;
 
     private String title;
