@@ -4,6 +4,8 @@ import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
+import java.util.List;
+
 public interface DomRentService {
 
     ListResponse<DomRentDto> list(DomRentSearchParams params);
@@ -13,5 +15,7 @@ public interface DomRentService {
     void save(DomRentDto dto);
 
     void delete(Long id);
+
+    List<DomRentDto> listHistory(Long id);
 
 }

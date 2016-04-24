@@ -6,6 +6,7 @@ import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 public interface KvartiraRentRemote extends Remote {
 
@@ -16,5 +17,7 @@ public interface KvartiraRentRemote extends Remote {
     void save(KvartiraRentDto dto) throws RemoteException;
 
     void delete(Long id) throws RemoteException;
+
+    List<KvartiraRentDto> listHistory(Long id) throws RemoteException;
 
 }

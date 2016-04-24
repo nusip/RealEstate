@@ -10,6 +10,7 @@ import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.shared.remotes.KvartiraRentRemote;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 @Remote
 public class KvartiraRentRemoteImpl extends AbstractRemoteImpl implements KvartiraRentRemote {
@@ -27,6 +28,11 @@ public class KvartiraRentRemoteImpl extends AbstractRemoteImpl implements Kvarti
     @Override
     public void delete(Long id) throws RemoteException {
         service.delete(id);
+    }
+
+    @Override
+    public List<KvartiraRentDto> listHistory(Long id) throws RemoteException {
+        return service.listHistory(id);
     }
 
     @Override

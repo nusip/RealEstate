@@ -1,14 +1,16 @@
 package kz.maks.realestate.front.columns;
 
+import kz.maks.core.front.annotations.*;
 import kz.maks.core.front.ui.IColumn;
+import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
-public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
+public enum DomRentHistoryColumn implements IColumn<DomRentDto> {
     kolichestvoKomnat("Количество комнат"),
     cena("Цена"),
     cenaProdazhi("Цена продажи"),
     valyuta("Валюта"),
-    isZalog("В залоге"),
+    kakSdayete("Как сдаете"),
     tipStroyeniya("Тип строения"),
     kolichestvoUrovney("Количество уровней"),
     ploshadObshaya("Площадь общая"),
@@ -43,11 +45,11 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     private final String title;
     private final int width;
 
-    DomSaleHistoryColumn(String title) {
+    DomRentHistoryColumn(String title) {
         this(title, IColumn.DEFAULT_WIDTH);
     }
 
-    DomSaleHistoryColumn(String title, int width) {
+    DomRentHistoryColumn(String title, int width) {
         this.title = title;
         this.width = width;
     }
@@ -58,8 +60,8 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     }
 
     @Override
-    public Class<DomSaleDto> tableClass() {
-        return DomSaleDto.class;
+    public Class<DomRentDto> tableClass() {
+        return DomRentDto.class;
     }
 
     @Override

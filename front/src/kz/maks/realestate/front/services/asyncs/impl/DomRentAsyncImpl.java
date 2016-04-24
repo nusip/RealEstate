@@ -7,6 +7,7 @@ import kz.maks.realestate.front.services.asyncs.DomRentAsync;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import static kz.maks.realestate.front.services.FrontRemotes.domRentRemote;
@@ -54,4 +55,15 @@ public class DomRentAsyncImpl extends AbstractAsyncImpl implements DomRentAsync 
             }
         }, callback);
     }
+
+    @Override
+    public void listHistory(final Long id, Callback<List<DomRentDto>> callback) {
+        executeAsync(new Callable<List<DomRentDto>>() {
+            @Override
+            public List<DomRentDto> call() throws Exception {
+                return domRentRemote().listHistory(id);
+            }
+        }, callback);
+    }
+
 }

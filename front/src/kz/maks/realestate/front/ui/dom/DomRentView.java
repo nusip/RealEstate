@@ -1,12 +1,8 @@
 package kz.maks.realestate.front.ui.dom;
 
-import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.realestate.front.columns.DomRentColumn;
-import kz.maks.realestate.front.forms.dom.DomRentFormField;
-import kz.maks.realestate.front.forms.dom.DomRentSearchFormField;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
-import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 
 import javax.swing.*;
 
@@ -45,11 +41,11 @@ public class DomRentView {
                     btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);
                     hBox.add(btnCRUDPanel.ui);
                 }
-
-                DynamicForm<DomRentDto> detailsForm = new DynamicForm<>(frame, DomRentFormField.values());
-                FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
-                formDialog = new FormDialog<>(frame, detailsForm);
-
+                {
+                    DomRentForm detailsForm = new DomRentForm(frame);
+//                FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
+                    formDialog = new FormDialog<>(frame, detailsForm);
+                }
                 vBox.add(hBox);
             }
             {

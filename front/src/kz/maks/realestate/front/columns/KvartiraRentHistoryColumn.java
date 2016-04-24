@@ -1,35 +1,34 @@
 package kz.maks.realestate.front.columns;
 
+import kz.maks.core.front.annotations.*;
 import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
+import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 
-public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
+public enum KvartiraRentHistoryColumn implements IColumn<KvartiraRentDto> {
     kolichestvoKomnat("Количество комнат"),
+    dom("Дом"),
+    kvartira("Квартира"),
     cena("Цена"),
     cenaProdazhi("Цена продажи"),
     valyuta("Валюта"),
-    isZalog("В залоге"),
+    godPostroyki("Год постройки"),
     tipStroyeniya("Тип строения"),
-    kolichestvoUrovney("Количество уровней"),
+    kakSdayete("Как сдаете"),
+    etazh("Этаж"),
+    etazhnost("Этажность"),
     ploshadObshaya("Площадь общая"),
     ploshadZhilaya("Площадь жилая"),
     ploshadKuhnya("Площадь кухни"),
-    ploshadUchastka("Площадь участка"),
-    kakOgorojen("Как огорожен участок"),
     sostoyaniye("Состояние"),
+    istochnikInfo("Источник информации"),
     telefon("Телефон"),
-    internet("Интернет"),
     sanuzel("Санузел"),
-    kanalizaciya("Канализация"),
-    voda("Вода"),
-    elektrichestvo("Электричество"),
-    otopleniye("Отопление"),
-    gaz("Газ"),
-    pokrytieKryshi("Покрытие крыши"),
-    vysotaPotolkov("Высота потолков"),
+    balkon("Балкон"),
+    dver("Дверь"),
+    pol("Пол"),
     raznoe("Разное"),
     region("Регион"),
-    dom("Дом"),
     ulica("Улица"),
     peresechenie("Пересечение"),
     telNumbers("Тел. номер"),
@@ -43,11 +42,11 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     private final String title;
     private final int width;
 
-    DomSaleHistoryColumn(String title) {
+    KvartiraRentHistoryColumn(String title) {
         this(title, IColumn.DEFAULT_WIDTH);
     }
 
-    DomSaleHistoryColumn(String title, int width) {
+    KvartiraRentHistoryColumn(String title, int width) {
         this.title = title;
         this.width = width;
     }
@@ -58,8 +57,8 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     }
 
     @Override
-    public Class<DomSaleDto> tableClass() {
-        return DomSaleDto.class;
+    public Class<KvartiraRentDto> tableClass() {
+        return KvartiraRentDto.class;
     }
 
     @Override
@@ -71,6 +70,7 @@ public enum DomSaleHistoryColumn implements IColumn<DomSaleDto> {
     public int width() {
         return width;
     }
+
 
     @Override
     public String toString() {

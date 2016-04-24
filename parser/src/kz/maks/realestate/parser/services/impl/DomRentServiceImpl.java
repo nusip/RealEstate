@@ -8,19 +8,27 @@ import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.dom.DomRentAssembler;
 import kz.maks.realestate.parser.assemblers.dto.dom.DomRentDtoAssembler;
 import kz.maks.realestate.parser.entities.DomRent;
+import kz.maks.realestate.parser.entities.DomSale;
+import kz.maks.realestate.parser.entities.KvartiraSale;
 import kz.maks.realestate.parser.services.DomRentService;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
+import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static kz.maks.core.shared.Utils.beginningOfDay;
 import static kz.maks.core.shared.Utils.endOfDay;
 import static kz.maks.core.shared.Utils.isNullOrZero;
+import static org.hibernate.criterion.Restrictions.eq;
 
 @Service
 public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentService {
@@ -98,13 +106,52 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
 
     @Override
     public void save(DomRentDto dto) {
-        DomRent entity = domRentAssembler.assemble(dto, new DomRent());
+        DomRent domRent = null;
+
+        if (dto.getId() == null && dto.getKrishaId() != null) {
+            domRent = getByKrishaId(dto.getKrishaId());
+
+            if (domRent != null)
+                dto.setId(domRent.getId());
+        }
+
+        if (domRent == null) {
+            domRent = new DomRent();
+            domRent.setCreatedAt(new Date());
+        }
+
+        domRent.setUpdatedAt(new Date());
+
+        DomRent entity = domRentAssembler.assemble(dto, domRent);
+
         db.save(entity);
+    }
+
+    private DomRent getByKrishaId(String krishaId) {
+        DomRent domRent = (DomRent) session().createCriteria(DomRent.class)
+                .add(eq("krishaId", krishaId)).uniqueResult();
+        return domRent;
     }
 
     @Override
     public void delete(Long id) {
         db.delete(DomRent.class, id);
+    }
+
+    @Override
+    public List<DomRentDto> listHistory(Long id) {
+        AuditReader reader = AuditReaderFactory.get(session());
+        List<DomRent> revisions = reader.createQuery().forRevisionsOfEntity(DomRent.class, true, true)
+                .add(AuditEntity.id().eq(id)).getResultList();
+
+        List<DomRentDto> revisionDtoList = new ArrayList<>();
+
+        for (DomRent rev : revisions) {
+            DomRentDto revDto = domRentDTOAssembler.assemble(rev, new DomRentDto());
+            revisionDtoList.add(revDto);
+        }
+
+        return revisionDtoList;
     }
 
 }

@@ -8,8 +8,10 @@ import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.entity.kvartira.KvartiraRentAssembler;
 import kz.maks.realestate.parser.assemblers.dto.kvartira.KvartiraRentDtoAssembler;
 import kz.maks.realestate.parser.assemblers.parser.KvartiraRentEntityAssembler;
+import kz.maks.realestate.parser.entities.DomSale;
 import kz.maks.realestate.parser.entities.KvartiraRent;
 import kz.maks.realestate.parser.services.KvartiraRentService;
+import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraRentDto;
 import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import kz.maks.realestate.parser.models.KvartiraPlain;
@@ -17,8 +19,12 @@ import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static kz.maks.core.shared.Utils.beginningOfDay;
@@ -143,7 +149,24 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
 
     @Override
     public void save(KvartiraRentDto dto) {
-        KvartiraRent entity = kvartiraRentAssembler.assemble(dto, new KvartiraRent());
+        KvartiraRent kvartiraRent = null;
+
+        if (dto.getId() == null && dto.getKrishaId() != null) {
+            kvartiraRent = getByKrishaId(dto.getKrishaId());
+
+            if (kvartiraRent != null)
+                dto.setId(kvartiraRent.getId());
+        }
+
+        if (kvartiraRent == null) {
+            kvartiraRent = new KvartiraRent();
+            kvartiraRent.setCreatedAt(new Date());
+        }
+
+        kvartiraRent.setUpdatedAt(new Date());
+
+        KvartiraRent entity = kvartiraRentAssembler.assemble(dto, kvartiraRent);
+
         db.save(entity);
     }
 
@@ -156,6 +179,22 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     public boolean exists(String krishaId) {
         KvartiraRent kvartiraRent = getByKrishaId(krishaId);
         return kvartiraRent != null;
+    }
+
+    @Override
+    public List<KvartiraRentDto> listHistory(Long id) {
+        AuditReader reader = AuditReaderFactory.get(session());
+        List<KvartiraRent> revisions = reader.createQuery().forRevisionsOfEntity(KvartiraRent.class, true, true)
+                .add(AuditEntity.id().eq(id)).getResultList();
+
+        List<KvartiraRentDto> revisionDtoList = new ArrayList<>();
+
+        for (KvartiraRent rev : revisions) {
+            KvartiraRentDto revDto = kvartiraRentDTOAssembler.assemble(rev, new KvartiraRentDto());
+            revisionDtoList.add(revDto);
+        }
+
+        return revisionDtoList;
     }
 
 }

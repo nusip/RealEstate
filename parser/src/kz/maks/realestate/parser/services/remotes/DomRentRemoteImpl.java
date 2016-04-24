@@ -10,6 +10,7 @@ import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
 import kz.maks.realestate.shared.remotes.DomRentRemote;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 @Remote
 public class DomRentRemoteImpl extends AbstractRemoteImpl implements DomRentRemote {
@@ -27,6 +28,11 @@ public class DomRentRemoteImpl extends AbstractRemoteImpl implements DomRentRemo
     @Override
     public void delete(Long id) throws RemoteException {
         service.delete(id);
+    }
+
+    @Override
+    public List<DomRentDto> listHistory(Long id) throws RemoteException {
+        return service.listHistory(id);
     }
 
     @Override

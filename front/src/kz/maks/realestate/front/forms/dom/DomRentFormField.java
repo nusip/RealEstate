@@ -56,6 +56,7 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     peresechenie("Пересечение"),
     @Required
     telNumbers("Тел. номер"),
+    @ComboName("User")
     assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),

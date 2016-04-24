@@ -45,11 +45,11 @@ public class KvartiraRentView {
                     btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);
                     hBox.add(btnCRUDPanel.ui);
                 }
-
-                DynamicForm<KvartiraRentDto> detailsForm = new DynamicForm<>(frame, KvartiraRentFormField.values());
-                FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
-                formDialog = new FormDialog<>(frame, detailsForm);
-
+                {
+                    KvartiraRentForm detailsForm = new KvartiraRentForm(frame);
+//                FrontUtils.setPreferredWidth(detailsForm.ui(), 400);
+                    formDialog = new FormDialog<>(frame, detailsForm);
+                }
                 vBox.add(hBox);
             }
             {
