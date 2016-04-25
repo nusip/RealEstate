@@ -1,6 +1,7 @@
 package kz.maks.realestate.front.ui.kvartira;
 
 import kz.maks.core.front.FrontUtils;
+import kz.maks.core.front.ui.DateSpinner;
 import kz.maks.core.front.ui.EnumBox;
 import kz.maks.core.front.validation.AbstractFieldValidator;
 import kz.maks.core.front.validation.AbstractForm;
@@ -12,6 +13,7 @@ import kz.maks.realestate.shared.dtos.params.KvartiraRentSearchParams;
 import javax.swing.*;
 import java.awt.*;
 
+import static kz.maks.core.shared.Utils.DATE_FORMAT_DATE;
 import static kz.maks.realestate.front.forms.kvartira.KvartiraRentSearchFormField.*;
 
 public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParams> {
@@ -321,7 +323,10 @@ public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(dataSozdaniyaFrom));
+            DateSpinner dateSpinner = new DateSpinner(dataSozdaniyaFrom, DATE_FORMAT_DATE);
+            fieldValues.put(dataSozdaniyaFrom, dateSpinner);
+            fieldComponents.put(dataSozdaniyaFrom, dateSpinner.ui);
+            fieldRow.add(dateSpinner.ui);
         }
         fieldRow.add(FrontUtils.hGap());
         {
@@ -330,7 +335,10 @@ public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(dataSozdaniyaTo));
+            DateSpinner dateSpinner = new DateSpinner(dataSozdaniyaTo, DATE_FORMAT_DATE);
+            fieldValues.put(dataSozdaniyaTo, dateSpinner);
+            fieldComponents.put(dataSozdaniyaTo, dateSpinner.ui);
+            fieldRow.add(dateSpinner.ui);
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
