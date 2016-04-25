@@ -2,6 +2,7 @@ package kz.maks.realestate.shared.dtos.params;
 
 import kz.maks.core.shared.dtos.AbstractSearchParams;
 import kz.maks.realestate.shared.models.RoomRange;
+import kz.maks.realestate.shared.models.SortField;
 import kz.maks.realestate.shared.models.YesNo;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class KvartiraRentSearchParams extends AbstractSearchParams {
     private Double ploshadKuhnyaMin;
     private Double ploshadKuhnyaMax;
     private YesNo obwyaga;
+    private YesNo vArhive;
 
     /**
      * default search params
@@ -30,14 +32,17 @@ public class KvartiraRentSearchParams extends AbstractSearchParams {
                 0, 0,
                 0.0, 0.0,
                 0.0, 0.0,
-                YesNo.NO_MATTER
+                YesNo.NO_MATTER,
+                YesNo.NO,
+                SortField.createdAt.name()
         );
     }
 
     public KvartiraRentSearchParams(Date dataSozdaniyaFrom, Date dataSozdaniyaTo, Long regionId, RoomRange rooms,
                                     Integer etazhMin, Integer etazhMax, Integer etazhnostMin, Integer etazhnostMax,
                                     Double ploshadObshayaMin, Double ploshadObshayaMax,
-                                    Double ploshadKuhnyaMin, Double ploshadKuhnyaMax, YesNo obwyaga) {
+                                    Double ploshadKuhnyaMin, Double ploshadKuhnyaMax, YesNo obwyaga, YesNo vArhive,
+                                    String sortField) {
         this.dataSozdaniyaFrom = dataSozdaniyaFrom;
         this.dataSozdaniyaTo = dataSozdaniyaTo;
         this.regionId = regionId;
@@ -51,6 +56,7 @@ public class KvartiraRentSearchParams extends AbstractSearchParams {
         this.ploshadKuhnyaMin = ploshadKuhnyaMin;
         this.ploshadKuhnyaMax = ploshadKuhnyaMax;
         this.obwyaga = obwyaga;
+        this.sortField = sortField;
     }
 
     public Date getDataSozdaniyaFrom() {
@@ -155,5 +161,13 @@ public class KvartiraRentSearchParams extends AbstractSearchParams {
 
     public void setObwyaga(YesNo obwyaga) {
         this.obwyaga = obwyaga;
+    }
+
+    public YesNo getVArhive() {
+        return vArhive;
+    }
+
+    public void setVArhive(YesNo vArhive) {
+        this.vArhive = vArhive;
     }
 }

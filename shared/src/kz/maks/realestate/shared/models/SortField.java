@@ -1,4 +1,4 @@
-package kz.maks.realestate.front.ui;
+package kz.maks.realestate.shared.models;
 
 import kz.maks.core.shared.Utils;
 import kz.maks.core.shared.models.HasTitle;

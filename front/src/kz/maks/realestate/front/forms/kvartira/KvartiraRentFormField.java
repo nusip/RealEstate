@@ -20,6 +20,7 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     godPostroyki("Год постройки"),
     @ComboName("KvartiraTipStroyeniya")
     tipStroyeniyaId("Тип строения"),
+    isObwyaga("Общежитие"),
     @ComboName("KakSdayete")
     kakSdayeteId("Как сдаете"),
     @Required

@@ -2,6 +2,8 @@ package kz.maks.realestate.shared.dtos.params;
 
 import kz.maks.core.shared.dtos.AbstractSearchParams;
 import kz.maks.realestate.shared.models.RoomRange;
+import kz.maks.realestate.shared.models.SortField;
+import kz.maks.realestate.shared.models.YesNo;
 
 import java.util.Date;
 
@@ -14,17 +16,18 @@ public class DomSaleSearchParams extends AbstractSearchParams {
     private Double ploshadObshayaMax;
     private Double ploshadKuhnyaMin;
     private Double ploshadKuhnyaMax;
+    private YesNo vArhive;
 
     /**
      * default search params
      */
     public DomSaleSearchParams() {
-        this(new Date(), new Date(), null, RoomRange.ANY, 0.0, 0.0, 0.0, 0.0);
+        this(new Date(), new Date(), null, RoomRange.ANY, 0.0, 0.0, 0.0, 0.0, YesNo.NO, SortField.createdAt.name());
     }
 
     public DomSaleSearchParams(Date dataSozdaniyaFrom, Date dataSozdaniyaTo, Long regionId, RoomRange rooms,
                                Double ploshadObshayaMin, Double ploshadObshayaMax,
-                               Double ploshadKuhnyaMin, Double ploshadKuhnyaMax) {
+                               Double ploshadKuhnyaMin, Double ploshadKuhnyaMax, YesNo vArhive, String sortField) {
         this.dataSozdaniyaFrom = dataSozdaniyaFrom;
         this.dataSozdaniyaTo = dataSozdaniyaTo;
         this.regionId = regionId;
@@ -33,6 +36,8 @@ public class DomSaleSearchParams extends AbstractSearchParams {
         this.ploshadObshayaMax = ploshadObshayaMax;
         this.ploshadKuhnyaMin = ploshadKuhnyaMin;
         this.ploshadKuhnyaMax = ploshadKuhnyaMax;
+        this.vArhive = vArhive;
+        this.sortField = sortField;
     }
 
     public Date getDataSozdaniyaFrom() {
@@ -97,5 +102,13 @@ public class DomSaleSearchParams extends AbstractSearchParams {
 
     public void setPloshadKuhnyaMax(Double ploshadKuhnyaMax) {
         this.ploshadKuhnyaMax = ploshadKuhnyaMax;
+    }
+
+    public YesNo getVArhive() {
+        return vArhive;
+    }
+
+    public void setVArhive(YesNo vArhive) {
+        this.vArhive = vArhive;
     }
 }

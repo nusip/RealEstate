@@ -13,6 +13,7 @@ import kz.maks.realestate.parser.services.DomSaleService;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
+import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -28,6 +29,8 @@ import static kz.maks.core.shared.Utils.beginningOfDay;
 import static kz.maks.core.shared.Utils.endOfDay;
 import static kz.maks.core.shared.Utils.isNullOrZero;
 import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.isNull;
+import static org.hibernate.criterion.Restrictions.or;
 
 @Service
 public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleService {
@@ -93,6 +96,15 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
                 criteria.add(Restrictions.le("kolichestvoKomnat", params.getRooms().max()));
             }
         }
+        if (params.getVArhive() != null && params.getVArhive() != YesNo.NO_MATTER) {
+            if (params.getVArhive() == YesNo.YES) {
+                criteria.add(eq("isArchive", true));
+
+            } else if (params.getVArhive() == YesNo.NO) {
+                criteria.add(or(isNull("isArchive"), eq("isArchive", false)));
+            }
+        }
+
         return criteria;
     }
 
@@ -107,14 +119,13 @@ public class DomSaleServiceImpl extends AbstractServiceImpl implements DomSaleSe
     public void save(DomSaleDto dto) {
         DomSale domSale = null;
 
-        if (dto.getId() == null && dto.getKrishaId() != null) {
+        if (dto.getKrishaId() != null) {
             domSale = getByKrishaId(dto.getKrishaId());
 
-            if (domSale != null)
-                dto.setId(domSale.getId());
-        }
+        } else if (dto.getId() != null) {
+            domSale = db.load(DomSale.class, dto.getId());
 
-        if (domSale == null) {
+        } else {
             domSale = new DomSale();
             domSale.setCreatedAt(new Date());
         }

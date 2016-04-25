@@ -28,7 +28,7 @@ public abstract class AbstractKrishaAdAssembler<DTO extends AbstractKrishaAdDto,
 
     @Override
     public ENTITY assemble(DTO dto, ENTITY entity) {
-        entity.setId(dto.getId());
+//        entity.setId(dto.getId());
         entity.setKrishaId(dto.getKrishaId());
         entity.setCena(dto.getCena() != null ? BigDecimal.valueOf(dto.getCena()) : null);
         entity.setCenaProdazhi(dto.getCenaProdazhi() != null ? BigDecimal.valueOf(dto.getCenaProdazhi()) : null);

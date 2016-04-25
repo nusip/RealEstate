@@ -6,7 +6,7 @@ import kz.maks.core.front.validation.AbstractFieldValidator;
 import kz.maks.core.front.validation.AbstractForm;
 import kz.maks.core.shared.Utils;
 import kz.maks.realestate.front.forms.dom.DomSaleSearchFormField;
-import kz.maks.realestate.front.ui.SortField;
+import kz.maks.realestate.shared.models.SortField;
 import kz.maks.realestate.shared.dtos.params.DomSaleSearchParams;
 
 import javax.swing.*;
@@ -35,6 +35,7 @@ public class DomSaleSearchForm extends AbstractForm<DomSaleSearchParams> {
                 Box vBox = Box.createVerticalBox();
                 addDataSozdaniya(vBox);
                 addRegion(vBox);
+                addSorting(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_WIDTH);
@@ -52,7 +53,7 @@ public class DomSaleSearchForm extends AbstractForm<DomSaleSearchParams> {
             {
                 Box vBox = Box.createVerticalBox();
                 addKolichestvoKomnat(vBox);
-                addSorting(vBox);
+                addVArhive(vBox);
                 addBtnSearch(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
@@ -62,6 +63,22 @@ public class DomSaleSearchForm extends AbstractForm<DomSaleSearchParams> {
             ui.add(hBox);
         }
         processAnnotations();
+    }
+
+    private void addVArhive(Box vBox) {
+        Box fieldRow = Box.createHorizontalBox();
+        {
+            JLabel label = getLabel(vArhive);
+            FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
+            fieldRow.add(label);
+        }
+        fieldRow.add(FrontUtils.hGap());
+        {
+            fieldRow.add(addField(vArhive));
+        }
+        setFieldHeight(fieldRow);
+        vBox.add(fieldRow);
+        addFieldRowGap(vBox);
     }
 
     private void addSorting(Box vBox) {

@@ -30,6 +30,9 @@ import java.util.List;
 import static kz.maks.core.shared.Utils.beginningOfDay;
 import static kz.maks.core.shared.Utils.endOfDay;
 import static kz.maks.core.shared.Utils.isNullOrZero;
+import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.isNull;
+import static org.hibernate.criterion.Restrictions.or;
 
 @Service
 public class KvartiraRentServiceImpl extends AbstractServiceImpl implements KvartiraRentService {
@@ -131,12 +134,21 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
         }
         if (params.getObwyaga() != null && params.getObwyaga() != YesNo.NO_MATTER) {
             if (params.getObwyaga() == YesNo.YES) {
-                criteria.add(Restrictions.eq("isObwyaga", true));
+                criteria.add(eq("isObwyaga", true));
 
             } else if (params.getObwyaga() == YesNo.NO) {
-                criteria.add(Restrictions.ne("isObwyaga", true));
+                criteria.add(or(isNull("isObwyaga"), eq("isObwyaga", false)));
             }
         }
+        if (params.getVArhive() != null && params.getVArhive() != YesNo.NO_MATTER) {
+            if (params.getVArhive() == YesNo.YES) {
+                criteria.add(eq("isArchive", true));
+
+            } else if (params.getVArhive() == YesNo.NO) {
+                criteria.add(or(isNull("isArchive"), eq("isArchive", false)));
+            }
+        }
+
         return criteria;
     }
 
@@ -151,14 +163,13 @@ public class KvartiraRentServiceImpl extends AbstractServiceImpl implements Kvar
     public void save(KvartiraRentDto dto) {
         KvartiraRent kvartiraRent = null;
 
-        if (dto.getId() == null && dto.getKrishaId() != null) {
+        if (dto.getKrishaId() != null) {
             kvartiraRent = getByKrishaId(dto.getKrishaId());
 
-            if (kvartiraRent != null)
-                dto.setId(kvartiraRent.getId());
-        }
+        } else if (dto.getId() != null) {
+            kvartiraRent = db.load(KvartiraRent.class, dto.getId());
 
-        if (kvartiraRent == null) {
+        } else {
             kvartiraRent = new KvartiraRent();
             kvartiraRent.setCreatedAt(new Date());
         }

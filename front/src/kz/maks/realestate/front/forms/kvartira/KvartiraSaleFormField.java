@@ -21,6 +21,7 @@ public enum KvartiraSaleFormField implements FormField<KvartiraSaleDto> {
     @ComboName("KvartiraTipStroyeniya")
     tipStroyeniyaId("Тип строения"),
     isZalog("В залоге"),
+    isObwyaga("Общежитие"),
     @Required
     etazh("Этаж"),
     etazhnost("из"),

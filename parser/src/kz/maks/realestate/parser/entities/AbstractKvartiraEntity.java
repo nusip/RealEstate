@@ -21,6 +21,8 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
     protected Double ploshadZhilaya;
     protected Double ploshadKuhnya;
 
+    protected Boolean isObwyaga;
+
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected KvartiraSostoyaniye sostoyaniye;
@@ -45,7 +47,6 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     protected Planirovka planirovka;
 
-//    protected Boolean isObwyaga;
 //    @Enumerated(EnumType.STRING)
 //    protected Internet internet;
 //    @Enumerated(EnumType.STRING)
@@ -127,6 +128,14 @@ public abstract class AbstractKvartiraEntity extends AbstractKrishaAdEntity {
 
     public void setPloshadKuhnya(Double ploshadKuhnya) {
         this.ploshadKuhnya = ploshadKuhnya;
+    }
+
+    public Boolean getIsObwyaga() {
+        return isObwyaga;
+    }
+
+    public void setIsObwyaga(Boolean isObwyaga) {
+        this.isObwyaga = isObwyaga;
     }
 
     public KvartiraSostoyaniye getSostoyaniye() {

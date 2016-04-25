@@ -24,7 +24,7 @@ public abstract class AbstractKvartiraDtoAssembler<ENTITY extends AbstractKvarti
         details.setPloshadObshaya(entity.getPloshadObshaya());
         details.setPloshadZhilaya(entity.getPloshadZhilaya());
         details.setPloshadKuhnya(entity.getPloshadKuhnya());
-//        details.setIsObwyaga(entity.getIsObwyaga());
+        details.setIsObwyaga(entity.getIsObwyaga());
         details.setSostoyaniyeId(extractId(entity.getSostoyaniye()));
         details.setSostoyaniye(extractTitle(entity.getSostoyaniye()));
         details.setTelefonId(extractId(entity.getTelefon()));

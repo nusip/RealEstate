@@ -14,6 +14,7 @@ import kz.maks.realestate.parser.services.DomRentService;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import kz.maks.realestate.shared.dtos.params.DomRentSearchParams;
+import kz.maks.realestate.shared.models.YesNo;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -29,6 +30,8 @@ import static kz.maks.core.shared.Utils.beginningOfDay;
 import static kz.maks.core.shared.Utils.endOfDay;
 import static kz.maks.core.shared.Utils.isNullOrZero;
 import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.isNull;
+import static org.hibernate.criterion.Restrictions.or;
 
 @Service
 public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentService {
@@ -94,6 +97,15 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
                 criteria.add(Restrictions.le("kolichestvoKomnat", params.getRooms().max()));
             }
         }
+        if (params.getVArhive() != null && params.getVArhive() != YesNo.NO_MATTER) {
+            if (params.getVArhive() == YesNo.YES) {
+                criteria.add(eq("isArchive", true));
+
+            } else if (params.getVArhive() == YesNo.NO) {
+                criteria.add(or(isNull("isArchive"), eq("isArchive", false)));
+            }
+        }
+
         return criteria;
     }
 
@@ -108,14 +120,13 @@ public class DomRentServiceImpl extends AbstractServiceImpl implements DomRentSe
     public void save(DomRentDto dto) {
         DomRent domRent = null;
 
-        if (dto.getId() == null && dto.getKrishaId() != null) {
+        if (dto.getKrishaId() != null) {
             domRent = getByKrishaId(dto.getKrishaId());
 
-            if (domRent != null)
-                dto.setId(domRent.getId());
-        }
+        } else if (dto.getId() != null) {
+            domRent = db.load(DomRent.class, dto.getId());
 
-        if (domRent == null) {
+        } else {
             domRent = new DomRent();
             domRent.setCreatedAt(new Date());
         }

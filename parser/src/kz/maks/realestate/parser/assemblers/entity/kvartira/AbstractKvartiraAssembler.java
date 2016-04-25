@@ -29,7 +29,7 @@ public abstract class AbstractKvartiraAssembler<DTO extends AbstractKvartiraDto,
         entity.setPloshadObshaya(dto.getPloshadObshaya());
         entity.setPloshadZhilaya(dto.getPloshadZhilaya());
         entity.setPloshadKuhnya(dto.getPloshadKuhnya());
-//        entity.setIsObwyaga(dto.getIsObwyaga());
+        entity.setIsObwyaga(dto.getIsObwyaga());
 
         if (dto.getSostoyaniyeId() != null) {
             KvartiraSostoyaniye ref = (KvartiraSostoyaniye) refService.get(Ref.KvartiraSostoyaniye, dto.getSostoyaniyeId());

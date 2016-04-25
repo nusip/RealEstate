@@ -14,6 +14,7 @@ public enum DomSaleSearchFormField implements FormField<DomSaleSearchParams> {
     ploshadObshayaMax("Площадь общая"),
     ploshadKuhnyaMin("Площадь кухня"),
     ploshadKuhnyaMax("Площадь кухня"),
+    vArhive("В архиве"),
     sortField("Сортировать по"),
     sortAsc("по возрастанию"),
     ;

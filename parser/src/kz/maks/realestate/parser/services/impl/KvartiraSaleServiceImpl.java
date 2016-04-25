@@ -30,9 +30,7 @@ import java.util.concurrent.TimeUnit;
 import static java.util.Calendar.DAY_OF_YEAR;
 import static kz.maks.core.shared.Utils.*;
 import static org.hibernate.criterion.Projections.max;
-import static org.hibernate.criterion.Restrictions.eq;
-import static org.hibernate.criterion.Restrictions.ge;
-import static org.hibernate.criterion.Restrictions.isNotNull;
+import static org.hibernate.criterion.Restrictions.*;
 
 @Service
 public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements KvartiraSaleService {
@@ -112,10 +110,18 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
         }
         if (params.getObwyaga() != null && params.getObwyaga() != YesNo.NO_MATTER) {
             if (params.getObwyaga() == YesNo.YES) {
-                criteria.add(Restrictions.eq("isObwyaga", true));
+                criteria.add(eq("isObwyaga", true));
 
             } else if (params.getObwyaga() == YesNo.NO) {
-                criteria.add(Restrictions.ne("isObwyaga", true));
+                criteria.add(or(isNull("isObwyaga"), eq("isObwyaga", false)));
+            }
+        }
+        if (params.getVArhive() != null && params.getVArhive() != YesNo.NO_MATTER) {
+            if (params.getVArhive() == YesNo.YES) {
+                criteria.add(eq("isArchive", true));
+
+            } else if (params.getVArhive() == YesNo.NO) {
+                criteria.add(or(isNull("isArchive"), eq("isArchive", false)));
             }
         }
 
@@ -133,14 +139,13 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
     public void save(KvartiraSaleDto dto) {
         KvartiraSale kvartiraSale = null;
 
-        if (dto.getId() == null && dto.getKrishaId() != null) {
+        if (dto.getKrishaId() != null) {
             kvartiraSale = getByKrishaId(dto.getKrishaId());
 
-            if (kvartiraSale != null)
-                dto.setId(kvartiraSale.getId());
-        }
+        } else if (dto.getId() != null) {
+            kvartiraSale = db.load(KvartiraSale.class, dto.getId());
 
-        if (kvartiraSale == null) {
+        } else {
             kvartiraSale = new KvartiraSale();
             kvartiraSale.setCreatedAt(new Date());
         }

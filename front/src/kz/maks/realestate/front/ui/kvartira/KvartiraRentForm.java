@@ -30,7 +30,7 @@ public class KvartiraRentForm extends DynamicForm<KvartiraRentDto> {
     public KvartiraRentForm(Frame parent) {
         super(parent, KvartiraRentFormField.values(), 3);
         tabs.setBorder(BorderFactory.createEmptyBorder());
-        tabs.addTab("Дом", ui);
+        tabs.addTab("Квартира", ui);
         tabs.addTab("История изменений", buildHistoryPanel());
 
         telNumbersField = (SimpleTableField) fieldValues.get(telNumbers);

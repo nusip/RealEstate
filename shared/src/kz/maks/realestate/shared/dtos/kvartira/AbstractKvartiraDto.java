@@ -29,9 +29,9 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
     protected String dver;
     protected Long polId;
     protected String pol;
+    protected Boolean isObwyaga;
 
 //    protected String zhiloyKomplex;
-//    protected Boolean isObwyaga;
 //    protected Internet internet;
 //    protected Parkovka parkovka;
 //    protected Mebel mebel;
@@ -236,6 +236,14 @@ public abstract class AbstractKvartiraDto extends AbstractKrishaAdDto {
 
     public void setPol(String pol) {
         this.pol = pol;
+    }
+
+    public Boolean getIsObwyaga() {
+        return isObwyaga;
+    }
+
+    public void setIsObwyaga(Boolean isObwyaga) {
+        this.isObwyaga = isObwyaga;
     }
 
     @Override

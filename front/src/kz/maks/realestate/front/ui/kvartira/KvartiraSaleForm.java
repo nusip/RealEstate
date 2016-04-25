@@ -78,7 +78,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
                 addKolichestvoKomnat_etazh(vBox);
                 addPloshad(vBox);
                 addGodPostroiki_tipStroyeniya(vBox);
-                addVZaloge(vBox);
+                addVZaloge_isObwyaga(vBox);
                 addCena(vBox);
                 addCenaProdazhi(vBox);
                 vBox.add(Box.createVerticalGlue());
@@ -156,16 +156,27 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
         return formPanel;
     }
 
-    private void addVZaloge(Box vBox) {
+    private void addVZaloge_isObwyaga(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = new JLabel(isZalog.getTitle());
+            JLabel label = getLabel(isZalog);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
             CheckBox checkBox = new CheckBox(KvartiraSaleFormField.isZalog);
             fieldValues.put(KvartiraSaleFormField.isZalog, checkBox);
+            fieldRow.add(checkBox.ui);
+        }
+        fieldRow.add(FrontUtils.hGap());
+        {
+            JLabel label = getLabel(isObwyaga);
+            fieldRow.add(label);
+        }
+        fieldRow.add(FrontUtils.hGap());
+        {
+            CheckBox checkBox = new CheckBox(KvartiraSaleFormField.isObwyaga);
+            fieldValues.put(KvartiraSaleFormField.isObwyaga, checkBox);
             fieldRow.add(checkBox.ui);
         }
         fieldRow.add(Box.createHorizontalGlue());
