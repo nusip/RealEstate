@@ -27,7 +27,7 @@ public class KvartiraSaleController {
     public KvartiraSaleController(KvartiraSaleView view) {
         this.view = view;
 
-        CRUD<KvartiraSaleSearchParams, KvartiraSaleDto, KvartiraSaleDto> crud = new CRUD<>(
+        new CRUD<>(
                 view.frame,
                 new SearchPanel<>(KvartiraSaleSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
