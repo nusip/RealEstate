@@ -112,10 +112,6 @@ public class KvartiraRentSearchForm extends AbstractForm<KvartiraRentSearchParam
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = getLabel(sortAsc);
-            fieldRow.add(label);
-        }
-        {
             fieldRow.add(addField(sortAsc));
         }
         setFieldHeight(fieldRow);

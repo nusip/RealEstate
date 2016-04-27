@@ -109,10 +109,6 @@ public class DomRentSearchForm extends AbstractForm<DomRentSearchParams> {
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            JLabel label = getLabel(sortAsc);
-            fieldRow.add(label);
-        }
-        {
             fieldRow.add(addField(sortAsc));
         }
         setFieldHeight(fieldRow);

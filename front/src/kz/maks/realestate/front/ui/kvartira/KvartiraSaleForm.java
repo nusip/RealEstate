@@ -1,5 +1,6 @@
 package kz.maks.realestate.front.ui.kvartira;
 
+import com.google.common.collect.Sets;
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.validation.AbstractForm;
@@ -10,6 +11,8 @@ import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.util.Set;
 
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
 import static kz.maks.core.front.FrontUtils.setForcedWidth;
@@ -159,25 +162,11 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addVZaloge_isObwyaga(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(isZalog);
-            fieldRow.add(label);
+            fieldRow.add(addField(isZalog));
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            CheckBox checkBox = new CheckBox(KvartiraSaleFormField.isZalog);
-            fieldValues.put(KvartiraSaleFormField.isZalog, checkBox);
-            fieldRow.add(checkBox.ui);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            JLabel label = getLabel(isObwyaga);
-            fieldRow.add(label);
-        }
-        fieldRow.add(FrontUtils.hGap());
-        {
-            CheckBox checkBox = new CheckBox(KvartiraSaleFormField.isObwyaga);
-            fieldValues.put(KvartiraSaleFormField.isObwyaga, checkBox);
-            fieldRow.add(checkBox.ui);
+            fieldRow.add(addField(isObwyaga));
         }
         fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
@@ -268,14 +257,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private void addVArhive(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(isArchive);
-            FrontUtils.setPreferredWidth(label, LABEL_WIDTH_3);
-            fieldRow.add(label);
-
-            fieldRow.add(FrontUtils.hGap());
             fieldRow.add(addField(isArchive));
+            fieldRow.add(Box.createHorizontalGlue());
         }
-        fieldRow.add(Box.createHorizontalGlue());
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
         addFieldRowGap(vBox);

@@ -56,6 +56,7 @@ public class KvartiraRentSearchParams extends AbstractSearchParams {
         this.ploshadKuhnyaMin = ploshadKuhnyaMin;
         this.ploshadKuhnyaMax = ploshadKuhnyaMax;
         this.obwyaga = obwyaga;
+        this.vArhive = vArhive;
         this.sortField = sortField;
     }
 
