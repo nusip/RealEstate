@@ -25,6 +25,7 @@ import static java.util.Calendar.DAY_OF_YEAR;
 import static kz.maks.core.shared.Utils.getDateDifference;
 import static org.hibernate.criterion.Projections.max;
 import static org.hibernate.criterion.Restrictions.*;
+import static org.hibernate.persister.collection.CollectionPropertyNames.COLLECTION_ELEMENTS;
 
 @Service
 public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorService {
@@ -58,15 +59,19 @@ public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorSe
         Criteria criteria = session().createCriteria(Realtor.class);
 
         if (!isNullOrEmpty(params.getName())) {
-            criteria.add(Restrictions.ilike("name", params.getName(), MatchMode.ANYWHERE));
+            criteria.add(ilike("name", params.getName(), MatchMode.ANYWHERE));
         }
         if (!isNullOrEmpty(params.getCompany())) {
-            criteria.add(Restrictions.ilike("company", params.getCompany(), MatchMode.ANYWHERE));
+            criteria.add(ilike("company", params.getCompany(), MatchMode.ANYWHERE));
         }
+
         if (!isNullOrEmpty(params.getTelNumber())) {
+            String telNumber = "%" + params.getTelNumber().replaceAll("\\D+", "") + "%";
+
+            BasicType basicType = session().getTypeHelper().basic(String.class);
+
             Criteria telNumbersCri = criteria.createCriteria("telNumbers");
-            telNumbersCri.add(Restrictions.ilike(CollectionPropertyNames.COLLECTION_ELEMENTS,
-                    params.getTelNumber(), MatchMode.ANYWHERE));
+            telNumbersCri.add(sqlRestriction("regexp_replace({alias}.telNumbers, '\\D+', '', 'g') like ?", telNumber, basicType));
         }
 
         return criteria;
