@@ -31,7 +31,7 @@ public class KvartiraRentController {
     public KvartiraRentController(KvartiraRentView view) {
         this.view = view;
 
-        CRUD<KvartiraRentSearchParams, KvartiraRentDto, KvartiraRentDto> crud = new CRUD<>(
+        new CRUD<>(
                 view.frame,
                 new SearchPanel<>(KvartiraRentSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
@@ -55,6 +55,7 @@ public class KvartiraRentController {
         view.btnCRUDPanel.btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                form.table.clean();
                 form.tabs.setSelectedIndex(0);
                 needLoadHistory = false;
             }

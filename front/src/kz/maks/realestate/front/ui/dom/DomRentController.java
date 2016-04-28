@@ -30,7 +30,7 @@ public class DomRentController {
     public DomRentController(DomRentView view) {
         this.view = view;
 
-        CRUD<DomRentSearchParams, DomRentDto, DomRentDto> crud = new CRUD<>(
+        new CRUD<>(
                 view.frame,
                 new SearchPanel<>(DomRentSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
@@ -54,6 +54,7 @@ public class DomRentController {
         view.btnCRUDPanel.btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                form.table.clean();
                 form.tabs.setSelectedIndex(0);
                 needLoadHistory = false;
             }

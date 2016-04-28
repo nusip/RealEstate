@@ -51,6 +51,7 @@ public class KvartiraSaleController {
         view.btnCRUDPanel.btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                form.table.clean();
                 form.tabs.setSelectedIndex(0);
                 needLoadHistory = false;
             }

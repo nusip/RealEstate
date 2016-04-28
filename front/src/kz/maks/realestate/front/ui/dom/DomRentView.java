@@ -34,6 +34,7 @@ public class DomRentView {
                 Box hBox = Box.createHorizontalBox();
                 {
                     table = new Table<>(DomRentColumn.values());
+                    table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     JScrollPane scrollPane = new JScrollPane(table.ui);
                     hBox.add(scrollPane);
                 }

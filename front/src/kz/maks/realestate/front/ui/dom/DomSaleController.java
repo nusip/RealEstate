@@ -27,7 +27,7 @@ public class DomSaleController {
     public DomSaleController(DomSaleView view) {
         this.view = view;
 
-        CRUD<DomSaleSearchParams, DomSaleDto, DomSaleDto> crud = new CRUD<>(
+        new CRUD<>(
                 view.frame,
                 new SearchPanel<>(DomSaleSearchParams.class, view.searchForm, view.searchForm.btnSearch),
                 view.table,
@@ -51,6 +51,7 @@ public class DomSaleController {
         view.btnCRUDPanel.btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                form.table.clean();
                 form.tabs.setSelectedIndex(0);
                 needLoadHistory = false;
             }

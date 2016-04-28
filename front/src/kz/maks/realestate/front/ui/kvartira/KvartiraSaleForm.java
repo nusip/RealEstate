@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.util.Set;
 
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 import static kz.maks.core.front.FrontUtils.setForcedWidth;
 import static kz.maks.core.shared.Utils.DATE_FORMAT_FULL;
 import static kz.maks.core.shared.Utils.extractId;
@@ -57,7 +58,6 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     private Component buildHistoryPanel() {
         table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         historyPanel.setViewportView(table.ui);
-        historyPanel.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
         return historyPanel;
     }
 

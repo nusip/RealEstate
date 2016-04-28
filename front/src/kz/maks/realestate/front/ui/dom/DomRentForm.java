@@ -49,7 +49,6 @@ public class DomRentForm extends DynamicForm<DomRentDto> {
     private Component buildHistoryPanel() {
         table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         historyPanel.setViewportView(table.ui);
-        historyPanel.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
         return historyPanel;
     }
 }

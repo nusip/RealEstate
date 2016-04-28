@@ -4,21 +4,21 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
 public enum DomSaleColumn implements IColumn<DomSaleDto> {
-    id("ID", 0),
+    id("ID", 50),
     cena("Цена"),
-    valyuta("Валюта"),
-    isZalog("В залоге"),
-    kolichestvoKomnat("Количество комнат"),
-    kolichestvoUrovney("Количество уровней"),
-    tipStroyeniya("Тип строения"),
-    ploshadObshaya("Площадь общая"),
-    ploshadZhilaya("Площадь жилая"),
-    ploshadKuhnya("Площадь кухни"),
-    sanuzel("Санузел"),
-    sostoyaniye("Состояние"),
-    region("Регион"),
-    ulica("Улица"),
-    createdAt("Дата создания"),
+    valyuta("Валюта", 50),
+    isZalog("В залоге", 60),
+    kolichestvoKomnat("Количество комнат", 110),
+    kolichestvoUrovney("Количество уровней", 120),
+    tipStroyeniya("Тип строения", 80),
+    ploshadObshaya("Площадь общая", 100),
+    ploshadZhilaya("Площадь жилая", 100),
+    ploshadKuhnya("Площадь кухни", 90),
+    sanuzel("Санузел", 80),
+    sostoyaniye("Состояние", 120),
+    region("Регион", 120),
+    ulica("Улица", 250),
+    createdAt("Дата создания", 140),
     ;
 
     private final String title;

@@ -38,6 +38,7 @@ public class DomSaleView {
                 Box hBox = Box.createHorizontalBox();
                 {
                     table = new Table<>(DomSaleColumn.values());
+                    table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     JScrollPane scrollPane = new JScrollPane(table.ui);
                     hBox.add(scrollPane);
                 }

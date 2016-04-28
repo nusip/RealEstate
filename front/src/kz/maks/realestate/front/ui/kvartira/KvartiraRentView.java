@@ -38,6 +38,7 @@ public class KvartiraRentView {
                 Box hBox = Box.createHorizontalBox();
                 {
                     table = new Table<>(KvartiraRentColumn.values());
+                    table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     JScrollPane scrollPane = new JScrollPane(table.ui);
                     hBox.add(scrollPane);
                 }
