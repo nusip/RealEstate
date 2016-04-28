@@ -5,6 +5,7 @@ import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 
 public enum KvartiraSaleColumn implements IColumn<KvartiraSaleDto> {
+    @Hidden
     id("ID", 50),
     cena("Цена"),
     valyuta("Валюта", 50),

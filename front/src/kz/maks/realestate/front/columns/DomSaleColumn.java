@@ -1,9 +1,11 @@
 package kz.maks.realestate.front.columns;
 
+import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 
 public enum DomSaleColumn implements IColumn<DomSaleDto> {
+    @Hidden
     id("ID", 50),
     cena("Цена"),
     valyuta("Валюта", 50),
