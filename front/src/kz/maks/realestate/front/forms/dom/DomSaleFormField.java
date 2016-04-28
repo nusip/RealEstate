@@ -49,6 +49,7 @@ public enum DomSaleFormField implements FormField<DomSaleDto> {
     vysotaPotolkov("Высота потолков"),
     @TextArea
     raznoe("Разное"),
+    primechanie("Примечание"),
     @Required
     telNumbers("Тел. номер"),
     @Required

@@ -50,6 +50,7 @@ public enum DomRentFormField implements FormField<DomRentDto> {
     vysotaPotolkov("Высота потолков"),
     @TextArea
     raznoe("Разное"),
+    primechanie("Примечание"),
     @Required
     telNumbers("Тел. номер"),
     @TreeName("Region")

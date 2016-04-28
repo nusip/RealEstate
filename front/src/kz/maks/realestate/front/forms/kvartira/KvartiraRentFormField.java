@@ -48,6 +48,7 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     planirovkaId("Планировка"),
     @TextArea
     raznoe("Разное"),
+    primechanie("Примечание"),
     @Required
     telNumbers("Тел. номер"),
     @Required
@@ -55,12 +56,12 @@ public enum KvartiraRentFormField implements FormField<KvartiraRentDto> {
     regionId("Регион"),
     ulica("Улица"),
     peresechenie("Пересечение"),
+    @ComboName("User")
+    assignedToId("Риэлтор"),
     @Disabled
     createdAt("Дата создания"),
     @Disabled
     updatedAt("Дата изменения"),
-    @ComboName("User")
-    assignedToId("Риэлтор"),
     @Hidden
     modifiedById("Modified by"),
     isArchive("В архиве"),
