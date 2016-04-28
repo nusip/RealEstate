@@ -13,7 +13,7 @@ public enum KvartiraSaleColumn implements IColumn<KvartiraSaleDto> {
     godPostroyki("Год постройки", 90),
     etazh("Этаж", 40),
     etazhnost("Этажность", 70),
-    tipStroyeniya("Тип строения", 80),
+    tipStroyeniya("Тип строения", 140),
     ploshadObshaya("Площадь общая", 100),
     ploshadZhilaya("Площадь жилая", 100),
     ploshadKuhnya("Площадь кухни", 90),

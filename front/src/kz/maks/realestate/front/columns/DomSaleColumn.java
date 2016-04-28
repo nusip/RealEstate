@@ -10,7 +10,7 @@ public enum DomSaleColumn implements IColumn<DomSaleDto> {
     isZalog("В залоге", 60),
     kolichestvoKomnat("Количество комнат", 110),
     kolichestvoUrovney("Количество уровней", 120),
-    tipStroyeniya("Тип строения", 80),
+    tipStroyeniya("Тип строения", 140),
     ploshadObshaya("Площадь общая", 100),
     ploshadZhilaya("Площадь жилая", 100),
     ploshadKuhnya("Площадь кухни", 90),
