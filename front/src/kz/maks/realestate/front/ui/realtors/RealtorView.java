@@ -9,7 +9,6 @@ import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 import javax.swing.*;
 
 public class RealtorView {
-
     public final JSplitPane ui = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
     public final Table<RealtorDto> table;
     public final BtnPgPanel btnPgPanel;

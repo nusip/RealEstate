@@ -6,6 +6,7 @@ import kz.maks.realestate.front.ui.kvartira.KvartiraRentController;
 import kz.maks.realestate.front.ui.kvartira.KvartiraSaleController;
 import kz.maks.realestate.front.ui.realtors.RealtorController;
 import kz.maks.realestate.front.ui.refs.RefManagementController;
+import kz.maks.realestate.front.ui.users.UserController;
 import kz.maks.realestate.shared.refs.Ref;
 
 import javax.swing.event.ChangeEvent;
@@ -34,6 +35,8 @@ public class MainWindowController {
         }
 
         new RealtorController(view.realtorView);
+
+        new UserController(view.userView);
     }
 
 }

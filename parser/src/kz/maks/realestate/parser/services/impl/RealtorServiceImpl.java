@@ -6,15 +6,13 @@ import kz.maks.core.back.annotations.Service;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.assemblers.dto.realtor.RealtorDtoAssembler;
-import kz.maks.realestate.parser.assemblers.entity.RealtorAssembler;
+import kz.maks.realestate.parser.assemblers.entity.realtor.RealtorAssembler;
 import kz.maks.realestate.parser.entities.Realtor;
 import kz.maks.realestate.parser.services.RealtorService;
 import kz.maks.realestate.shared.dtos.RealtorDto;
 import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.persister.collection.CollectionPropertyNames;
 import org.hibernate.type.BasicType;
 
 import java.util.*;
@@ -25,7 +23,6 @@ import static java.util.Calendar.DAY_OF_YEAR;
 import static kz.maks.core.shared.Utils.getDateDifference;
 import static org.hibernate.criterion.Projections.max;
 import static org.hibernate.criterion.Restrictions.*;
-import static org.hibernate.persister.collection.CollectionPropertyNames.COLLECTION_ELEMENTS;
 
 @Service
 public class RealtorServiceImpl extends AbstractServiceImpl implements RealtorService {

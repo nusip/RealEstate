@@ -1,26 +1,26 @@
-package kz.maks.realestate.front.ui.realtors;
+package kz.maks.realestate.front.ui.users;
 
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.validation.AbstractForm;
-import kz.maks.realestate.front.forms.realtors.RealtorSearchFormField;
-import kz.maks.realestate.shared.dtos.params.RealtorSearchParams;
+import kz.maks.realestate.front.forms.users.UserSearchFormField;
+import kz.maks.realestate.shared.dtos.params.UserSearchParams;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static kz.maks.realestate.front.forms.realtors.RealtorSearchFormField.company;
-import static kz.maks.realestate.front.forms.realtors.RealtorSearchFormField.name;
-import static kz.maks.realestate.front.forms.realtors.RealtorSearchFormField.telNumber;
+import static kz.maks.realestate.front.forms.users.UserSearchFormField.firstName;
+import static kz.maks.realestate.front.forms.users.UserSearchFormField.identifier;
+import static kz.maks.realestate.front.forms.users.UserSearchFormField.isActive;
 
-public class RealtorSearchForm extends AbstractForm<RealtorSearchParams> {
+public class UserSearchForm extends AbstractForm<UserSearchParams> {
     private static final int COL_WIDTH = 300;
     private static final int FIELD_ROW_HEIGHT = 22;
     private static final int LABEL_WIDTH = 70;
 
     public final JButton btnSearch = new JButton("Поиск");
 
-    protected RealtorSearchForm(Frame parent) {
-        super(parent, RealtorSearchFormField.values());
+    public UserSearchForm(Frame parent) {
+        super(parent, UserSearchFormField.values());
         FrontUtils.addMargins(ui);
         ui.setLayout(new BoxLayout(ui, BoxLayout.Y_AXIS));
         {
@@ -28,7 +28,7 @@ public class RealtorSearchForm extends AbstractForm<RealtorSearchParams> {
             hBox.add(Box.createHorizontalGlue());
             {
                 Box vBox = Box.createVerticalBox();
-                addName(vBox);
+                addIdentifier(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_WIDTH);
@@ -36,7 +36,7 @@ public class RealtorSearchForm extends AbstractForm<RealtorSearchParams> {
             hBox.add(Box.createHorizontalGlue());
             {
                 Box vBox = Box.createVerticalBox();
-                addCompany(vBox);
+                addFirstName(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_WIDTH);
@@ -44,7 +44,7 @@ public class RealtorSearchForm extends AbstractForm<RealtorSearchParams> {
             hBox.add(Box.createHorizontalGlue());
             {
                 Box vBox = Box.createVerticalBox();
-                addTelNumber(vBox);
+                addIsActive(vBox);
                 vBox.add(Box.createVerticalGlue());
                 hBox.add(vBox);
                 FrontUtils.setForcedWidth(vBox, COL_WIDTH);
@@ -80,48 +80,48 @@ public class RealtorSearchForm extends AbstractForm<RealtorSearchParams> {
         addFieldRowGap(vBox);
     }
 
-    private void addTelNumber(Box vBox) {
+    private void addIsActive(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(telNumber);
+            JLabel label = getLabel(isActive);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(telNumber));
+            fieldRow.add(addField(isActive));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
         addFieldRowGap(vBox);
     }
 
-    private void addCompany(Box vBox) {
+    private void addFirstName(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(company);
+            JLabel label = getLabel(firstName);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(company));
+            fieldRow.add(addField(firstName));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);
         addFieldRowGap(vBox);
     }
 
-    private void addName(Box vBox) {
+    private void addIdentifier(Box vBox) {
         Box fieldRow = Box.createHorizontalBox();
         {
-            JLabel label = getLabel(name);
+            JLabel label = getLabel(identifier);
             FrontUtils.setPreferredWidth(label, LABEL_WIDTH);
             fieldRow.add(label);
         }
         fieldRow.add(FrontUtils.hGap());
         {
-            fieldRow.add(addField(name));
+            fieldRow.add(addField(identifier));
         }
         setFieldHeight(fieldRow);
         vBox.add(fieldRow);

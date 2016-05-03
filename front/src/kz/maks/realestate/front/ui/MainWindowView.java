@@ -8,6 +8,7 @@ import kz.maks.realestate.front.ui.kvartira.KvartiraRentView;
 import kz.maks.realestate.front.ui.kvartira.KvartiraSaleView;
 import kz.maks.realestate.front.ui.realtors.RealtorView;
 import kz.maks.realestate.front.ui.refs.RefManagementView;
+import kz.maks.realestate.front.ui.users.UserView;
 import kz.maks.realestate.shared.AppMeta;
 import kz.maks.realestate.shared.refs.Ref;
 
@@ -27,6 +28,7 @@ public class MainWindowView {
     public final Map<Ref, RefManagementView> refRefManagementViewMap = new HashMap<>();
     public final JTabbedPane refs;
     public final RealtorView realtorView;
+    public final UserView userView;
 
     public MainWindowView() {
         JFrame frame = new JFrame();
@@ -73,6 +75,10 @@ public class MainWindowView {
                     refRefManagementViewMap.put(ref, refManagementView);
                 }
                 tabs.addTab("Справочники", refs);
+            }
+            {
+                userView = new UserView(frame);
+                tabs.addTab("Пользователи", userView.ui);
             }
             frame.getContentPane().add(tabs);
         }

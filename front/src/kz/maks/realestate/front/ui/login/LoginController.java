@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class LoginController {
     private final LoginView view = new LoginView();
 
@@ -39,8 +42,7 @@ public class LoginController {
                     view.ui.setVisible(false);
                     new MainWindowController();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Введены неверные данные", "Ошибка",
-                            JOptionPane.WARNING_MESSAGE);
+                    showMessageDialog(null, "Введены неверные данные", "Ошибка", WARNING_MESSAGE);
                 }
             }
         });

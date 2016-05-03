@@ -1,48 +1,49 @@
-package kz.maks.realestate.front.ui.kvartira;
+package kz.maks.realestate.front.ui.users;
 
 import kz.maks.core.front.ui.*;
-import kz.maks.realestate.front.columns.KvartiraSaleColumn;
-import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
+import kz.maks.realestate.front.columns.UserColumn;
+import kz.maks.realestate.front.forms.users.UserFormField;
+import kz.maks.realestate.shared.dtos.UserDto;
 
 import javax.swing.*;
 
 import static kz.maks.core.front.ui.BtnCRUDPanel.Button.ADD;
 import static kz.maks.core.front.ui.BtnCRUDPanel.Button.EDIT;
 
-public class KvartiraSaleView {
+public class UserView {
     public final JSplitPane ui = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-    public final JFrame frame;
-    public final KvartiraSaleSearchForm searchForm;
-    public final Table<KvartiraSaleDto> table;
+    public final JFrame rootFrame;
+    public final UserSearchForm searchForm;
+    public final Table<UserDto> table;
     public final BtnCRUDPanel btnCRUDPanel;
     public final BtnPgPanel btnPgPanel;
-    public final FormDialog<KvartiraSaleDto> formDialog;
+    public final FormDialog<UserDto> formDialog;
 
-    public KvartiraSaleView(JFrame frame) {
-        this.frame = frame;
+    public UserView(JFrame rootFrame) {
+        this.rootFrame = rootFrame;
         ui.setOneTouchExpandable(true);
         ui.setDividerSize(20);
         {
-            searchForm = new KvartiraSaleSearchForm(frame);
-            ui.setTopComponent(new JScrollPane(searchForm.ui()));
+            searchForm = new UserSearchForm(this.rootFrame);
+            ui.setTopComponent(searchForm.ui());
         }
         {
             Box vBox = Box.createVerticalBox();
             {
                 Box hBox = Box.createHorizontalBox();
                 {
-                    table = new Table<>(KvartiraSaleColumn.values());
-                    table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                    table = new Table<>(UserColumn.values());
+                    table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
                     JScrollPane scrollPane = new JScrollPane(table.ui);
-                    hBox.add(scrollPane);
+                    vBox.add(scrollPane);
                 }
                 {
                     btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);
                     hBox.add(btnCRUDPanel.ui);
                 }
                 {
-                    KvartiraSaleForm detailsForm = new KvartiraSaleForm(frame);
-                    formDialog = new FormDialog<>(frame, detailsForm);
+                    DynamicForm<UserDto> detailsForm = new DynamicForm<>(rootFrame, UserFormField.values());
+                    formDialog = new FormDialog<>(rootFrame, detailsForm);
                 }
                 vBox.add(hBox);
             }
@@ -53,4 +54,5 @@ public class KvartiraSaleView {
             ui.setBottomComponent(vBox);
         }
     }
+
 }

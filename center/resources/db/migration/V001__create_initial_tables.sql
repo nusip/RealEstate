@@ -1229,9 +1229,51 @@ CREATE TABLE users (
     identifier character varying(255) NOT NULL,
     firstname character varying(255),
     lastname character varying(255),
-    middlename character varying(255)
+    middlename character varying(255),
+    isactive boolean
 );
 
+--
+-- Name: role_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE role_seq
+    START WITH 1
+    INCREMENT BY 50
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE roles (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    title character varying(255)
+);
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT uk_roles_name UNIQUE (name);
+
+--
+-- Name: users_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE users_roles (
+    users_id bigint NOT NULL,
+    roles_id bigint NOT NULL
+);
+
+ALTER TABLE ONLY users_roles
+    ADD CONSTRAINT fk_users_roles_users_id FOREIGN KEY (users_id) REFERENCES users(id);
+
+ALTER TABLE ONLY users_roles
+    ADD CONSTRAINT fk_users_roles_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id);
 
 --
 -- Name: valyuta; Type: TABLE; Schema: public; Owner: -

@@ -1,4 +1,4 @@
-package kz.maks.realestate.parser.assemblers.entity;
+package kz.maks.realestate.parser.assemblers.entity.realtor;
 
 import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.assemblers.IAssembler;
