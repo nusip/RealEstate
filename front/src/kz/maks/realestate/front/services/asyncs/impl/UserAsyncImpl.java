@@ -24,23 +24,45 @@ public class UserAsyncImpl extends AbstractAsyncImpl implements UserAsync {
     }
 
     @Override
-    public void delete(Long id, Callback<Void> callback) {
-        // TODO
+    public void delete(final Long id, Callback<Void> callback) {
+        executeAsync(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                userRemote().delete(id);
+                return null;
+            }
+        }, callback);
     }
 
     @Override
-    public void get(Long id, Callback<UserDto> callback) {
-        // TODO
+    public void get(final Long id, Callback<UserDto> callback) {
+        executeAsync(new Callable<UserDto>() {
+            @Override
+            public UserDto call() throws Exception {
+                return userRemote().getDto(id);
+            }
+        }, callback);
     }
 
     @Override
-    public void list(UserSearchParams userSearchParams, Callback<ListResponse<UserDto>> callback) {
-        // TODO
+    public void list(final UserSearchParams userSearchParams, Callback<ListResponse<UserDto>> callback) {
+        executeAsync(new Callable<ListResponse<UserDto>>() {
+            @Override
+            public ListResponse<UserDto> call() throws Exception {
+                return userRemote().list(userSearchParams);
+            }
+        }, callback);
     }
 
     @Override
-    public void save(UserDto userDto, Callback<Void> callback) {
-        // TODO
+    public void save(final UserDto userDto, Callback<Void> callback) {
+        executeAsync(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                userRemote().save(userDto);
+                return null;
+            }
+        }, callback);
     }
 
 }

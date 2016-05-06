@@ -1,5 +1,6 @@
 package kz.maks.realestate.front.forms.users;
 
+import kz.maks.core.front.annotations.ComboName;
 import kz.maks.core.front.ui.FormField;
 import kz.maks.realestate.shared.dtos.UserDto;
 import kz.maks.realestate.shared.dtos.params.UserSearchParams;
@@ -11,6 +12,7 @@ public enum UserFormField implements FormField<UserDto> {
     lastName("Имя"),
     middleName("Имя"),
     isActive("Активный"),
+    @ComboName("Role")
     roles("Роли"),
     ;
 

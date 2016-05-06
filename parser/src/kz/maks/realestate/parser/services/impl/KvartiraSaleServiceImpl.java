@@ -144,8 +144,9 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
 
         } else if (dto.getId() != null) {
             kvartiraSale = db.load(KvartiraSale.class, dto.getId());
+        }
 
-        } else {
+        if (kvartiraSale == null) {
             kvartiraSale = new KvartiraSale();
             kvartiraSale.setCreatedAt(new Date());
         }
@@ -170,6 +171,7 @@ public class KvartiraSaleServiceImpl extends AbstractServiceImpl implements Kvar
 
         if (existing != null) {
             entity.setId(existing.getId());
+        } else {
             entity.setCreatedAt(new Date());
         }
 

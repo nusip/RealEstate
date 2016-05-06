@@ -1,6 +1,5 @@
 package kz.maks.realestate.front.ui.kvartira;
 
-import com.google.common.collect.Sets;
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.validation.AbstractForm;
@@ -11,11 +10,7 @@ import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.Set;
 
-import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
-import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 import static kz.maks.core.front.FrontUtils.setForcedWidth;
 import static kz.maks.core.shared.Utils.DATE_FORMAT_FULL;
 import static kz.maks.core.shared.Utils.extractId;
@@ -40,9 +35,9 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
     public final JScrollPane historyPanel = new JScrollPane();
     public final Table<KvartiraSaleDto> table = new Table<>(KvartiraSaleHistoryColumn.values());
 
-    private SimpleTableField telNumbersField;
+    private SimpleTableField<String> telNumbersField;
 
-    public SimpleTableField telNumbersField() {
+    public SimpleTableField<String> telNumbersField() {
         return telNumbersField;
     }
 
@@ -287,7 +282,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
 
         fieldRow.add(addField(telNumbers));
 
-        telNumbersField = (SimpleTableField) fieldValues.get(telNumbers);
+        telNumbersField = (SimpleTableField<String>) fieldValues.get(telNumbers);
 
 //        setFieldHeight(fieldRow);
         vBox.add(fieldRow);

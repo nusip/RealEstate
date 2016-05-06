@@ -1,5 +1,6 @@
 package kz.maks.realestate.parser.assemblers.entity.user;
 
+import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.assemblers.IAssembler;
 import kz.maks.core.shared.PasswordUtils;
 import kz.maks.realestate.parser.entities.User;
@@ -7,6 +8,7 @@ import kz.maks.realestate.shared.dtos.UserDto;
 
 import static kz.maks.core.shared.PasswordUtils.getPasswordHash;
 
+@Bean
 public class UserAssembler implements IAssembler<UserDto, User> {
 
     @Override
@@ -19,7 +21,8 @@ public class UserAssembler implements IAssembler<UserDto, User> {
         user.setMiddleName(userDto.getMiddleName());
         user.setIsActive(userDto.isActive());
 //        user.setRoles();
-        return null;
+        // TODO
+        return user;
     }
 
 }

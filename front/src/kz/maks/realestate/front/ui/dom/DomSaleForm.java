@@ -11,7 +11,6 @@ import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
 import javax.swing.*;
 import java.awt.*;
 
-import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
 import static kz.maks.core.shared.Utils.extractId;
 import static kz.maks.realestate.front.UserUtils.connected;
 import static kz.maks.realestate.front.forms.dom.DomSaleFormField.modifiedById;
@@ -22,9 +21,9 @@ public class DomSaleForm extends DynamicForm<DomSaleDto> {
     public final JScrollPane historyPanel = new JScrollPane();
     public final Table<DomSaleDto> table = new Table<>(DomSaleHistoryColumn.values());
 
-    private SimpleTableField telNumbersField;
+    private SimpleTableField<String> telNumbersField;
 
-    public SimpleTableField telNumbersField() {
+    public SimpleTableField<String> telNumbersField() {
         return telNumbersField;
     }
 
@@ -34,7 +33,7 @@ public class DomSaleForm extends DynamicForm<DomSaleDto> {
         tabs.addTab("Дом", ui);
         tabs.addTab("История изменений", buildHistoryPanel());
 
-        telNumbersField = (SimpleTableField) fieldValues.get(telNumbers);
+        telNumbersField = (SimpleTableField<String>) fieldValues.get(telNumbers);
 
         fieldValues.put(modifiedById, new HiddenField(modifiedById) {
             @Override

@@ -11,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "users")
 @SequenceGenerator(name = "id_gen", sequenceName = "user_seq")
 public class User extends AbstractUserEntity implements ICombo {
+    public static final String FIRST_NAME_FIELD = "firstName";
+
     private String firstName;
     private String lastName;
     private String middleName;
