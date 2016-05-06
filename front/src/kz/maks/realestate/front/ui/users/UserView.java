@@ -35,7 +35,7 @@ public class UserView {
                     table = new Table<>(UserColumn.values());
                     table.ui.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
                     JScrollPane scrollPane = new JScrollPane(table.ui);
-                    vBox.add(scrollPane);
+                    hBox.add(scrollPane);
                 }
                 {
                     btnCRUDPanel = new BtnCRUDPanel(ADD, EDIT);

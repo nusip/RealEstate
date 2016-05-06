@@ -1,5 +1,6 @@
 package kz.maks.realestate.parser.services;
 
+import kz.maks.core.back.entities.Role;
 import kz.maks.core.shared.models.ListResponse;
 import kz.maks.realestate.parser.entities.User;
 import kz.maks.realestate.shared.dtos.UserDto;
@@ -18,5 +19,7 @@ public interface UserService {
     ListResponse<UserDto> list(UserSearchParams params);
 
     void save(UserDto userDto);
+
+    Role getRole(Long id);
 
 }

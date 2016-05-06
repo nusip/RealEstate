@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import kz.maks.core.back.BackUtils;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.core.back.annotations.Service;
+import kz.maks.core.back.entities.Role;
 import kz.maks.core.back.services.impl.AbstractServiceImpl;
 import kz.maks.core.shared.PasswordUtils;
 import kz.maks.core.shared.models.ListResponse;
@@ -26,6 +27,7 @@ import static kz.maks.core.back.entities.AbstractUserEntity.CREDENTIALS_FIELD;
 import static kz.maks.core.back.entities.AbstractUserEntity.IDENTIFIER_FIELD;
 import static kz.maks.core.back.entities.AbstractUserEntity.IS_ACTIVE_FIELD;
 import static kz.maks.realestate.parser.entities.User.FIRST_NAME_FIELD;
+import static kz.maks.realestate.parser.entities.User.ROOT_USER_IDENTIFIER;
 import static org.hibernate.criterion.Restrictions.*;
 
 @Service
@@ -87,6 +89,8 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService 
     private Criteria listCriteria(UserSearchParams params) {
         Criteria criteria = session().createCriteria(User.class);
 
+        criteria.add(ne(IDENTIFIER_FIELD, ROOT_USER_IDENTIFIER));
+
         if (!isNullOrEmpty(params.getIdentifier())) {
             criteria.add(ilike(IDENTIFIER_FIELD, params.getIdentifier(), MatchMode.ANYWHERE));
         }
@@ -107,8 +111,24 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService 
 
     @Override
     public void save(UserDto userDto) {
-        // TODO
+        User user;
 
+        if (userDto.getId() != null) {
+            user = get(userDto.getId());
+
+        } else {
+            user = new User();
+        }
+
+        userAssembler.assemble(userDto, user);
+
+        db.save(user);
+    }
+
+    @Override
+    public Role getRole(Long id) {
+        Role role = db.load(Role.class, id);
+        return role;
     }
 
 }

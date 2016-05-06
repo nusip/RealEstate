@@ -3,6 +3,7 @@ package kz.maks.realestate.front.ui.kvartira;
 import kz.maks.core.front.FrontUtils;
 import kz.maks.core.front.ui.*;
 import kz.maks.core.front.validation.AbstractForm;
+import kz.maks.realestate.front.ConnectedUser;
 import kz.maks.realestate.front.columns.KvartiraSaleHistoryColumn;
 import kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField;
 import kz.maks.realestate.shared.dtos.kvartira.KvartiraSaleDto;
@@ -14,7 +15,6 @@ import java.awt.*;
 import static kz.maks.core.front.FrontUtils.setForcedWidth;
 import static kz.maks.core.shared.Utils.DATE_FORMAT_FULL;
 import static kz.maks.core.shared.Utils.extractId;
-import static kz.maks.realestate.front.UserUtils.connected;
 import static kz.maks.realestate.front.forms.kvartira.KvartiraSaleFormField.*;
 
 public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
@@ -65,7 +65,7 @@ public class KvartiraSaleForm extends AbstractForm<KvartiraSaleDto> {
             fieldValues.put(modifiedById, new HiddenField(modifiedById) {
                 @Override
                 public Object get() {
-                    return extractId(connected());
+                    return extractId(ConnectedUser.get());
                 }
             });
         }

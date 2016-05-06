@@ -1,19 +1,27 @@
 package kz.maks.realestate.front.forms.users;
 
 import kz.maks.core.front.annotations.ComboName;
+import kz.maks.core.front.annotations.Hidden;
+import kz.maks.core.front.annotations.Password;
+import kz.maks.core.front.annotations.Required;
 import kz.maks.core.front.ui.FormField;
 import kz.maks.realestate.shared.dtos.UserDto;
 import kz.maks.realestate.shared.dtos.params.UserSearchParams;
 
 public enum UserFormField implements FormField<UserDto> {
+    @Hidden
+    id("id"),
+    @Required
     identifier("Логин"),
-    credentials("Логин"),
+    @Password
+    credentials("Пароль"),
+    @Required
     firstName("Имя"),
-    lastName("Имя"),
-    middleName("Имя"),
+    lastName("Фамилия"),
+    middleName("Отчество"),
     isActive("Активный"),
     @ComboName("Role")
-    roles("Роли"),
+    roleIds("Роли"),
     ;
 
     private final String title;

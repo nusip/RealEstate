@@ -10,8 +10,11 @@ public class UserDto extends AbstractIdDto {
     private String firstName;
     private String lastName;
     private String middleName;
+    private String fullName;
     private boolean isActive;
-    private List<String> roles;
+    private List<Long> roleIds;
+    private List<String> roleTitles;
+    private List<String> roleNames;
 
     public String getIdentifier() {
         return identifier;
@@ -53,7 +56,7 @@ public class UserDto extends AbstractIdDto {
         this.middleName = middleName;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -61,11 +64,35 @@ public class UserDto extends AbstractIdDto {
         this.isActive = isActive;
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public List<Long> getRoleIds() {
+        return roleIds;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public List<String> getRoleTitles() {
+        return roleTitles;
+    }
+
+    public void setRoleTitles(List<String> roleTitles) {
+        this.roleTitles = roleTitles;
+    }
+
+    public List<String> getRoleNames() {
+        return roleNames;
+    }
+
+    public void setRoleNames(List<String> roleNames) {
+        this.roleNames = roleNames;
     }
 }

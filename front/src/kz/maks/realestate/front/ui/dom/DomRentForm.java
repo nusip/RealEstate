@@ -1,6 +1,7 @@
 package kz.maks.realestate.front.ui.dom;
 
 import kz.maks.core.front.ui.*;
+import kz.maks.realestate.front.ConnectedUser;
 import kz.maks.realestate.front.columns.DomRentHistoryColumn;
 import kz.maks.realestate.front.forms.dom.DomRentFormField;
 import kz.maks.realestate.shared.dtos.dom.DomRentDto;
@@ -9,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static kz.maks.core.shared.Utils.extractId;
-import static kz.maks.realestate.front.UserUtils.connected;
 import static kz.maks.realestate.front.forms.dom.DomRentFormField.modifiedById;
 import static kz.maks.realestate.front.forms.dom.DomRentFormField.telNumbers;
 
@@ -35,7 +35,7 @@ public class DomRentForm extends DynamicForm<DomRentDto> {
         fieldValues.put(modifiedById, new HiddenField(modifiedById) {
             @Override
             public Object get() {
-                return extractId(connected());
+                return extractId(ConnectedUser.get());
             }
         });
     }

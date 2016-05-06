@@ -26,8 +26,8 @@ public class FrontClient extends BaseClient {
             throw new RuntimeException(e);
         }
 
-//        new LoginController(); // TODO
-        new MainWindowController();
+        new LoginController();
+//        new MainWindowController();
 
     }
 

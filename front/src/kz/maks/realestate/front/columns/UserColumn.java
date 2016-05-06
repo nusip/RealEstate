@@ -8,10 +8,10 @@ import kz.maks.realestate.shared.dtos.UserDto;
 public enum UserColumn implements IColumn<UserDto> {
     @Hidden
     id("ID"),
-    identifier("Логин"),
-    fullName("ФИО"),
-    isActive("Активный"),
-    roles("Роли"),
+    identifier("Логин", 250),
+    fullName("ФИО", 250),
+    isActive("Активный", 50),
+    roleTitles("Роли", 500),
     ;
 
     private final String title;

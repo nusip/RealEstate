@@ -1,9 +1,12 @@
 package kz.maks.realestate.front.columns;
 
+import kz.maks.core.front.annotations.Hidden;
 import kz.maks.core.front.ui.IColumn;
 import kz.maks.realestate.shared.dtos.RealtorDto;
 
 public enum RealtorColumn implements IColumn<RealtorDto> {
+    @Hidden
+    id("ID"),
     name("Имя", 250),
     vidDeyatelnosti("Вид деятельности", 250),
     company("Компания", 250),

@@ -4,6 +4,7 @@ import kz.maks.core.front.ui.DynamicForm;
 import kz.maks.core.front.ui.HiddenField;
 import kz.maks.core.front.ui.SimpleTableField;
 import kz.maks.core.front.ui.Table;
+import kz.maks.realestate.front.ConnectedUser;
 import kz.maks.realestate.front.columns.DomSaleHistoryColumn;
 import kz.maks.realestate.front.forms.dom.DomSaleFormField;
 import kz.maks.realestate.shared.dtos.dom.DomSaleDto;
@@ -12,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static kz.maks.core.shared.Utils.extractId;
-import static kz.maks.realestate.front.UserUtils.connected;
 import static kz.maks.realestate.front.forms.dom.DomSaleFormField.modifiedById;
 import static kz.maks.realestate.front.forms.dom.DomSaleFormField.telNumbers;
 
@@ -38,7 +38,7 @@ public class DomSaleForm extends DynamicForm<DomSaleDto> {
         fieldValues.put(modifiedById, new HiddenField(modifiedById) {
             @Override
             public Object get() {
-                return extractId(connected());
+                return extractId(ConnectedUser.get());
             }
         });
     }
