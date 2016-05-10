@@ -12,13 +12,13 @@ import java.rmi.RemoteException;
 public class ActivationRemoteImpl extends AbstractRemoteImpl implements ActivationRemote {
 
     @Inject(proxy = true)
-    private ActivationService activationService;
+    private ActivationService centerService;
 
     public ActivationRemoteImpl() throws RemoteException {}
 
     @Override
     public boolean isDeviceAllowed(String deviceNumber) throws RemoteException {
-        return activationService.isDeviceAllowed(deviceNumber);
+        return centerService.isDeviceAllowed(deviceNumber);
     }
 
 }

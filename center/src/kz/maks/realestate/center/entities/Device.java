@@ -1,15 +1,13 @@
 package kz.maks.realestate.center.entities;
 
 import kz.maks.core.back.entities.AbstractBaseEntity;
+import kz.maks.core.shared.models.HasTitle;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
 @SequenceGenerator(name = "id_gen", sequenceName = "device_seq")
-public class Device extends AbstractBaseEntity {
+public class Device extends AbstractBaseEntity implements HasTitle {
     @ManyToOne(optional = false)
     private Client client;
 
@@ -43,5 +41,11 @@ public class Device extends AbstractBaseEntity {
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
+    }
+
+    @Transient
+    @Override
+    public String getTitle() {
+        return getNumber();
     }
 }

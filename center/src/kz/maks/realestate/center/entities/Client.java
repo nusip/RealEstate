@@ -1,17 +1,15 @@
 package kz.maks.realestate.center.entities;
 
 import kz.maks.core.back.entities.AbstractBaseEntity;
+import kz.maks.core.shared.models.HasName;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "id_gen", sequenceName = "client_seq")
-public class Client extends AbstractBaseEntity {
+public class Client extends AbstractBaseEntity implements HasName {
     @Column(unique = true, nullable = false)
     private String name;
 
@@ -42,5 +40,11 @@ public class Client extends AbstractBaseEntity {
 
     public void setDevices(List<Device> devices) {
         this.devices = devices;
+    }
+
+    @Transient
+    @Override
+    public String name() {
+        return getName();
     }
 }
