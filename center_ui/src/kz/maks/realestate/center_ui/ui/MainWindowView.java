@@ -37,6 +37,6 @@ public class MainWindowView {
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ui.setVisible(true);
-        ui.setIconImage(Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png")));
+        ui.setIconImage(Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.jpg")));
     }
 }

@@ -2,6 +2,7 @@ package kz.maks.realestate.center.entities;
 
 import kz.maks.core.back.entities.AbstractBaseEntity;
 import kz.maks.core.shared.models.HasName;
+import kz.maks.core.shared.models.ICombo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "id_gen", sequenceName = "client_seq")
-public class Client extends AbstractBaseEntity implements HasName {
+public class Client extends AbstractBaseEntity implements ICombo, HasName {
     @Column(unique = true, nullable = false)
     private String name;
 
@@ -45,6 +46,12 @@ public class Client extends AbstractBaseEntity implements HasName {
     @Transient
     @Override
     public String name() {
+        return getName();
+    }
+
+    @Transient
+    @Override
+    public String getTitle() {
         return getName();
     }
 }

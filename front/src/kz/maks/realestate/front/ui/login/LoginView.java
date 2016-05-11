@@ -75,7 +75,7 @@ public class LoginView {
         ui.setLocationRelativeTo(null);
         ui.setResizable(false);
         ui.setVisible(true);
-        ui.setIconImage(Toolkit.getDefaultToolkit().createImage(MainWindowView.class.getResource("icon.png")));
+        ui.setIconImage(Toolkit.getDefaultToolkit().createImage(MainWindowView.class.getResource("icon.jpg")));
 
         ui.getRootPane().registerKeyboardAction(new ActionListener() {
             @Override

@@ -12,7 +12,7 @@ import java.awt.*;
 public class DeviceSearchForm extends AbstractForm<DeviceSearchParams> {
     private static final int COL_WIDTH = 300;
     private static final int FIELD_ROW_HEIGHT = 22;
-    private static final int LABEL_WIDTH = 70;
+    private static final int LABEL_WIDTH = 150;
 
     public final JButton btnSearch = new JButton("Поиск");
 

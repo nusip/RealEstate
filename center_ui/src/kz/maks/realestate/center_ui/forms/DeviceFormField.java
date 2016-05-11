@@ -9,6 +9,7 @@ import kz.maks.realestate.shared.dtos.DeviceDto;
 public enum DeviceFormField implements FormField<DeviceDto> {
     @Hidden
     id("id"),
+    @Required
     @ComboName("Client")
     clientId("Клиент"),
     @Required

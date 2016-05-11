@@ -92,7 +92,7 @@ public class MainWindowView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
-        frame.setIconImage(Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png")));
+        frame.setIconImage(Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.jpg")));
         ui = frame;
     }
 

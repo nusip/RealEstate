@@ -1,5 +1,6 @@
 package kz.maks.realestate.center.assemblers.dto;
 
+import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.assemblers.IAssembler;
 import kz.maks.core.shared.Utils;
 import kz.maks.realestate.center.entities.Client;
@@ -11,6 +12,7 @@ import static kz.maks.core.shared.Utils.extractId;
 import static kz.maks.core.shared.Utils.extractName;
 import static kz.maks.core.shared.Utils.extractTitles;
 
+@Bean
 public class DeviceDtoAssembler implements IAssembler<Device, DeviceDto> {
 
     @Override
