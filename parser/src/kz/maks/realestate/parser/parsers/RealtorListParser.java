@@ -64,8 +64,6 @@ public class RealtorListParser {
 
             Elements elements = document.select("div.pitem > div.pr_block > div > a.name");
 
-            System.out.println("COUNT: " + elements.size());
-
             for (Element element : elements) {
                 adLinks.add(element.attr("href"));
             }
@@ -83,8 +81,6 @@ public class RealtorListParser {
                 continue;
             }
         }
-
-        System.out.println("TOTAL COUNT: " + adLinks.size());
 
         return adLinks;
     }
