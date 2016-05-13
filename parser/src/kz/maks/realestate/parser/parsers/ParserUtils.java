@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 public class ParserUtils {
 
     public static final boolean USE_PROXY = false;
-    public static final int SLEEP_TIME = 6000;
+    private static final int SLEEP_TIME = 6000;
 
     public static HttpURLConnection getConnection(String url) {
         try {
@@ -70,9 +70,9 @@ public class ParserUtils {
         return document[0];
     }
 
-    public static Document jSoupParse(final String url) {
+    public static synchronized Document jSoupParse(final String url) {
         try {
-            Thread.sleep(SLEEP_TIME);
+            synchronizedWait();
 
             if (USE_PROXY) {
                 return jSoupProxyParseMaxAttempts(url);
@@ -88,6 +88,10 @@ public class ParserUtils {
         adLink = adLink.endsWith("/") ? adLink.substring(0, adLink.lastIndexOf("/")) : adLink;
         String id = adLink.substring(adLink.lastIndexOf("/") + 1);
         return id;
+    }
+
+    public static synchronized void synchronizedWait() throws InterruptedException {
+        Thread.sleep(SLEEP_TIME);
     }
 
 }

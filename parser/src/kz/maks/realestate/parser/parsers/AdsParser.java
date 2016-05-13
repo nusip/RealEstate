@@ -16,7 +16,7 @@ import java.util.List;
 @Bean
 public class AdsParser {
 
-    private int PAGE_LIMIT = 1; // remove later, for testing only
+    private int PAGE_LIMIT; // remove later, for testing only
 
     @Inject(proxy = true)
     private KvartiraSaleService kvartiraSaleService;
@@ -29,6 +29,7 @@ public class AdsParser {
     }
 
     private void parseKvartiraSales() throws IOException, InterruptedException {
+        PAGE_LIMIT = 999999;
         List<String> adLinks = collectAdLinks();
 
         for (String adLink : adLinks) {
@@ -63,8 +64,6 @@ public class AdsParser {
 
             Elements elements = document.select("div.item > div.descr > div.title > a");
 
-            System.out.println("COUNT: " + elements.size());
-
             for (Element element : elements) {
                 adLinks.add(element.attr("href"));
             }
@@ -82,8 +81,6 @@ public class AdsParser {
                 continue;
             }
         }
-
-        System.out.println("TOTAL COUNT: " + adLinks.size());
 
         return adLinks;
     }

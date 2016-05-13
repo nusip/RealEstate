@@ -144,7 +144,7 @@ public class KvartiraParser {
     }
 
     private void parsePhoneNumbers() throws IOException, InterruptedException {
-        Thread.sleep(ParserUtils.SLEEP_TIME);
+        ParserUtils.synchronizedWait();
 
         if (ParserUtils.USE_PROXY) {
             parsePhoneNumbersWithProxyMaxAttempts();

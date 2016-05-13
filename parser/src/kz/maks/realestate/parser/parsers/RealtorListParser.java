@@ -16,7 +16,7 @@ import java.util.List;
 @Bean
 public class RealtorListParser {
 
-    private int PAGE_LIMIT = 1; // remove later, for testing only
+    private int PAGE_LIMIT; // remove later, for testing only
 
     @Inject(proxy = true)
     private RealtorService realtorService;
@@ -25,6 +25,7 @@ public class RealtorListParser {
     private RealtorParser realtorParser;
 
     public void parseRealtors() {
+        PAGE_LIMIT = 999999;
         List<String> adLinks = collectAdLinks();
 
         for (String adLink : adLinks) {
