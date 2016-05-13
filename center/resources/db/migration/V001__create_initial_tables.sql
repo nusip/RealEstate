@@ -1269,12 +1269,6 @@ CREATE TABLE users_roles (
     roles_id bigint NOT NULL
 );
 
-ALTER TABLE ONLY users_roles
-    ADD CONSTRAINT fk_users_roles_users_id FOREIGN KEY (users_id) REFERENCES users(id);
-
-ALTER TABLE ONLY users_roles
-    ADD CONSTRAINT fk_users_roles_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id);
-
 --
 -- Name: valyuta; Type: TABLE; Schema: public; Owner: -
 --
@@ -2584,6 +2578,12 @@ ALTER TABLE ONLY kvartirarent
 ALTER TABLE ONLY kvartirarent_telnumbers_aud
     ADD CONSTRAINT fkx4h93h3t35p3ucaw3koowvro FOREIGN KEY (rev) REFERENCES revinfo(rev);
 
+
+ALTER TABLE ONLY users_roles
+    ADD CONSTRAINT fk_users_roles_users_id FOREIGN KEY (users_id) REFERENCES users(id);
+
+ALTER TABLE ONLY users_roles
+    ADD CONSTRAINT fk_users_roles_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id);
 
 --
 -- PostgreSQL database dump complete
