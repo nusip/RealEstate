@@ -6,7 +6,7 @@ import kz.maks.core.back.jobs.IJob;
 
 import static kz.maks.core.shared.Utils.ONE_HOUR;
 
-//@Job(interval = ONE_HOUR)
+@Job(interval = ONE_HOUR)
 public class AdsUpdaterJob implements IJob {
 
     @Inject

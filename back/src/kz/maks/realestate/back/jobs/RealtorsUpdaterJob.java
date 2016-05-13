@@ -5,7 +5,7 @@ import kz.maks.core.back.annotations.Job;
 import kz.maks.core.back.jobs.IJob;
 import kz.maks.core.shared.Utils;
 
-//@Job(interval = Utils.ONE_WEEK)
+@Job(interval = Utils.ONE_WEEK)
 public class RealtorsUpdaterJob implements IJob {
 
     @Inject
