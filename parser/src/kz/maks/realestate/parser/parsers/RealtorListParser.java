@@ -24,8 +24,12 @@ public class RealtorListParser {
     @Inject
     private RealtorParser realtorParser;
 
+    private List<String> adLinks = null;
+
     public void parseRealtors() {
         PAGE_LIMIT = 999999;
+        adLinks = new ArrayList<>();
+
         List<String> adLinks = collectAdLinks();
 
         for (String adLink : adLinks) {

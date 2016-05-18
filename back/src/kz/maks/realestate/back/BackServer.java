@@ -5,8 +5,11 @@ import kz.maks.core.back.ServerConfig;
 import kz.maks.realestate.back.jobs.ActivationChecker;
 import kz.maks.realestate.back.jobs.RegionsUpdater;
 import kz.maks.realestate.parser.services.RegionService;
+import org.apache.log4j.Logger;
 
 public class BackServer extends BaseServer {
+
+    private Logger log = Logger.getLogger(BackServer.class);
 
     public BackServer() {
         super(new ServerConfig());
@@ -25,7 +28,7 @@ public class BackServer extends BaseServer {
             regionsUpdater.update();
         }
 
-        System.out.println("BACK SERVER STARTED");
+        log.info("BACK SERVER STARTED");
     }
 
 }

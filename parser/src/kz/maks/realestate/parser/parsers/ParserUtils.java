@@ -1,6 +1,7 @@
 package kz.maks.realestate.parser.parsers;
 
 import kz.maks.core.shared.Utils;
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -8,12 +9,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 public class ParserUtils {
 
     public static final boolean USE_PROXY = false;
-    private static final int SLEEP_TIME = 6000;
+    private static final int SLEEP_TIME = 2000;
+
+    private static Logger log = Logger.getLogger(ParserUtils.class);
 
     public static HttpURLConnection getConnection(String url) {
         try {
@@ -70,16 +75,28 @@ public class ParserUtils {
         return document[0];
     }
 
-    public static synchronized Document jSoupParse(final String url) {
+    public static Document jSoupParse(final String url) {
         try {
             synchronizedWait();
 
             if (USE_PROXY) {
                 return jSoupProxyParseMaxAttempts(url);
             } else {
-                return Jsoup.connect(url).get();
+                final Document[] document = {null};
+
+                Utils.execute(10, IOException.class, new Callable() {
+                    @Override
+                    public Object call() throws Exception {
+                        String sDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+                        log.debug(sDateTime + " JSOUP PARSE url: " + url);
+
+                        document[0] = Jsoup.connect(url).get();
+                        return null;
+                    }
+                });
+                return document[0];
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
