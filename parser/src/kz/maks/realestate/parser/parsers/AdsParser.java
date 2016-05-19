@@ -4,6 +4,7 @@ import kz.maks.core.back.annotations.Bean;
 import kz.maks.core.back.annotations.Inject;
 import kz.maks.realestate.parser.models.KvartiraPlain;
 import kz.maks.realestate.parser.services.KvartiraSaleService;
+import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,6 +25,8 @@ public class AdsParser {
     @Inject
     private KvartiraParser kvartiraParser;
 
+    private Logger log = Logger.getLogger(AdsParser.class);
+
     public void parseAds() throws InterruptedException, SQLException, IOException {
         parseKvartiraSales();
     }
@@ -33,7 +36,12 @@ public class AdsParser {
         List<String> adLinks = collectAdLinks();
 
         for (String adLink : adLinks) {
-            parseKvartiraSale(adLink);
+            try {
+                parseKvartiraSale(adLink);
+
+            } catch (Exception e) {
+                log.error(null, e);
+            }
         }
     }
 

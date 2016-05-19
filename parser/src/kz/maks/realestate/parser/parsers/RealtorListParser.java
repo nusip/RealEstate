@@ -24,17 +24,9 @@ public class RealtorListParser {
     @Inject
     private RealtorParser realtorParser;
 
-    private List<String> adLinks = null;
-
     public void parseRealtors() {
         PAGE_LIMIT = 999999;
-        adLinks = new ArrayList<>();
-
-        List<String> adLinks = collectAdLinks();
-
-        for (String adLink : adLinks) {
-            parseRealtor(adLink);
-        }
+        collectAdLinks();
     }
 
     private void parseRealtor(String adLink) {
@@ -47,12 +39,10 @@ public class RealtorListParser {
         }
     }
 
-    private List<String> collectAdLinks() {
+    private void collectAdLinks() {
         final String domain = "http://krisha.kz";
         final String baseUri = "/pro/specialist/almaty/";
         String uri = "/pro/specialist/almaty/?&sort-by[status-and-date]=desc";
-
-        List<String> adLinks = new ArrayList<>();
 
         Elements nav = null;
 
@@ -69,7 +59,8 @@ public class RealtorListParser {
             Elements elements = document.select("div.pitem > div.pr_block > div > a.name");
 
             for (Element element : elements) {
-                adLinks.add(element.attr("href"));
+                String adLink = element.attr("href");
+                parseRealtor(adLink);
             }
 
             nav = document.select("a.nn");
@@ -86,7 +77,6 @@ public class RealtorListParser {
             }
         }
 
-        return adLinks;
     }
 
 }

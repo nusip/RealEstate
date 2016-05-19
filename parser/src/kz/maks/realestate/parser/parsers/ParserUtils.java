@@ -87,9 +87,7 @@ public class ParserUtils {
                 Utils.execute(10, IOException.class, new Callable() {
                     @Override
                     public Object call() throws Exception {
-                        String sDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
-                        log.debug(sDateTime + " JSOUP PARSE url: " + url);
-
+                        log.debug("JSOUP PARSE url: " + url);
                         document[0] = Jsoup.connect(url).get();
                         return null;
                     }

@@ -8,7 +8,7 @@ import kz.maks.realestate.parser.parsers.AdsParser;
 import static kz.maks.core.shared.Utils.ONE_HOUR;
 
 
-@Job(interval = ONE_HOUR)
+//@Job(interval = ONE_HOUR)
 public class AdsParserJob implements IJob {
 
     @Inject
