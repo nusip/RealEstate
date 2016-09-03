@@ -28,10 +28,7 @@ public class RegionsUpdater {
 
     private void clearIds(RegionDto regionDto) {
         regionDto.setId(null);
-
-        for (RegionDto childDto : regionDto.getChildren()) {
-            clearIds(childDto);
-        }
+        regionDto.getChildren().forEach(this::clearIds);
     }
 
 }

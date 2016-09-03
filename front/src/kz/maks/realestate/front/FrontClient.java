@@ -16,7 +16,7 @@ public class FrontClient extends BaseClient {
 
     @Override
     public void afterInit() {
-        ActivationChecker.check();
+//        ActivationChecker.check();
 
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
